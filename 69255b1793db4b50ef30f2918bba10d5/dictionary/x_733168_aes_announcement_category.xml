@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="4dd0eb5f931f4b50ef30f2918bba1014" label="Announcement Category" max_length="40" name="x_733168_aes_announcement_category" type="collection">
+        <element display="true" label="Label" max_length="100" name="label" type="translated_text"/>
+        <element label="Code" max_length="15" name="code" type="string"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
+        <element label="Description" max_length="255" name="description" type="translated_text"/>
+        <element label="Active" max_length="40" name="active" type="boolean"/>
+    </element>
+</database>
