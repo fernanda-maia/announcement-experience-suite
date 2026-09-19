@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_m2m">
+    <sys_m2m action="DELETE">
+        <from_table>x_733168_aes_communication</from_table>
+        <m2m_from_field>x_733168_aes_communication</m2m_from_field>
+        <m2m_from_label>Locations</m2m_from_label>
+        <m2m_table>x_733168_aes_communication_location</m2m_table>
+        <m2m_to_field>cmn_location</m2m_to_field>
+        <m2m_to_label>Communications</m2m_to_label>
+        <sys_class_name>sys_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-19 03:08:14</sys_created_on>
+        <sys_id>6060bc2b93978b50ef30f2918bba10a4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_communication_location</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_m2m_6060bc2b93978b50ef30f2918bba10a4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-19 03:08:14</sys_updated_on>
+        <to_table>cmn_location</to_table>
+    </sys_m2m>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_m2m_6060bc2b93978b50ef30f2918bba10a4</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_m2m"><sys_m2m action="INSERT_OR_UPDATE"><from_table>x_733168_aes_communication</from_table><m2m_from_field>x_733168_aes_communication</m2m_from_field><m2m_from_label>Locations</m2m_from_label><m2m_table>x_733168_aes_communication_location</m2m_table><m2m_to_field>cmn_location</m2m_to_field><m2m_to_label>Communications</m2m_to_label><sys_class_name>sys_m2m</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-19 03:08:14</sys_created_on><sys_id>6060bc2b93978b50ef30f2918bba10a4</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_733168_aes_communication_location</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>sys_m2m_6060bc2b93978b50ef30f2918bba10a4</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-19 03:08:14</sys_updated_on><to_table>cmn_location</to_table></sys_m2m></record_update>]]></payload>
+        <payload_hash>-378831181</payload_hash>
+        <record_name>x_733168_aes_communication_location</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-19 03:08:15</sys_created_on>
+        <sys_id>6ac0742f93978b50ef30f2918bba106c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0b7a2cf2c0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-19 03:08:15</sys_updated_on>
+        <type>Many to Many Definition</type>
+        <update_guid>2ac0742f77978b502f51cfd14181f66b</update_guid>
+        <update_guid_history>2ac0742f77978b502f51cfd14181f66b:-378831181</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-19 03:24:21</sys_created_on>
+        <sys_db_object display_value="" name="sys_m2m">sys_m2m</sys_db_object>
+        <sys_id>8b3b137b640545a09eb8b78d4d20a400</sys_id>
+        <sys_metadata>6060bc2b93978b50ef30f2918bba10a4</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_communication_location</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_m2m_6060bc2b93978b50ef30f2918bba10a4</sys_update_name>
+        <sys_update_version display_value="sys_m2m_6060bc2b93978b50ef30f2918bba10a4">6ac0742f93978b50ef30f2918bba106c</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-19 03:24:21</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

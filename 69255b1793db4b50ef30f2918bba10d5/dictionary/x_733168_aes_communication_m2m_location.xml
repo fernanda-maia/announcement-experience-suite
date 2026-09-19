@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="0f0274af93978b50ef30f2918bba10d8" label="Location" max_length="40" name="x_733168_aes_communication_m2m_location" type="collection">
+        <element attributes="encode_utf8=false" label="Location" max_length="32" name="cmn_location" reference="cmn_location" type="reference"/>
+        <element attributes="encode_utf8=false" label="Communication" max_length="32" name="x_733168_aes_communication" reference="x_733168_aes_communication" reference_floats="true" type="reference"/>
+        <index name="index">
+            <element name="cmn_location"/>
+        </index>
+        <index name="index2">
+            <element name="x_733168_aes_communication"/>
+        </index>
+    </element>
+</database>

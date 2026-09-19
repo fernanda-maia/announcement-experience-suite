@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_m2m">
+    <sys_m2m action="INSERT_OR_UPDATE">
+        <from_table>x_733168_aes_communication</from_table>
+        <m2m_from_field>x_733168_aes_communication</m2m_from_field>
+        <m2m_from_label>Communication Categories</m2m_from_label>
+        <m2m_table>x_733168_aes_communication_m2m_category</m2m_table>
+        <m2m_to_field>x_733168_aes_announcement_category</m2m_to_field>
+        <m2m_to_label>Communications</m2m_to_label>
+        <sys_class_name>sys_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-19 03:12:23</sys_created_on>
+        <sys_id>f961386f93978b50ef30f2918bba102b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_communication_m2m_category</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_m2m_f961386f93978b50ef30f2918bba102b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-19 03:12:23</sys_updated_on>
+        <to_table>x_733168_aes_announcement_category</to_table>
+    </sys_m2m>
+</record_update>
