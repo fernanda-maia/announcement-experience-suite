@@ -4,139 +4,167 @@
             <element>publish_date</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>44bba82393978b50ef30f2918bba1027</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>d98f947f93170f50ef30f2918bba10fa</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>glyph</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>598f947f93170f50ef30f2918bba10fb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>glyph_alt_text</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>d58f947f93170f50ef30f2918bba10fc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>1</position>
+            <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>c0bba82393978b50ef30f2918bba1028</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>558f947f93170f50ef30f2918bba10fd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>expiration_date</element>
-            <position>2</position>
+            <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>40bba82393978b50ef30f2918bba1029</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>d18f947f93170f50ef30f2918bba10fe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>3</position>
+            <position>5</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>ccbba82393978b50ef30f2918bba1029</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>518f947f93170f50ef30f2918bba10ff</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>title</element>
-            <position>4</position>
+            <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>4cbba82393978b50ef30f2918bba102a</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>dd8f947f93170f50ef30f2918bba10ff</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>short_description</element>
-            <position>5</position>
+            <position>7</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>c8bba82393978b50ef30f2918bba102b</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>5d8fd47f93170f50ef30f2918bba1000</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.begin_split</element>
-            <position>6</position>
+            <position>8</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>48bba82393978b50ef30f2918bba102c</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>d98fd47f93170f50ef30f2918bba1001</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>published_by</element>
-            <position>7</position>
+            <position>9</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>c4bba82393978b50ef30f2918bba102d</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>598fd47f93170f50ef30f2918bba1002</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>8</position>
+            <position>10</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>44bba82393978b50ef30f2918bba102e</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>d58fd47f93170f50ef30f2918bba1003</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>published_on</element>
-            <position>9</position>
+            <position>11</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-19 02:45:57</sys_created_on>
-            <sys_id>c0bba82393978b50ef30f2918bba102f</sys_id>
+            <sys_created_on>2026-09-19 20:31:16</sys_created_on>
+            <sys_id>558fd47f93170f50ef30f2918bba1004</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Details" display_value="Details" name="x_733168_aes_communication" sys_domain="global" view="Default view">265f9b9b931f4b50ef30f2918bba1001</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-19 02:45:57</sys_updated_on>
+            <sys_updated_on>2026-09-19 20:31:16</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

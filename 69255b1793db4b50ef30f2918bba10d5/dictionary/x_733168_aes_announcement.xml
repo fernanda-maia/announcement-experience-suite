@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="5b3a5c3393170f50ef30f2918bba1043" extends="x_733168_aes_communication" label="Announcement" max_length="40" name="x_733168_aes_announcement" type="collection">
+        <element label="Display type" max_length="4000" name="display_type" reference="x_733168_aes_announcement_display_type" reference_qual="active=true^EQ" reference_qual_condition="active=true^EQ" type="glide_list"/>
+    </element>
+</database>
