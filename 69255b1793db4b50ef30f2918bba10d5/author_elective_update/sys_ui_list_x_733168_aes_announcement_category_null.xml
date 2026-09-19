@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list action="DELETE" parent="" relationship="" sys_domain="global" table="x_733168_aes_announcement_category" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>name</element>
+            <list_id display_value="x_733168_aes_announcement_category" element="NULL" name="x_733168_aes_announcement_category" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">32f87cef93d78b50ef30f2918bba1039</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-19 03:44:02</sys_created_on>
+            <sys_id>3af87cef93d78b50ef30f2918bba103a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-19 03:44:02</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>description</element>
+            <list_id display_value="x_733168_aes_announcement_category" element="NULL" name="x_733168_aes_announcement_category" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">32f87cef93d78b50ef30f2918bba1039</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-19 03:44:02</sys_created_on>
+            <sys_id>b6f87cef93d78b50ef30f2918bba103b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-19 03:44:02</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>active</element>
+            <list_id display_value="x_733168_aes_announcement_category" element="NULL" name="x_733168_aes_announcement_category" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">32f87cef93d78b50ef30f2918bba1039</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-19 03:44:02</sys_created_on>
+            <sys_id>3ef87cef93d78b50ef30f2918bba103b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-19 03:44:02</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_733168_aes_announcement_category</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-19 03:44:02</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>32f87cef93d78b50ef30f2918bba1039</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_733168_aes_announcement_category</sys_name>
+            <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+            <sys_update_name>sys_ui_list_x_733168_aes_announcement_category_null</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-19 03:44:02</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_ui_list_x_733168_aes_announcement_category_null</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_ui_list parent="" relationship="" sys_domain="global" table="x_733168_aes_announcement_category" version="2" view=""><sys_ui_list_element action="INSERT_OR_UPDATE"><average_value>false</average_value><element>name</element><list_id display_value="x_733168_aes_announcement_category" element="NULL" name="x_733168_aes_announcement_category" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">32f87cef93d78b50ef30f2918bba1039</list_id><max_value>false</max_value><min_value>false</min_value><position>0</position><sum>false</sum><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-19 03:44:02</sys_created_on><sys_id>3af87cef93d78b50ef30f2918bba103a</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-19 03:44:02</sys_updated_on></sys_ui_list_element><sys_ui_list_element action="INSERT_OR_UPDATE"><average_value>false</average_value><element>description</element><list_id display_value="x_733168_aes_announcement_category" element="NULL" name="x_733168_aes_announcement_category" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">32f87cef93d78b50ef30f2918bba1039</list_id><max_value>false</max_value><min_value>false</min_value><position>1</position><sum>false</sum><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-19 03:44:02</sys_created_on><sys_id>b6f87cef93d78b50ef30f2918bba103b</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-19 03:44:02</sys_updated_on></sys_ui_list_element><sys_ui_list_element action="INSERT_OR_UPDATE"><average_value>false</average_value><element>active</element><list_id display_value="x_733168_aes_announcement_category" element="NULL" name="x_733168_aes_announcement_category" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">32f87cef93d78b50ef30f2918bba1039</list_id><max_value>false</max_value><min_value>false</min_value><position>2</position><sum>false</sum><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-19 03:44:02</sys_created_on><sys_id>3ef87cef93d78b50ef30f2918bba103b</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-19 03:44:02</sys_updated_on></sys_ui_list_element><sys_ui_list action="INSERT_OR_UPDATE"><average_value>false</average_value><element/><max_value>false</max_value><min_value>false</min_value><name>x_733168_aes_announcement_category</name><parent/><position/><relationship/><sum>false</sum><sys_class_name>sys_ui_list</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-19 03:44:02</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>32f87cef93d78b50ef30f2918bba1039</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_733168_aes_announcement_category</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>sys_ui_list_x_733168_aes_announcement_category_null</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-19 03:44:02</sys_updated_on><sys_user/><view display_value="Default view" name="NULL">Default view</view><view_name/></sys_ui_list></sys_ui_list></record_update>]]></payload>
+        <payload_hash>79762606</payload_hash>
+        <record_name>Announcement Category</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-19 03:44:02</sys_created_on>
+        <sys_id>3ef87cef93d78b50ef30f2918bba103f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0b7c392030000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-19 03:44:02</sys_updated_on>
+        <type>List Layout</type>
+        <update_guid>7ef87cef61d78b5057f91af4b3ed7d3e</update_guid>
+        <update_guid_history>7ef87cef61d78b5057f91af4b3ed7d3e:79762606,791568a327578b502db5d52237ecf877:-762638525</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-19 04:57:21</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_list">sys_ui_list</sys_db_object>
+        <sys_id>8e5e1b62c32441b096fb022824242ae4</sys_id>
+        <sys_metadata>32f87cef93d78b50ef30f2918bba1039</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_announcement_category</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent display_value="">4dd0eb5f931f4b50ef30f2918bba1014</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_ui_list_x_733168_aes_announcement_category_null</sys_update_name>
+        <sys_update_version display_value="sys_ui_list_x_733168_aes_announcement_category_null">3ef87cef93d78b50ef30f2918bba103f</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-19 04:57:21</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
