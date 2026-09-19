@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="bee9a03793970f50ef30f2918bba1001" label="Communication User Criteria Exclusion" max_length="40" name="x_733168_aes_communication_user_criteria_exclusion" type="collection">
+        <element label="Communication" mandatory="true" max_length="32" name="communication" reference="x_733168_aes_communication" type="reference"/>
+        <element label="User criteria" mandatory="true" max_length="32" name="user_criteria" reference="user_criteria" reference_qual="active=true^sys_scope=69255b1793db4b50ef30f2918bba10d5^EQ" reference_qual_condition="active=true^sys_scope=69255b1793db4b50ef30f2918bba10d5^EQ" type="reference"/>
+        <index name="index">
+            <element name="communication"/>
+        </index>
+        <index name="index2">
+            <element name="user_criteria"/>
+        </index>
+    </element>
+</database>
