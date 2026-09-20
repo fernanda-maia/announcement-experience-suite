@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESCommunicationTracking</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AESCommunicationTracking</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESCommunicationTracking = Class.create();
+AESCommunicationTracking.prototype = {
+
+    initialize: function() {
+        this.TRACKING_TABLE = 'x_733168_aes_communication_user_tracking';
+        this.COMMUNICATION_TABLE = 'x_733168_aes_communication';
+        this.ANNOUNCEMENT_TABLE = 'x_733168_aes_announcement';
+    },
+
+    /**
+     * Records that the current user was actually exposed
+     * to the communication.
+     */
+    recordDisplay: function(communicationId) {
+        if (!this._canTrack())
+            return this._failure('not_authenticated');
+
+        if (!communicationId)
+            return this._failure('invalid_communication');
+
+        var tracking = this._getOrCreateTracking(communicationId);
+
+        if (!tracking)
+            return this._failure('not_found');
+
+        var now = new GlideDateTime();
+
+        if (tracking.getValue('first_displayed_on') == '')
+            tracking.setValue('first_displayed_on', now);
+
+        tracking.setValue('last_displayed_on', now);
+
+        if (!tracking.update())
+            return this._failure('update_failed');
+
+        return this._success();
+    },
+
+    /**
+     * Marks the communication as read.
+     */
+    markAsRead: function(communicationId) {
+        if (!this._canTrack())
+            return this._failure('not_authenticated');
+
+        if (!communicationId)
+            return this._failure('invalid_communication');
+
+        var tracking = this._getOrCreateTracking(communicationId);
+
+        if (!tracking)
+            return this._failure('not_found');
+
+        // Idempotent operation.
+        if (tracking.getValue('read') == '1')
+            return this._success();
+
+        tracking.setValue('read', true);
+        tracking.setValue('read_on', new GlideDateTime());
+
+        if (!tracking.update())
+            return this._failure('update_failed');
+
+        return this._success();
+    },
+
+    /**
+     * Returns the communication to the unread state.
+     */
+    markAsUnread: function(communicationId) {
+        if (!this._canTrack())
+            return this._failure('not_authenticated');
+
+        if (!communicationId)
+            return this._failure('invalid_communication');
+
+        var tracking = this._getTracking(communicationId);
+
+        // There is nothing to undo.
+        if (!tracking)
+            return this._success();
+
+        // Idempotent operation.
+        if (tracking.getValue('read') != '1')
+            return this._success();
+
+        tracking.setValue('read', false);
+        tracking.setValue('read_on', '');
+
+        if (!tracking.update())
+            return this._failure('update_failed');
+
+        return this._success();
+    },
+
+    /**
+     * Saves the communication for the current user.
+     */
+    save: function(communicationId) {
+        if (!this._canTrack())
+            return this._failure('not_authenticated');
+
+        if (!communicationId)
+            return this._failure('invalid_communication');
+
+        var tracking = this._getOrCreateTracking(communicationId);
+
+        if (!tracking)
+            return this._failure('not_found');
+
+        // Idempotent operation.
+        if (tracking.getValue('saved') == '1')
+            return this._success();
+
+        tracking.setValue('saved', true);
+        tracking.setValue('saved_on', new GlideDateTime());
+
+        if (!tracking.update())
+            return this._failure('update_failed');
+
+        return this._success();
+    },
+
+    /**
+     * Removes the communication from the user's saved items.
+     */
+    unsave: function(communicationId) {
+        if (!this._canTrack())
+            return this._failure('not_authenticated');
+
+        if (!communicationId)
+            return this._failure('invalid_communication');
+
+        var tracking = this._getTracking(communicationId);
+
+        // Nothing has ever been saved.
+        if (!tracking)
+            return this._success();
+
+        // Idempotent operation.
+        if (tracking.getValue('saved') != '1')
+            return this._success();
+
+        tracking.setValue('saved', false);
+        tracking.setValue('saved_on', '');
+
+        if (!tracking.update())
+            return this._failure('update_failed');
+
+        return this._success();
+    },
+
+    /**
+     * Dismisses an Announcement for the current user.
+     *
+     * Rules:
+     * - The communication must be an Announcement.
+     * - The Announcement must be dismissible.
+     * - Urgent Announcements must be read before dismissal.
+     */
+    dismiss: function(communicationId) {
+        if (!this._canTrack())
+            return this._failure('not_authenticated');
+
+        if (!communicationId)
+            return this._failure('invalid_communication');
+
+        var announcement = this._getAnnouncement(communicationId);
+
+        if (!announcement)
+            return this._failure('not_found');
+
+        if (announcement.getValue('dismiss_option') != 'dismissible')
+            return this._failure('not_dismissible');
+
+        var tracking = this._getOrCreateTracking(communicationId);
+
+        if (!tracking)
+            return this._failure('tracking_failed');
+
+        var isUrgent =
+            announcement.getValue('mark_as_urgent') == '1';
+
+        var isRead =
+            tracking.getValue('read') == '1';
+
+        if (isUrgent && !isRead)
+            return this._failure('urgent_unread');
+
+        // Idempotent operation.
+        if (tracking.getValue('dismissed') == '1')
+            return this._success();
+
+        tracking.setValue('dismissed', true);
+        tracking.setValue('dismissed_on', new GlideDateTime());
+
+        if (!tracking.update())
+            return this._failure('update_failed');
+
+        return this._success();
+    },
+
+    /**
+     * Returns the current user's consolidated tracking state.
+     *
+     * This method never creates a tracking record.
+     */
+    getTracking: function(communicationId) {
+        if (!this._canTrack() || !communicationId)
+            return null;
+
+        var tracking = this._getTracking(communicationId);
+
+        if (!tracking)
+            return this._emptyTracking();
+
+        return {
+            displayed:
+                tracking.getValue('first_displayed_on') != '',
+
+            first_displayed_on:
+                tracking.getValue('first_displayed_on'),
+
+            last_displayed_on:
+                tracking.getValue('last_displayed_on'),
+
+            read:
+                tracking.getValue('read') == '1',
+
+            read_on:
+                tracking.getValue('read_on'),
+
+            saved:
+                tracking.getValue('saved') == '1',
+
+            saved_on:
+                tracking.getValue('saved_on'),
+
+            dismissed:
+                tracking.getValue('dismissed') == '1',
+
+            dismissed_on:
+                tracking.getValue('dismissed_on')
+        };
+    },
+
+    /*
+     * ------------------------------------------------------------------
+     * Tracking
+     * ------------------------------------------------------------------
+     */
+
+    _getTracking: function(communicationId) {
+        var tracking = new GlideRecord(this.TRACKING_TABLE);
+
+        tracking.addQuery('communication', communicationId);
+        tracking.addQuery('user', gs.getUserID());
+        tracking.setLimit(1);
+        tracking.query();
+
+        if (tracking.next())
+            return tracking;
+
+        return null;
+    },
+
+    _getOrCreateTracking: function(communicationId) {
+        var tracking = this._getTracking(communicationId);
+
+        if (tracking)
+            return tracking;
+
+        if (!this._communicationExists(communicationId))
+            return null;
+
+        tracking = new GlideRecord(this.TRACKING_TABLE);
+        tracking.initialize();
+
+        tracking.setValue('communication', communicationId);
+        tracking.setValue('user', gs.getUserID());
+
+        var trackingId = tracking.insert();
+
+        if (!trackingId)
+            return null;
+
+        return tracking;
+    },
+
+    /*
+     * ------------------------------------------------------------------
+     * Communication
+     * ------------------------------------------------------------------
+     */
+
+    _communicationExists: function(communicationId) {
+        var communication =
+            new GlideRecord(this.COMMUNICATION_TABLE);
+
+        return communication.get(communicationId);
+    },
+
+    _getAnnouncement: function(communicationId) {
+        var announcement =
+            new GlideRecord(this.ANNOUNCEMENT_TABLE);
+
+        if (!announcement.get(communicationId))
+            return null;
+
+        return announcement;
+    },
+
+    /*
+     * ------------------------------------------------------------------
+     * Track only authenticated users
+     * ------------------------------------------------------------------
+     */
+
+    _canTrack: function() {
+        return gs.isLoggedIn() && gs.getUserID() != 'guest';
+    },
+
+    /*
+     * ------------------------------------------------------------------
+     * Responses
+     * ------------------------------------------------------------------
+     */
+
+    _success: function() {
+        return {
+            success: true
+        };
+    },
+
+    _failure: function(reason) {
+        return {
+            success: false,
+            reason: reason
+        };
+    },
+
+    _emptyTracking: function() {
+        return {
+            displayed: false,
+            first_displayed_on: null,
+            last_displayed_on: null,
+
+            read: false,
+            read_on: null,
+
+            saved: false,
+            saved_on: null,
+
+            dismissed: false,
+            dismissed_on: null
+        };
+    },
+
+    type: 'AESCommunicationTracking'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 22:30:53</sys_created_on>
+        <sys_id>68718e449363cf50ef30f2918bba108a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AESCommunicationTracking</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_68718e449363cf50ef30f2918bba108a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 22:30:53</sys_updated_on>
+    </sys_script_include>
+</record_update>
