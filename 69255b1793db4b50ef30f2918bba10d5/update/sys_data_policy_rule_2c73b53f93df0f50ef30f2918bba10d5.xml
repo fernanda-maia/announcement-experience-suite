@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_data_policy_rule">
+    <sys_data_policy_rule action="INSERT_OR_UPDATE">
+        <disabled>ignore</disabled>
+        <field>catalog_item</field>
+        <mandatory>true</mandatory>
+        <sys_class_name>sys_data_policy_rule</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 02:38:09</sys_created_on>
+        <sys_data_policy display_value="When Action Type is Catalog Item">c553b13f93df0f50ef30f2918bba10a4</sys_data_policy>
+        <sys_id>2c73b53f93df0f50ef30f2918bba10d5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>catalog_item</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_data_policy_rule_2c73b53f93df0f50ef30f2918bba10d5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 02:38:09</sys_updated_on>
+        <table>x_733168_aes_communication_action</table>
+    </sys_data_policy_rule>
+</record_update>

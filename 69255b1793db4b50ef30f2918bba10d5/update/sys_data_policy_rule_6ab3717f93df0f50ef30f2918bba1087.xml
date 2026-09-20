@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_data_policy_rule">
+    <sys_data_policy_rule action="INSERT_OR_UPDATE">
+        <disabled>ignore</disabled>
+        <field>knowledge_article</field>
+        <mandatory>true</mandatory>
+        <sys_class_name>sys_data_policy_rule</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 02:39:20</sys_created_on>
+        <sys_data_policy display_value="When Action Type is Knowledge Article">2ca3bd3f93df0f50ef30f2918bba102d</sys_data_policy>
+        <sys_id>6ab3717f93df0f50ef30f2918bba1087</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>knowledge_article</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_data_policy_rule_6ab3717f93df0f50ef30f2918bba1087</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 02:39:20</sys_updated_on>
+        <table>x_733168_aes_communication_action</table>
+    </sys_data_policy_rule>
+</record_update>
