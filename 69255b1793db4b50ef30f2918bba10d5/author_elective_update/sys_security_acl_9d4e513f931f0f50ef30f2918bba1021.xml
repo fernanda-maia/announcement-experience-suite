@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="DELETE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>false</advanced>
+        <applies_to/>
+        <condition/>
+        <controlled_by_refs/>
+        <decision_type>allow</decision_type>
+        <description>Default access control on x_733168_aes_communication_channel</description>
+        <local_or_existing>Existing</local_or_existing>
+        <name>x_733168_aes_communication_channel</name>
+        <operation display_value="create">create</operation>
+        <script/>
+        <security_attribute/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 01:05:26</sys_created_on>
+        <sys_id>9d4e513f931f0f50ef30f2918bba1021</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_communication_channel</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_security_acl_9d4e513f931f0f50ef30f2918bba1021</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 01:05:26</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_security_acl_9d4e513f931f0f50ef30f2918bba1021</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl"><sys_security_acl action="INSERT_OR_UPDATE"><active>true</active><admin_overrides>true</admin_overrides><advanced>false</advanced><applies_to/><condition/><controlled_by_refs/><decision_type>allow</decision_type><description>Default access control on x_733168_aes_communication_channel</description><local_or_existing>Existing</local_or_existing><name>x_733168_aes_communication_channel</name><operation display_value="create">create</operation><script/><security_attribute/><sys_class_name>sys_security_acl</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-20 01:05:26</sys_created_on><sys_id>9d4e513f931f0f50ef30f2918bba1021</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_733168_aes_communication_channel</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>sys_security_acl_9d4e513f931f0f50ef30f2918bba1021</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-20 01:05:26</sys_updated_on><type display_value="record">record</type></sys_security_acl></record_update>]]></payload>
+        <payload_hash>-282932349</payload_hash>
+        <record_name>x_733168_aes_communication_channel</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 01:05:26</sys_created_on>
+        <sys_id>9d4e513f931f0f50ef30f2918bba1027</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0bc58bac80000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 01:05:26</sys_updated_on>
+        <type>Access Control</type>
+        <update_guid>5d4e513f9a1f0f50c3680a99b0c24226</update_guid>
+        <update_guid_history>5d4e513f9a1f0f50c3680a99b0c24226:-282932349</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 01:20:54</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl">sys_security_acl</sys_db_object>
+        <sys_id>9e8fde306f5c45f8964f9ad23673e440</sys_id>
+        <sys_metadata>9d4e513f931f0f50ef30f2918bba1021</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_communication_channel</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent display_value="">3d4e913f931f0f50ef30f2918bba1020</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_security_acl_9d4e513f931f0f50ef30f2918bba1021</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_9d4e513f931f0f50ef30f2918bba1021">9d4e513f931f0f50ef30f2918bba1027</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 01:20:54</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

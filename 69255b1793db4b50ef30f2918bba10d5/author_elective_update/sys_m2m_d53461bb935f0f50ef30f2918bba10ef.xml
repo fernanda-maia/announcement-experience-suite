@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_m2m">
+    <sys_m2m action="DELETE">
+        <from_table>x_733168_aes_communication</from_table>
+        <m2m_from_field>x_733168_aes_communication</m2m_from_field>
+        <m2m_from_label>Communication Channels</m2m_from_label>
+        <m2m_table>x_733168_aes_m2m_x_733168_ae_x_733168_ae</m2m_table>
+        <m2m_to_field>x_733168_aes_communication_channel</m2m_to_field>
+        <m2m_to_label>Communications</m2m_to_label>
+        <sys_class_name>sys_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 01:31:47</sys_created_on>
+        <sys_id>d53461bb935f0f50ef30f2918bba10ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_m2m_x_733168_ae_x_733168_ae</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_m2m_d53461bb935f0f50ef30f2918bba10ef</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 01:31:47</sys_updated_on>
+        <to_table>x_733168_aes_communication_channel</to_table>
+    </sys_m2m>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_m2m_d53461bb935f0f50ef30f2918bba10ef</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_m2m"><sys_m2m action="INSERT_OR_UPDATE"><from_table>x_733168_aes_communication</from_table><m2m_from_field>x_733168_aes_communication</m2m_from_field><m2m_from_label>Communication Channels</m2m_from_label><m2m_table>x_733168_aes_m2m_x_733168_ae_x_733168_ae</m2m_table><m2m_to_field>x_733168_aes_communication_channel</m2m_to_field><m2m_to_label>Communications</m2m_to_label><sys_class_name>sys_m2m</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-20 01:31:47</sys_created_on><sys_id>d53461bb935f0f50ef30f2918bba10ef</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_733168_aes_m2m_x_733168_ae_x_733168_ae</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>sys_m2m_d53461bb935f0f50ef30f2918bba10ef</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-20 01:31:47</sys_updated_on><to_table>x_733168_aes_communication_channel</to_table></sys_m2m></record_update>]]></payload>
+        <payload_hash>-150833373</payload_hash>
+        <record_name>x_733168_aes_m2m_x_733168_ae_x_733168_ae</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 01:31:49</sys_created_on>
+        <sys_id>bb4465bb935f0f50ef30f2918bba1083</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0bc70e1320000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 01:31:49</sys_updated_on>
+        <type>Many to Many Definition</type>
+        <update_guid>7b4465bbe45f0f50a5ce3cfc8e2c9982</update_guid>
+        <update_guid_history>7b4465bbe45f0f50a5ce3cfc8e2c9982:-150833373</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 01:54:30</sys_created_on>
+        <sys_db_object display_value="" name="sys_m2m">sys_m2m</sys_db_object>
+        <sys_id>11d9283e55104f8d8b4ad1985feabe39</sys_id>
+        <sys_metadata>d53461bb935f0f50ef30f2918bba10ef</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_m2m_x_733168_ae_x_733168_ae</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_m2m_d53461bb935f0f50ef30f2918bba10ef</sys_update_name>
+        <sys_update_version display_value="sys_m2m_d53461bb935f0f50ef30f2918bba10ef">bb4465bb935f0f50ef30f2918bba1083</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 01:54:30</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="fdb929b7939f0f50ef30f2918bba1047" label="Communication M2M Channel" max_length="40" name="x_733168_aes_communication_m2m_channel" type="collection">
+        <element attributes="encode_utf8=false" label="Communication Channels" mandatory="true" max_length="32" name="x_733168_aes_communication_channel" reference="x_733168_aes_communication_channel" reference_qual="active=true^EQ" reference_qual_condition="active=true^EQ" type="reference"/>
+        <element attributes="encode_utf8=false" label="Communications" mandatory="true" max_length="32" name="x_733168_aes_communication" reference="x_733168_aes_communication" type="reference"/>
+        <index name="index">
+            <element name="x_733168_aes_communication"/>
+        </index>
+    </element>
+</database>

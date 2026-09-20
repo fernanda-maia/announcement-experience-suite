@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true,update_synch=true" db_object_id="3ad12d37935f0f50ef30f2918bba1018" extends="sys_metadata" label="Communication Channel" max_length="40" name="x_733168_aes_communication_channel" type="collection">
+        <element label="Short description" max_length="250" name="short_description" type="translated_text"/>
+        <element display="true" label="Name" mandatory="true" max_length="150" name="name" type="string"/>
+        <element label="Internal name" max_length="250" name="internal_name" read_only="true" read_only_option="strict_read_only" type="string"/>
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+    </element>
+</database>
