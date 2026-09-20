@@ -42,6 +42,20 @@
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-09-19 20:10:35</sys_updated_on>
         </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-20 21:12:45</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>ba92f50493ef8f50ef30f2918bba10fc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_733168_aes_announcement" name="x_733168_aes_announcement" sys_domain="global" view="Default view">06ca50b393170f50ef30f2918bba10b3</sys_ui_form>
+            <sys_ui_section caption="Behavior" display_value="Behavior" name="x_733168_aes_announcement" sys_domain="global" view="Default view">3e92f50493ef8f50ef30f2918bba10f5</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-20 21:12:45</sys_updated_on>
+        </sys_ui_form_section>
         <sys_ui_form action="INSERT_OR_UPDATE">
             <name>x_733168_aes_announcement</name>
             <roles/>

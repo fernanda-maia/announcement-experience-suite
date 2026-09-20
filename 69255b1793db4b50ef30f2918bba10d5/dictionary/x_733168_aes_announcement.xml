@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="5b3a5c3393170f50ef30f2918bba1043" extends="x_733168_aes_communication" label="Announcement" max_length="40" name="x_733168_aes_announcement" type="collection">
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Mark as Urgent" max_length="40" name="mark_as_urgent" type="boolean"/>
         <element label="Display type" max_length="4000" name="display_type" reference="x_733168_aes_announcement_display_type" reference_qual="active=true^EQ" reference_qual_condition="active=true^EQ" type="glide_list"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" choice="3" default="dismissible" label="Dismiss Option" max_length="40" name="dismiss_option" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Not Dismissible" sequence="1" value="not_dismissible"/>
+                <element inactive_on_update="false" label="Dismissible" sequence="3" value="dismissible"/>
+            </choice>
+        </element>
     </element>
 </database>

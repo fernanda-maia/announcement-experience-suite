@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="DELETE">
+        <active>true</active>
+        <admin_overrides>false</admin_overrides>
+        <advanced>true</advanced>
+        <applies_to/>
+        <condition/>
+        <controlled_by_refs/>
+        <decision_type>allow</decision_type>
+        <description/>
+        <local_or_existing>Existing</local_or_existing>
+        <name>x_733168_aes_communication_user_tracking.first_display_on</name>
+        <operation display_value="write">write</operation>
+        <script><![CDATA[answer = false;]]></script>
+        <security_attribute/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 21:48:23</sys_created_on>
+        <sys_id>eac9b1449323cf50ef30f2918bba10bc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_communication_user_tracking.first_display_on</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_security_acl_eac9b1449323cf50ef30f2918bba10bc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 21:48:23</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_security_acl_eac9b1449323cf50ef30f2918bba10bc</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_security_acl"&gt;&lt;sys_security_acl action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;admin_overrides&gt;false&lt;/admin_overrides&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;applies_to/&gt;&lt;condition/&gt;&lt;controlled_by_refs/&gt;&lt;decision_type&gt;allow&lt;/decision_type&gt;&lt;description/&gt;&lt;local_or_existing&gt;Existing&lt;/local_or_existing&gt;&lt;name&gt;x_733168_aes_communication_user_tracking.first_display_on&lt;/name&gt;&lt;operation display_value="write"&gt;write&lt;/operation&gt;&lt;script&gt;&lt;![CDATA[answer = false;]]&gt;&lt;/script&gt;&lt;security_attribute/&gt;&lt;sys_class_name&gt;sys_security_acl&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2026-09-20 21:48:23&lt;/sys_created_on&gt;&lt;sys_id&gt;eac9b1449323cf50ef30f2918bba10bc&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;x_733168_aes_communication_user_tracking.first_display_on&lt;/sys_name&gt;&lt;sys_package display_value="Announcement Experience Suite" source="x_733168_aes"&gt;69255b1793db4b50ef30f2918bba10d5&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Announcement Experience Suite"&gt;69255b1793db4b50ef30f2918bba10d5&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_security_acl_eac9b1449323cf50ef30f2918bba10bc&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2026-09-20 21:48:23&lt;/sys_updated_on&gt;&lt;type display_value="record"&gt;record&lt;/type&gt;&lt;/sys_security_acl&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1027819926</payload_hash>
+        <record_name>x_733168_aes_communication_user_tracking.first_display_on</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 21:48:23</sys_created_on>
+        <sys_id>e4ca39849323cf50ef30f2918bba10c5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0c0caae880000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 21:48:23</sys_updated_on>
+        <type>Access Control</type>
+        <update_guid>a4ca3984fe23cf509830d425c27f62c4</update_guid>
+        <update_guid_history>a4ca3984fe23cf509830d425c27f62c4:1027819926</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 21:49:39</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl">sys_security_acl</sys_db_object>
+        <sys_id>1d182a1899c84157b1461aff8c652fb1</sys_id>
+        <sys_metadata>eac9b1449323cf50ef30f2918bba10bc</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_communication_user_tracking.first_display_on</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent display_value="First display on">5bd331c493ef8f50ef30f2918bba10d6</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_security_acl_eac9b1449323cf50ef30f2918bba10bc</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_eac9b1449323cf50ef30f2918bba10bc">e4ca39849323cf50ef30f2918bba10c5</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 21:49:39</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

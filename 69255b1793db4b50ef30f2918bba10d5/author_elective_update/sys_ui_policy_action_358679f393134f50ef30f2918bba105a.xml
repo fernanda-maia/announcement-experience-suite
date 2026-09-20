@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="DELETE">
+        <cleared>true</cleared>
+        <disabled>ignore</disabled>
+        <field>url</field>
+        <field_message/>
+        <field_message_type>none</field_message_type>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 02:51:39</sys_created_on>
+        <sys_id>358679f393134f50ef30f2918bba105a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>url</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_ui_policy_action_358679f393134f50ef30f2918bba105a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 02:51:39</sys_updated_on>
+        <table>x_733168_aes_communication_action</table>
+        <ui_policy display_value="When Action Type is Catalog Item">f483393f93df0f50ef30f2918bba10b4</ui_policy>
+        <value/>
+        <value_action>ignore</value_action>
+        <visible>ignore</visible>
+    </sys_ui_policy_action>
+    <sys_translated_text action="DELETE" query="documentkey=358679f393134f50ef30f2918bba105a"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_ui_policy_action_358679f393134f50ef30f2918bba105a</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action"><sys_ui_policy_action action="INSERT_OR_UPDATE"><cleared>true</cleared><disabled>ignore</disabled><field>url</field><field_message/><field_message_type>none</field_message_type><mandatory>ignore</mandatory><sys_class_name>sys_ui_policy_action</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-20 02:51:39</sys_created_on><sys_id>358679f393134f50ef30f2918bba105a</sys_id><sys_mod_count>0</sys_mod_count><sys_name>url</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>sys_ui_policy_action_358679f393134f50ef30f2918bba105a</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-20 02:51:39</sys_updated_on><table>x_733168_aes_communication_action</table><ui_policy display_value="When Action Type is Catalog Item">f483393f93df0f50ef30f2918bba10b4</ui_policy><value/><value_action>ignore</value_action><visible>ignore</visible></sys_ui_policy_action><sys_translated_text action="delete_multiple" query="documentkey=358679f393134f50ef30f2918bba105a"/></record_update>]]></payload>
+        <payload_hash>1051448918</payload_hash>
+        <record_name>url</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 02:51:39</sys_created_on>
+        <sys_id>c596b9f393134f50ef30f2918bba1087</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0bcb9f7690000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 02:51:39</sys_updated_on>
+        <type>UI Policy Action</type>
+        <update_guid>8596b9f3e1134f50cfc20c6f85620886</update_guid>
+        <update_guid_history>8596b9f3e1134f50cfc20c6f85620886:1051448918</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-20 02:52:37</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_policy_action">sys_ui_policy_action</sys_db_object>
+        <sys_id>a367fb55cafd418086ba1f31d0d66100</sys_id>
+        <sys_metadata>358679f393134f50ef30f2918bba105a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>url</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent display_value="When Action Type is Catalog Item">f483393f93df0f50ef30f2918bba10b4</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_ui_policy_action_358679f393134f50ef30f2918bba105a</sys_update_name>
+        <sys_update_version display_value="sys_ui_policy_action_358679f393134f50ef30f2918bba105a">c596b9f393134f50ef30f2918bba1087</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-20 02:52:37</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

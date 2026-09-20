@@ -11,6 +11,13 @@
             </choice>
         </element>
         <element default="100" label="Order" max_length="40" name="order" type="integer"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" choice="3" default="new_tab" label="Link Target" max_length="40" name="link_target" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="New tab" sequence="1" value="new_tab"/>
+                <element inactive_on_update="false" label="New window" sequence="2" value="new_window"/>
+                <element inactive_on_update="false" label="Current page" sequence="3" value="current_page"/>
+            </choice>
+        </element>
         <element label="URL" max_length="1024" name="url" type="url"/>
         <element label="Communication" mandatory="true" max_length="32" name="communication" reference="x_733168_aes_communication" type="reference"/>
         <index name="index">

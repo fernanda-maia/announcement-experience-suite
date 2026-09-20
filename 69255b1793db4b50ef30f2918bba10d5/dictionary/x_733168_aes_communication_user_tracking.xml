@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="d083398493ef8f50ef30f2918bba104d" label="Communication User Tracking" max_length="40" name="x_733168_aes_communication_user_tracking" type="collection">
+        <element label="Read on" max_length="40" name="read_on" type="glide_date_time"/>
+        <element label="Dismissed on" max_length="40" name="dismissed_on" type="glide_date_time"/>
+        <element label="User" mandatory="true" max_length="32" name="user" reference="sys_user" type="reference"/>
+        <element label="First display on" max_length="40" name="first_display_on" type="glide_date_time"/>
+        <element label="Communication" max_length="32" name="communication" reference="x_733168_aes_communication" type="reference"/>
+        <element label="Saved on" max_length="40" name="saved_on" type="glide_date_time"/>
+        <element label="Saved" max_length="40" name="saved" type="boolean"/>
+        <element label="Read" max_length="40" name="read" type="boolean"/>
+        <element label="Dismissed" max_length="40" name="dismissed" type="boolean"/>
+        <element label="Last display on" max_length="40" name="last_display_on" type="glide_date_time"/>
+        <index name="index">
+            <element name="communication"/>
+        </index>
+        <index name="index2">
+            <element name="user"/>
+        </index>
+    </element>
+</database>

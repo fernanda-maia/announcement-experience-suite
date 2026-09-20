@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_data_policy2">
     <sys_data_policy2 action="INSERT_OR_UPDATE">
-        <active>false</active>
+        <active>true</active>
         <apply_import_set>true</apply_import_set>
         <apply_soap>true</apply_soap>
         <conditions table="x_733168_aes_communication_action">action_type=knowledge_article^EQ<item display_value="Knowledge Article" endquery="false" field="action_type" goto="false" newquery="false" operator="=" or="false" value="knowledge_article"/>
@@ -19,7 +19,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>2ca3bd3f93df0f50ef30f2918bba102d</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>When Action Type is Knowledge Article</sys_name>
         <sys_overrides/>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
@@ -27,6 +27,6 @@
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sys_data_policy2_2ca3bd3f93df0f50ef30f2918bba102d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-20 02:39:24</sys_updated_on>
+        <sys_updated_on>2026-09-20 02:48:01</sys_updated_on>
     </sys_data_policy2>
 </record_update>

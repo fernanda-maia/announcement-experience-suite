@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="dismiss_option" table="x_733168_aes_announcement" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>dismiss_option</element>
+            <name>x_733168_aes_announcement</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-20 03:12:19</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>dismiss_option</sys_name>
+            <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+            <sys_update_name>sys_choice_x_733168_aes_announcement_dismiss_option</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-20 03:12:19</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>dismiss_option</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Not Dismissible</label>
+            <language>en</language>
+            <name>x_733168_aes_announcement</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-20 03:12:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>5</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-20 21:08:28</sys_updated_on>
+            <value>not_dismissible</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>dismiss_option</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Dismissible</label>
+            <language>en</language>
+            <name>x_733168_aes_announcement</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-20 03:13:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-20 21:07:41</sys_updated_on>
+            <value>dismissible</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>
