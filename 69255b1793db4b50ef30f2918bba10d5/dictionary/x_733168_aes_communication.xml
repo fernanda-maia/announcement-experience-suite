@@ -15,11 +15,13 @@
         <element default="javascript: gs.getUserID()" label="Requested by" max_length="32" name="requested_by" reference="sys_user" type="reference"/>
         <element choice="3" default="draft" label="State" max_length="40" name="state" read_only="true" read_only_option="display_read_only" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Retired" sequence="4" value="retired"/>
+                <element inactive_on_update="false" label="Retired" sequence="5" value="retired"/>
                 <element inactive_on_update="false" label="Draft" sequence="1" value="draft"/>
-                <element inactive_on_update="false" label="Scheduled" sequence="2" value="scheduled"/>
-                <element inactive_on_update="false" label="Expired" sequence="5" value="expired"/>
-                <element inactive_on_update="false" label="Published" sequence="3" value="published"/>
+                <element inactive_on_update="false" label="Scheduled" sequence="3" value="scheduled"/>
+                <element inactive_on_update="false" label="Submitted" sequence="2" value="submitted"/>
+                <element inactive_on_update="false" label="Expired" sequence="6" value="expired"/>
+                <element inactive_on_update="false" label="Canceled" sequence="7" value="canceled"/>
+                <element inactive_on_update="false" label="Published" sequence="4" value="published"/>
             </choice>
         </element>
         <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
@@ -27,18 +29,22 @@
         <element label="Published on" max_length="40" name="published_on" read_only="true" read_only_option="strict_read_only" type="glide_date_time"/>
         <element label="Image" max_length="40" name="image" type="user_image"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Image alt text" max_length="40" name="image_alt_text" type="translated_text"/>
-        <element label="Published by" max_length="32" name="published_by" read_only="true" read_only_option="strict_read_only" reference="sys_user" type="reference"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" default="javascript: gs.getUserID()" label="Opened by" max_length="32" name="opened_by" read_only="true" read_only_option="strict_read_only" reference="sys_user" type="reference"/>
+        <element label="Published by" max_length="150" name="published_by" read_only="true" read_only_option="strict_read_only" type="string"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Glyph alt text" max_length="40" name="glyph_alt_text" type="translated_text"/>
         <element label="Expiration date" max_length="40" name="expiration_date" type="glide_date_time"/>
         <element label="Content" max_length="8000" name="content" type="translated_html"/>
         <element attributes="iconset=fontawesome" label="Glyph" max_length="40" name="glyph" type="glyphicon"/>
         <index name="index">
-            <element name="published_by"/>
+            <element name="opened_by"/>
         </index>
         <index name="index2">
-            <element name="requested_by"/>
+            <element name="published_by"/>
         </index>
         <index name="index3">
+            <element name="requested_by"/>
+        </index>
+        <index name="index4">
             <element name="sys_class_name"/>
         </index>
     </element>

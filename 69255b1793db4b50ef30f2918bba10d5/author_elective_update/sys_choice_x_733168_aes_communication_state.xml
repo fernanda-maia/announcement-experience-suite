@@ -39,18 +39,37 @@
             <element>state</element>
             <hint/>
             <inactive>false</inactive>
-            <label>Scheduled</label>
+            <label>Submitted</label>
             <language>en</language>
             <name>x_733168_aes_communication</name>
             <sequence>2</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-20 23:30:14</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-20 23:30:31</sys_updated_on>
+            <value>submitted</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Scheduled</label>
+            <language>en</language>
+            <name>x_733168_aes_communication</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
             <sys_created_on>2026-09-18 20:52:47</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>3</sys_mod_count>
+            <sys_mod_count>4</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-18 20:54:20</sys_updated_on>
+            <sys_updated_on>2026-09-20 23:30:34</sys_updated_on>
             <value>scheduled</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -61,15 +80,15 @@
             <label>Published</label>
             <language>en</language>
             <name>x_733168_aes_communication</name>
-            <sequence>3</sequence>
+            <sequence>4</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2026-09-18 20:53:06</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>4</sys_mod_count>
+            <sys_mod_count>5</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-18 20:57:41</sys_updated_on>
+            <sys_updated_on>2026-09-20 23:30:37</sys_updated_on>
             <value>published</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -80,15 +99,15 @@
             <label>Retired</label>
             <language>en</language>
             <name>x_733168_aes_communication</name>
-            <sequence>4</sequence>
+            <sequence>5</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2026-09-18 20:53:58</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>2</sys_mod_count>
+            <sys_mod_count>3</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-18 20:54:10</sys_updated_on>
+            <sys_updated_on>2026-09-20 23:30:39</sys_updated_on>
             <value>retired</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -99,16 +118,35 @@
             <label>Expired</label>
             <language>en</language>
             <name>x_733168_aes_communication</name>
-            <sequence>5</sequence>
+            <sequence>6</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2026-09-18 20:53:19</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-20 23:30:42</sys_updated_on>
+            <value>expired</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Canceled</label>
+            <language>en</language>
+            <name>x_733168_aes_communication</name>
+            <sequence>7</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-20 23:31:01</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-18 20:53:29</sys_updated_on>
-            <value>expired</value>
+            <sys_updated_on>2026-09-20 23:31:11</sys_updated_on>
+            <value>canceled</value>
         </sys_choice>
     </sys_choice>
 </record_update>

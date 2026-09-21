@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESCommunicationLifecycle</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AESCommunicationLifecycle</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESCommunicationLifecycle = Class.create();
+AESCommunicationLifecycle.prototype = {
+
+    initialize: function() {
+        this.TABLE = 'x_733168_aes_communication';
+
+        this.STATE_DRAFT = 'draft';
+        this.STATE_SUBMITTED = 'submitted';
+        this.STATE_SCHEDULED = 'scheduled';
+        this.STATE_PUBLISHED = 'published';
+        this.STATE_EXPIRED = 'expired';
+        this.STATE_CANCELED = 'canceled';
+        this.STATE_RETIRED = 'retired';
+    },
+
+    /**
+     * Draft -> Submitted
+     */
+    submit: function(communicationId) {
+        var communication = this._getCommunication(communicationId);
+
+        if (!communication)
+            return this._failure('not_found');
+
+        if (!this._isState(communication, this.STATE_DRAFT))
+            return this._failure('invalid_transition');
+
+        return this._changeState(
+            communication,
+            this.STATE_SUBMITTED
+        );
+    },
+
+    /**
+     * Submitted -> Draft
+     */
+    returnToDraft: function(communicationId) {
+        var communication = this._getCommunication(communicationId);
+
+        if (!communication)
+            return this._failure('not_found');
+
+        if (!this._isState(communication, this.STATE_SUBMITTED))
+            return this._failure('invalid_transition');
+
+        return this._changeState(
+            communication,
+            this.STATE_DRAFT
+        );
+    },
+
+    /**
+     * Releases a Communication for publication.
+     *
+     * Draft / Submitted ->
+     *   Scheduled, when publish_date is in the future
+     *   Published, otherwise
+     */
+    release: function(communicationId) {
+        var communication = this._getCommunication(communicationId);
+
+        if (!communication)
+            return this._failure('not_found');
+
+        if (
+            !this._isState(communication, this.STATE_DRAFT) &&
+            !this._isState(communication, this.STATE_SUBMITTED)
+        ) {
+            return this._failure('invalid_transition');
+        }
+
+        if (this._hasFuturePublishDate(communication)) {
+            return this._changeState(
+                communication,
+                this.STATE_SCHEDULED
+            );
+        }
+
+        return this._publish(
+            communication,
+            gs.getUserName()
+        );
+    },
+
+    /**
+     * Scheduled -> Published
+     *
+     * actor is optional.
+     * Automatic processes can explicitly pass "system".
+     */
+    publish: function(communicationId, actor) {
+        var communication = this._getCommunication(communicationId);
+
+        if (!communication)
+            return this._failure('not_found');
+
+        if (!this._isState(communication, this.STATE_SCHEDULED))
+            return this._failure('invalid_transition');
+
+        return this._publish(
+            communication,
+            actor || gs.getUserName()
+        );
+    },
+
+    /**
+     * Submitted / Scheduled -> Canceled
+     */
+    cancel: function(communicationId) {
+        var communication = this._getCommunication(communicationId);
+
+        if (!communication)
+            return this._failure('not_found');
+
+        if (
+            !this._isState(communication, this.STATE_SUBMITTED) &&
+            !this._isState(communication, this.STATE_SCHEDULED)
+        ) {
+            return this._failure('invalid_transition');
+        }
+
+        return this._changeState(
+            communication,
+            this.STATE_CANCELED
+        );
+    },
+
+    /**
+     * Published -> Expired
+     */
+    expire: function(communicationId) {
+        var communication = this._getCommunication(communicationId);
+
+        if (!communication)
+            return this._failure('not_found');
+
+        if (!this._isState(communication, this.STATE_PUBLISHED))
+            return this._failure('invalid_transition');
+
+        return this._changeState(
+            communication,
+            this.STATE_EXPIRED
+        );
+    },
+
+    /**
+     * Published -> Retired
+     */
+    retire: function(communicationId) {
+        var communication = this._getCommunication(communicationId);
+
+        if (!communication)
+            return this._failure('not_found');
+
+        if (!this._isState(communication, this.STATE_PUBLISHED))
+            return this._failure('invalid_transition');
+
+        return this._changeState(
+            communication,
+            this.STATE_RETIRED
+        );
+    },
+
+    /* =========================================================
+     * Private methods
+     * ========================================================= */
+
+    _getCommunication: function(communicationId) {
+        if (gs.nil(communicationId))
+            return null;
+
+        var communication = new GlideRecord(this.TABLE);
+
+        if (!communication.get(communicationId))
+            return null;
+
+        return communication;
+    },
+
+    _isState: function(communication, state) {
+        return communication.getValue('state') == state;
+    },
+
+    _hasFuturePublishDate: function(communication) {
+        var publishDate = communication.getValue('publish_date');
+
+        if (gs.nil(publishDate))
+            return false;
+
+        var publishGdt = new GlideDateTime(publishDate);
+        var nowGdt = new GlideDateTime();
+
+        return publishGdt.after(nowGdt);
+    },
+
+    _publish: function(communication, actor) {
+        communication.setValue('state', this.STATE_PUBLISHED);
+        communication.setValue('published_on', new GlideDateTime());
+        communication.setValue('published_by', actor);
+
+        return this._update(communication);
+    },
+
+    _changeState: function(communication, state) {
+        communication.setValue('state', state);
+
+        return this._update(communication);
+    },
+
+    _update: function(communication) {
+        var updatedId = communication.update();
+
+        if (!updatedId)
+            return this._failure('update_failed');
+
+        return this._success();
+    },
+
+    _success: function() {
+        return {
+            success: true
+        };
+    },
+
+    _failure: function(reason) {
+        return {
+            success: false,
+            reason: reason
+        };
+    },
+
+    type: 'AESCommunicationLifecycle'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 00:26:28</sys_created_on>
+        <sys_id>2f3ed6809367cf50ef30f2918bba106e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AESCommunicationLifecycle</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_2f3ed6809367cf50ef30f2918bba106e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 00:26:28</sys_updated_on>
+    </sys_script_include>
+</record_update>

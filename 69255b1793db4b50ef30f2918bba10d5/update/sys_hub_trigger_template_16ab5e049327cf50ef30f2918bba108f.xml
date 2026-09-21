@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_trigger_template">
+    <sys_hub_trigger_template action="INSERT_OR_UPDATE">
+        <accessible_from>public</accessible_from>
+        <active>true</active>
+        <annotation>Starts the configured business process for a communication.</annotation>
+        <attributes/>
+        <category display_value="Record">8886dd64c3d322002841b63b12d3aed4</category>
+        <comment/>
+        <description>Starts the business process associated with a communication. Use this trigger to implement custom review, approval, validation, or other processing requirements before the communication is released for publication.</description>
+        <designer_source display_value="Workflow Studio">a1fb8738ff0032108282ffffffffff37</designer_source>
+        <name>Communication Process</name>
+        <order>0</order>
+        <published_trigger_id>9a4dd64c6827cf50b2cd84bc93dab57f</published_trigger_id>
+        <source_trigger/>
+        <state>published</state>
+        <sys_class_name>sys_hub_trigger_template</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 00:12:08</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>16ab5e049327cf50ef30f2918bba108f</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Communication Process</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_hub_trigger_template_16ab5e049327cf50ef30f2918bba108f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 00:19:14</sys_updated_on>
+        <template_properties>{"showAdvancedProperties":"false","showDefinitionConditions":"true","canAddAdditionalConditions":"true"}</template_properties>
+        <trigger_category display_value="Announcement Experience Suite">63bada489327cf50ef30f2918bba10b9</trigger_category>
+        <trigger_definition display_value="Created or Updated">a45d9180c32222002841b63b12d3aea7</trigger_definition>
+        <trigger_values>[{"name":"table","label":"Table","type":"table_name","displayValue":"Communication","value":"x_733168_aes_communication","readOnly":false,"extendable":false},{"name":"condition","label":"Condition","type":"conditions","displayValue":"","value":"^EQ","readOnly":false,"extendable":false},{"name":"run_when_setting","label":"run_when_setting","type":"choice","displayValue":"Run for Both Interactive and Non-Interactive Sessions","value":"both","readOnly":false,"extendable":false},{"name":"run_when_user_setting","label":"run_when_user_setting","type":"choice","displayValue":"Run for any user","value":"any","readOnly":false,"extendable":false},{"name":"run_when_user_list","label":"run_when_user_list","type":"glide_list","displayValue":"","value":"","readOnly":false,"extendable":false},{"name":"run_on_extended","label":"run_on_extended","type":"choice","displayValue":"Run only on current table","value":"false","readOnly":false,"extendable":false},{"name":"run_flow_in","label":"run_flow_in","type":"choice","displayValue":"Run flow in background (default)","value":"background","readOnly":false,"extendable":false},{"name":"trigger_strategy","label":"trigger_strategy","type":"choice","displayValue":"Once","value":"once","readOnly":false,"extendable":false}]</trigger_values>
+        <type>record_create_or_update</type>
+    </sys_hub_trigger_template>
+    <sys_translated_text action="delete_multiple" query="documentkey=16ab5e049327cf50ef30f2918bba108f"/>
+</record_update>

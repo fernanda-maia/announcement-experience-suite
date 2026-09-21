@@ -2,25 +2,25 @@
     <sys_user_role action="INSERT_OR_UPDATE">
         <assignable_by/>
         <can_delegate>true</can_delegate>
-        <description>Allows users to manage, review, schedule, publish, and expire announcements, including announcements created by other users, and access management and analytics features.</description>
+        <description/>
         <elevated_privilege>false</elevated_privilege>
-        <federated_id>r1JJ8nizEB67goiVunD6fgXy7FtTjSOxXq7RiQiKfKE=</federated_id>
+        <federated_id>KLWYYU+HD1rTAtnI1LXi0csRPc5h6475PSrhgkCAMRE=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
-        <name>x_733168_aes.manager</name>
+        <name>x_733168_aes.author</name>
         <scoped_admin>false</scoped_admin>
-        <suffix>manager</suffix>
+        <suffix>author</suffix>
         <sys_class_name>sys_user_role</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-09-18 20:27:53</sys_created_on>
-        <sys_id>b5259b1793db4b50ef30f2918bba1019</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>x_733168_aes.manager</sys_name>
+        <sys_created_on>2026-09-20 23:11:41</sys_created_on>
+        <sys_id>6fbd42cc93a3cf50ef30f2918bba105c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes.author</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
-        <sys_update_name>sys_user_role_b5259b1793db4b50ef30f2918bba1019</sys_update_name>
+        <sys_update_name>sys_user_role_6fbd42cc93a3cf50ef30f2918bba105c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-20 23:12:22</sys_updated_on>
+        <sys_updated_on>2026-09-20 23:11:41</sys_updated_on>
     </sys_user_role>
 </record_update>
