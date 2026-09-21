@@ -1,95 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_choice action="INSERT_OR_UPDATE" field="action_type" table="x_733168_aes_communication_action" version="3">
+    <sys_choice action="INSERT_OR_UPDATE" field="action_level" table="x_733168_aes_communication_action" version="3">
         <sys_choice_set action="INSERT_OR_UPDATE">
-            <element>action_type</element>
+            <element>action_level</element>
             <name>x_733168_aes_communication_action</name>
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-20 02:29:20</sys_created_on>
+            <sys_created_on>2026-09-21 18:42:24</sys_created_on>
             <sys_mod_count>0</sys_mod_count>
-            <sys_name>action_type</sys_name>
+            <sys_name>action_level</sys_name>
             <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
             <sys_policy/>
             <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
-            <sys_update_name>sys_choice_x_733168_aes_communication_action_action_type</sys_update_name>
+            <sys_update_name>sys_choice_x_733168_aes_communication_action_action_level</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-20 02:29:20</sys_updated_on>
+            <sys_updated_on>2026-09-21 18:42:24</sys_updated_on>
         </sys_choice_set>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
-            <element>action_type</element>
+            <element>action_level</element>
             <hint/>
             <inactive>false</inactive>
-            <label>URL</label>
+            <label>Primary</label>
             <language>en</language>
             <name>x_733168_aes_communication_action</name>
             <sequence>1</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-20 02:29:20</sys_created_on>
+            <sys_created_on>2026-09-21 18:42:24</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>3</sys_mod_count>
+            <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-20 02:29:34</sys_updated_on>
-            <value>url</value>
+            <sys_updated_on>2026-09-21 18:42:33</sys_updated_on>
+            <value>primary</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
-            <element>action_type</element>
+            <element>action_level</element>
             <hint/>
             <inactive>false</inactive>
-            <label>Knowledge Article</label>
+            <label>Secondary</label>
             <language>en</language>
             <name>x_733168_aes_communication_action</name>
             <sequence>2</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-20 02:29:44</sys_created_on>
+            <sys_created_on>2026-09-21 18:42:37</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-20 02:29:59</sys_updated_on>
-            <value>knowledge_article</value>
+            <sys_updated_on>2026-09-21 18:42:45</sys_updated_on>
+            <value>secondary</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
-            <element>action_type</element>
+            <element>action_level</element>
             <hint/>
             <inactive>false</inactive>
-            <label>Catalog Item</label>
+            <label>Tertiary</label>
             <language>en</language>
             <name>x_733168_aes_communication_action</name>
             <sequence>3</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-20 02:30:10</sys_created_on>
+            <sys_created_on>2026-09-21 18:42:50</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-20 02:30:25</sys_updated_on>
-            <value>catalog_item</value>
-        </sys_choice>
-        <sys_choice action="INSERT_OR_UPDATE">
-            <dependent_value/>
-            <element>action_type</element>
-            <hint/>
-            <inactive>false</inactive>
-            <label>Agent Chat</label>
-            <language>en</language>
-            <name>x_733168_aes_communication_action</name>
-            <sequence>4</sequence>
-            <synonyms/>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-21 18:43:36</sys_created_on>
-            <sys_domain>global</sys_domain>
-            <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>2</sys_mod_count>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-21 18:43:47</sys_updated_on>
-            <value>agent_chat</value>
+            <sys_updated_on>2026-09-21 18:42:58</sys_updated_on>
+            <value>tertiary</value>
         </sys_choice>
     </sys_choice>
 </record_update>

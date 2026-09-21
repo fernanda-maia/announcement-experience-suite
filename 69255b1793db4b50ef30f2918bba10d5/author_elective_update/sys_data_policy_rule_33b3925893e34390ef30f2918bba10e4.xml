@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_data_policy_rule">
+    <sys_data_policy_rule action="DELETE">
+        <disabled>ignore</disabled>
+        <field>archive_policy</field>
+        <mandatory>true</mandatory>
+        <sys_class_name>sys_data_policy_rule</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 18:16:14</sys_created_on>
+        <sys_data_policy display_value="When has Expiration date">2a935e1893e34390ef30f2918bba10c3</sys_data_policy>
+        <sys_id>33b3925893e34390ef30f2918bba10e4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>archive_policy</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_data_policy_rule_33b3925893e34390ef30f2918bba10e4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 18:16:14</sys_updated_on>
+        <table>x_733168_aes_communication</table>
+    </sys_data_policy_rule>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_data_policy_rule_33b3925893e34390ef30f2918bba10e4</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_data_policy_rule"><sys_data_policy_rule action="INSERT_OR_UPDATE"><disabled>ignore</disabled><field>archive_policy</field><mandatory>true</mandatory><sys_class_name>sys_data_policy_rule</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-21 18:16:14</sys_created_on><sys_data_policy display_value="When has Expiration date">2a935e1893e34390ef30f2918bba10c3</sys_data_policy><sys_id>33b3925893e34390ef30f2918bba10e4</sys_id><sys_mod_count>0</sys_mod_count><sys_name>archive_policy</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>sys_data_policy_rule_33b3925893e34390ef30f2918bba10e4</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-21 18:16:14</sys_updated_on><table>x_733168_aes_communication</table></sys_data_policy_rule></record_update>]]></payload>
+        <payload_hash>1581894338</payload_hash>
+        <record_name>archive_policy</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 18:16:14</sys_created_on>
+        <sys_id>a2c3d25893e34390ef30f2918bba101b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0c52ecf5a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 18:16:14</sys_updated_on>
+        <type>Data Policy Rule</type>
+        <update_guid>62c3d25825e34390563937588577cf1a</update_guid>
+        <update_guid_history>62c3d25825e34390563937588577cf1a:1581894338</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 18:17:37</sys_created_on>
+        <sys_db_object display_value="" name="sys_data_policy_rule">sys_data_policy_rule</sys_db_object>
+        <sys_id>549699a74aff47caaf16502950805869</sys_id>
+        <sys_metadata>33b3925893e34390ef30f2918bba10e4</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>archive_policy</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_data_policy_rule_33b3925893e34390ef30f2918bba10e4</sys_update_name>
+        <sys_update_version display_value="sys_data_policy_rule_33b3925893e34390ef30f2918bba10e4">a2c3d25893e34390ef30f2918bba101b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 18:17:37</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

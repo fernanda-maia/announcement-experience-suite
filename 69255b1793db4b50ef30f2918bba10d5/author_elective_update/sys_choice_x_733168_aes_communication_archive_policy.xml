@@ -1,95 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_choice action="INSERT_OR_UPDATE" field="action_type" table="x_733168_aes_communication_action" version="3">
+    <sys_choice action="INSERT_OR_UPDATE" field="archive_policy" table="x_733168_aes_communication" version="3">
         <sys_choice_set action="INSERT_OR_UPDATE">
-            <element>action_type</element>
-            <name>x_733168_aes_communication_action</name>
+            <element>archive_policy</element>
+            <name>x_733168_aes_communication</name>
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-20 02:29:20</sys_created_on>
+            <sys_created_on>2026-09-21 17:58:08</sys_created_on>
             <sys_mod_count>0</sys_mod_count>
-            <sys_name>action_type</sys_name>
+            <sys_name>archive_policy</sys_name>
             <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
             <sys_policy/>
             <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
-            <sys_update_name>sys_choice_x_733168_aes_communication_action_action_type</sys_update_name>
+            <sys_update_name>sys_choice_x_733168_aes_communication_archive_policy</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-20 02:29:20</sys_updated_on>
+            <sys_updated_on>2026-09-21 17:58:08</sys_updated_on>
         </sys_choice_set>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
-            <element>action_type</element>
+            <element>archive_policy</element>
             <hint/>
             <inactive>false</inactive>
-            <label>URL</label>
+            <label>Immediately</label>
             <language>en</language>
-            <name>x_733168_aes_communication_action</name>
+            <name>x_733168_aes_communication</name>
             <sequence>1</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-20 02:29:20</sys_created_on>
+            <sys_created_on>2026-09-21 17:58:07</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>3</sys_mod_count>
+            <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-20 02:29:34</sys_updated_on>
-            <value>url</value>
+            <sys_updated_on>2026-09-21 17:58:24</sys_updated_on>
+            <value>immediately</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
-            <element>action_type</element>
+            <element>archive_policy</element>
             <hint/>
             <inactive>false</inactive>
-            <label>Knowledge Article</label>
+            <label>Custom period</label>
             <language>en</language>
-            <name>x_733168_aes_communication_action</name>
+            <name>x_733168_aes_communication</name>
             <sequence>2</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-20 02:29:44</sys_created_on>
+            <sys_created_on>2026-09-21 17:58:32</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-20 02:29:59</sys_updated_on>
-            <value>knowledge_article</value>
+            <sys_updated_on>2026-09-21 17:58:43</sys_updated_on>
+            <value>custom_period</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
-            <element>action_type</element>
+            <element>archive_policy</element>
             <hint/>
             <inactive>false</inactive>
-            <label>Catalog Item</label>
+            <label>Specific date</label>
             <language>en</language>
-            <name>x_733168_aes_communication_action</name>
+            <name>x_733168_aes_communication</name>
             <sequence>3</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-20 02:30:10</sys_created_on>
+            <sys_created_on>2026-09-21 17:59:01</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-20 02:30:25</sys_updated_on>
-            <value>catalog_item</value>
+            <sys_updated_on>2026-09-21 17:59:11</sys_updated_on>
+            <value>specific_date</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
-            <element>action_type</element>
+            <element>archive_policy</element>
             <hint/>
             <inactive>false</inactive>
-            <label>Agent Chat</label>
+            <label>Never</label>
             <language>en</language>
-            <name>x_733168_aes_communication_action</name>
+            <name>x_733168_aes_communication</name>
             <sequence>4</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-21 18:43:36</sys_created_on>
+            <sys_created_on>2026-09-21 17:59:16</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-21 18:43:47</sys_updated_on>
-            <value>agent_chat</value>
+            <sys_updated_on>2026-09-21 17:59:24</sys_updated_on>
+            <value>never</value>
         </sys_choice>
     </sys_choice>
 </record_update>

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="3e20b93793df0f50ef30f2918bba10c9" label="Communication Action" max_length="40" name="x_733168_aes_communication_action" type="collection">
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" choice="3" default="tertiary" label="Action level" max_length="40" name="action_level" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Secondary" sequence="2" value="secondary"/>
+                <element inactive_on_update="false" label="Tertiary" sequence="3" value="tertiary"/>
+                <element inactive_on_update="false" label="Primary" sequence="1" value="primary"/>
+            </choice>
+        </element>
         <element label="Knowledge Article" max_length="32" name="knowledge_article" reference="kb_knowledge" type="reference"/>
         <element display="true" label="Label" mandatory="true" max_length="100" name="label" type="translated_text"/>
         <element label="Catalog Item" max_length="32" name="catalog_item" reference="sc_cat_item" type="reference"/>
@@ -7,9 +14,11 @@
             <choice>
                 <element inactive_on_update="false" label="Knowledge Article" sequence="2" value="knowledge_article"/>
                 <element inactive_on_update="false" label="Catalog Item" sequence="3" value="catalog_item"/>
+                <element inactive_on_update="false" label="Agent Chat" sequence="4" value="agent_chat"/>
                 <element inactive_on_update="false" label="URL" sequence="1" value="url"/>
             </choice>
         </element>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Queue" max_length="32" name="queue" reference="awa_queue" reference_qual="active=true^service_channel.type=chat^service_channel.workitem_table=interaction^service_channel.active=true^EQ" reference_qual_condition="active=true^service_channel.type=chat^service_channel.workitem_table=interaction^service_channel.active=true^EQ" type="reference"/>
         <element default="100" label="Order" max_length="40" name="order" type="integer"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" choice="3" default="new_tab" label="Link Target" max_length="40" name="link_target" type="choice">
             <choice>
@@ -28,6 +37,9 @@
         </index>
         <index name="index3">
             <element name="knowledge_article"/>
+        </index>
+        <index name="index4">
+            <element name="queue"/>
         </index>
     </element>
 </database>

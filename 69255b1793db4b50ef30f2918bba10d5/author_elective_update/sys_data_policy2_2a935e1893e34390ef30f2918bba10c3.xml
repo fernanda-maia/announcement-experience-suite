@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_data_policy2">
+    <sys_data_policy2 action="DELETE">
+        <active>true</active>
+        <apply_import_set>true</apply_import_set>
+        <apply_soap>true</apply_soap>
+        <conditions table="x_733168_aes_communication">expiration_dateISNOTEMPTY^EQ<item endquery="false" field="expiration_date" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </conditions>
+        <description/>
+        <enforce_ui>true</enforce_ui>
+        <inherit>false</inherit>
+        <model_id/>
+        <model_table>x_733168_aes_communication</model_table>
+        <reverse_if_false>true</reverse_if_false>
+        <short_description>When has Expiration date</short_description>
+        <sys_class_name>sys_data_policy2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 18:15:55</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>2a935e1893e34390ef30f2918bba10c3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>When has Expiration date</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_data_policy2_2a935e1893e34390ef30f2918bba10c3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 18:15:55</sys_updated_on>
+    </sys_data_policy2>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_data_policy2_2a935e1893e34390ef30f2918bba10c3</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_data_policy2"><sys_data_policy2 action="INSERT_OR_UPDATE"><active>true</active><apply_import_set>true</apply_import_set><apply_soap>true</apply_soap><conditions table="x_733168_aes_communication">expiration_dateISNOTEMPTY^EQ<item endquery="false" field="expiration_date" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/><item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/></conditions><description/><enforce_ui>true</enforce_ui><inherit>false</inherit><model_id/><model_table>x_733168_aes_communication</model_table><reverse_if_false>true</reverse_if_false><short_description>When has Expiration date</short_description><sys_class_name>sys_data_policy2</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-21 18:15:55</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>2a935e1893e34390ef30f2918bba10c3</sys_id><sys_mod_count>0</sys_mod_count><sys_name>When has Expiration date</sys_name><sys_overrides/><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>sys_data_policy2_2a935e1893e34390ef30f2918bba10c3</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-21 18:15:55</sys_updated_on></sys_data_policy2></record_update>]]></payload>
+        <payload_hash>246524153</payload_hash>
+        <record_name>When has Expiration date</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 18:15:55</sys_created_on>
+        <sys_id>42b3125893e34390ef30f2918bba10e7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0c52e85590000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 18:15:55</sys_updated_on>
+        <type>Data Policy</type>
+        <update_guid>8eb3125835e343902529dba4f60a1ce5</update_guid>
+        <update_guid_history>8eb3125835e343902529dba4f60a1ce5:246524153</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 18:17:37</sys_created_on>
+        <sys_db_object display_value="" name="sys_data_policy2">sys_data_policy2</sys_db_object>
+        <sys_id>08dc0c9c740841f39aca75bdfb798b51</sys_id>
+        <sys_metadata>2a935e1893e34390ef30f2918bba10c3</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>When has Expiration date</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent display_value="Communication">e8a5db5793db4b50ef30f2918bba101d</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_data_policy2_2a935e1893e34390ef30f2918bba10c3</sys_update_name>
+        <sys_update_version display_value="sys_data_policy2_2a935e1893e34390ef30f2918bba10c3">42b3125893e34390ef30f2918bba10e7</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 18:17:37</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

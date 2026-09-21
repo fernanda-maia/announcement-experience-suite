@@ -28,13 +28,29 @@
         <element display="true" label="Title" mandatory="true" max_length="160" name="title" type="translated_text"/>
         <element label="Published on" max_length="40" name="published_on" read_only="true" read_only_option="strict_read_only" type="glide_date_time"/>
         <element label="Image" max_length="40" name="image" type="user_image"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Archive after" max_length="40" name="archive_after" type="integer"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Image alt text" max_length="40" name="image_alt_text" type="translated_text"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" default="javascript: gs.getUserID()" label="Opened by" max_length="32" name="opened_by" read_only="true" read_only_option="strict_read_only" reference="sys_user" type="reference"/>
         <element label="Published by" max_length="150" name="published_by" read_only="true" read_only_option="strict_read_only" type="string"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Glyph alt text" max_length="40" name="glyph_alt_text" type="translated_text"/>
         <element label="Expiration date" max_length="40" name="expiration_date" type="glide_date_time"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" choice="1" label="Archive period type" max_length="40" name="archive_period_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Weekedays" sequence="2" value="weekdays"/>
+                <element inactive_on_update="false" label="Days" sequence="1" value="days"/>
+            </choice>
+        </element>
         <element label="Content" max_length="8000" name="content" type="translated_html"/>
         <element attributes="iconset=fontawesome" label="Glyph" max_length="40" name="glyph" type="glyphicon"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" choice="1" label="Archive policy" max_length="40" name="archive_policy" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Immediately" sequence="1" value="immediately"/>
+                <element inactive_on_update="false" label="Specific date" sequence="3" value="specific_date"/>
+                <element inactive_on_update="false" label="Custom period" sequence="2" value="custom_period"/>
+                <element inactive_on_update="false" label="Never" sequence="4" value="never"/>
+            </choice>
+        </element>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Archive date" max_length="40" name="archive_date" type="glide_date_time"/>
         <index name="index">
             <element name="opened_by"/>
         </index>
