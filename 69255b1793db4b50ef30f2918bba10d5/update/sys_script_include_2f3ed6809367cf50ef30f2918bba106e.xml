@@ -27,8 +27,8 @@ AESCommunicationLifecycle.prototype = {
     /**
      * Draft -> Submitted
      */
-    submit: function(communicationId) {
-        var communication = this._getCommunication(communicationId);
+    submit: function(source) {
+        var communication = this._resolveCommunication(source);
 
         if (!communication)
             return this._failure('not_found');
@@ -45,8 +45,8 @@ AESCommunicationLifecycle.prototype = {
     /**
      * Submitted -> Draft
      */
-    returnToDraft: function(communicationId) {
-        var communication = this._getCommunication(communicationId);
+    returnToDraft: function(source) {
+        var communication = this._resolveCommunication(source);
 
         if (!communication)
             return this._failure('not_found');
@@ -61,14 +61,12 @@ AESCommunicationLifecycle.prototype = {
     },
 
     /**
-     * Releases a Communication for publication.
+     * Draft / Submitted -> Scheduled
      *
-     * Draft / Submitted ->
-     *   Scheduled, when publish_date is in the future
-     *   Published, otherwise
+     * publish_date must be in the future.
      */
-    release: function(communicationId) {
-        var communication = this._getCommunication(communicationId);
+    schedule: function(source) {
+        var communication = this._resolveCommunication(source);
 
         if (!communication)
             return this._failure('not_found');
@@ -80,33 +78,34 @@ AESCommunicationLifecycle.prototype = {
             return this._failure('invalid_transition');
         }
 
-        if (this._hasFuturePublishDate(communication)) {
-            return this._changeState(
-                communication,
-                this.STATE_SCHEDULED
-            );
-        }
+        if (!this._hasFuturePublishDate(communication))
+            return this._failure('invalid_publish_date');
 
-        return this._publish(
+        return this._changeState(
             communication,
-            gs.getUserName()
+            this.STATE_SCHEDULED
         );
     },
 
     /**
-     * Scheduled -> Published
+     * Draft / Submitted / Scheduled -> Published
      *
      * actor is optional.
      * Automatic processes can explicitly pass "system".
      */
-    publish: function(communicationId, actor) {
-        var communication = this._getCommunication(communicationId);
+    publish: function(source, actor) {
+        var communication = this._resolveCommunication(source);
 
         if (!communication)
             return this._failure('not_found');
 
-        if (!this._isState(communication, this.STATE_SCHEDULED))
+        if (
+            !this._isState(communication, this.STATE_DRAFT) &&
+            !this._isState(communication, this.STATE_SUBMITTED) &&
+            !this._isState(communication, this.STATE_SCHEDULED)
+        ) {
             return this._failure('invalid_transition');
+        }
 
         return this._publish(
             communication,
@@ -117,8 +116,8 @@ AESCommunicationLifecycle.prototype = {
     /**
      * Submitted / Scheduled -> Canceled
      */
-    cancel: function(communicationId) {
-        var communication = this._getCommunication(communicationId);
+    cancel: function(source) {
+        var communication = this._resolveCommunication(source);
 
         if (!communication)
             return this._failure('not_found');
@@ -139,8 +138,8 @@ AESCommunicationLifecycle.prototype = {
     /**
      * Published -> Expired
      */
-    expire: function(communicationId) {
-        var communication = this._getCommunication(communicationId);
+    expire: function(source) {
+        var communication = this._resolveCommunication(source);
 
         if (!communication)
             return this._failure('not_found');
@@ -157,8 +156,8 @@ AESCommunicationLifecycle.prototype = {
     /**
      * Published -> Retired
      */
-    retire: function(communicationId) {
-        var communication = this._getCommunication(communicationId);
+    retire: function(source) {
+        var communication = this._resolveCommunication(source);
 
         if (!communication)
             return this._failure('not_found');
@@ -176,13 +175,30 @@ AESCommunicationLifecycle.prototype = {
      * Private methods
      * ========================================================= */
 
-    _getCommunication: function(communicationId) {
-        if (gs.nil(communicationId))
+    /**
+     * Accepts either:
+     * - a Communication GlideRecord
+     * - a Communication sys_id
+     */
+    _resolveCommunication: function(source) {
+        if (gs.nil(source))
             return null;
 
+        // Existing GlideRecord (e.g. current from a UI Action)
+        if (
+            typeof source == 'object' &&
+            typeof source.getTableName == 'function'
+        ) {
+            if (!source.isValidRecord())
+                return null;
+
+            return source;
+        }
+
+        // sys_id (e.g. Flow / automation)
         var communication = new GlideRecord(this.TABLE);
 
-        if (!communication.get(communicationId))
+        if (!communication.get(source))
             return null;
 
         return communication;
@@ -205,9 +221,17 @@ AESCommunicationLifecycle.prototype = {
     },
 
     _publish: function(communication, actor) {
-        communication.setValue('state', this.STATE_PUBLISHED);
-        communication.setValue('published_on', new GlideDateTime());
-        communication.setValue('published_by', actor);
+        communication.setValue(
+            'state',
+            this.STATE_PUBLISHED
+        );
+
+        if (!gs.nil(actor)) {
+            communication.setValue(
+                'published_by',
+                actor
+            );
+        }
 
         return this._update(communication);
     },
@@ -246,13 +270,13 @@ AESCommunicationLifecycle.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-21 00:26:28</sys_created_on>
         <sys_id>2f3ed6809367cf50ef30f2918bba106e</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>AESCommunicationLifecycle</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sys_script_include_2f3ed6809367cf50ef30f2918bba106e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-21 00:26:28</sys_updated_on>
+        <sys_updated_on>2026-09-21 21:42:40</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -56,6 +56,20 @@
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-09-20 21:12:45</sys_updated_on>
         </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-21 20:57:55</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>07c87e98936b4390ef30f2918bba1071</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_733168_aes_announcement" name="x_733168_aes_announcement" sys_domain="global" view="Default view">06ca50b393170f50ef30f2918bba10b3</sys_ui_form>
+            <sys_ui_section caption="Retention policy" display_value="Retention policy" name="x_733168_aes_announcement" sys_domain="global" view="Default view">03c87e98936b4390ef30f2918bba1038</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-21 20:57:55</sys_updated_on>
+        </sys_ui_form_section>
         <sys_ui_form action="INSERT_OR_UPDATE">
             <name>x_733168_aes_announcement</name>
             <roles/>

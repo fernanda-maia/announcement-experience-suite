@@ -7,7 +7,7 @@
         </conditions>
         <description/>
         <global>true</global>
-        <inherit>false</inherit>
+        <inherit>true</inherit>
         <isolate_script>true</isolate_script>
         <model_id/>
         <model_table/>
@@ -29,7 +29,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>5394da9893e34390ef30f2918bba1051</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>When has Expiration Date and Archive Policy is Custom Period</sys_name>
         <sys_overrides/>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
@@ -37,7 +37,7 @@
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sys_ui_policy_5394da9893e34390ef30f2918bba1051</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-21 18:19:50</sys_updated_on>
+        <sys_updated_on>2026-09-21 20:58:46</sys_updated_on>
         <table>x_733168_aes_communication</table>
         <ui_type>0</ui_type>
         <view/>

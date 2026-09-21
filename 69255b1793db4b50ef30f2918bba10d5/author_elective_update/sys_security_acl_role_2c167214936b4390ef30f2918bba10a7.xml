@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="DELETE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 20:46:22</sys_created_on>
+        <sys_id>2c167214936b4390ef30f2918bba10a7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_announcement.x_733168_aes.author</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_security_acl display_value="x_733168_aes_announcement">687a5c3393170f50ef30f2918bba1089</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_2c167214936b4390ef30f2918bba10a7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 20:46:22</sys_updated_on>
+        <sys_user_role display_value="x_733168_aes.author" name="x_733168_aes.author">6fbd42cc93a3cf50ef30f2918bba105c</sys_user_role>
+    </sys_security_acl_role>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_security_acl_role_2c167214936b4390ef30f2918bba10a7</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role"><sys_security_acl_role action="INSERT_OR_UPDATE"><sys_class_name>sys_security_acl_role</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-21 20:46:22</sys_created_on><sys_id>2c167214936b4390ef30f2918bba10a7</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_733168_aes_announcement.x_733168_aes.author</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_security_acl display_value="x_733168_aes_announcement">687a5c3393170f50ef30f2918bba1089</sys_security_acl><sys_update_name>sys_security_acl_role_2c167214936b4390ef30f2918bba10a7</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-21 20:46:22</sys_updated_on><sys_user_role display_value="x_733168_aes.author" name="x_733168_aes.author">6fbd42cc93a3cf50ef30f2918bba105c</sys_user_role></sys_security_acl_role></record_update>]]></payload>
+        <payload_hash>-142417025</payload_hash>
+        <record_name>x_733168_aes_announcement.x_733168_aes.author</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 20:46:22</sys_created_on>
+        <sys_id>3d26b614936b4390ef30f2918bba101d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0c5b8435b0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 20:46:22</sys_updated_on>
+        <type>Access Roles</type>
+        <update_guid>f926b6148c6b4390f2f0621edfa4241c</update_guid>
+        <update_guid_history>f926b6148c6b4390f2f0621edfa4241c:-142417025</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="x_733168_aes_announcement.x_733168_aes.author">fb68be58936b4390ef30f2918bba105b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 20:56:20</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl_role">sys_security_acl_role</sys_db_object>
+        <sys_id>aaa0cf4731484a70bbf764c869dfe900</sys_id>
+        <sys_metadata>2c167214936b4390ef30f2918bba10a7</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_announcement.x_733168_aes.author</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_security_acl_role_2c167214936b4390ef30f2918bba10a7</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_role_2c167214936b4390ef30f2918bba10a7">3d26b614936b4390ef30f2918bba101d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 20:56:20</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -4,29 +4,28 @@
         <admin_overrides>false</admin_overrides>
         <advanced>false</advanced>
         <applies_to/>
-        <condition table="x_733168_aes_communication">state=draft^EQ<item display_value="Draft" endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="draft"/>
-            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        <condition table="x_733168_aes_communication.archive_after">stateINdraft,submitted^EQ<item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </condition>
         <controlled_by_refs/>
         <decision_type>allow</decision_type>
-        <description>Allow delete for records in x_733168_aes_communication, for users with role x_733168_aes.admin, and if the ACL condition (state=draft^EQ) evaluates to true.</description>
+        <description>Allow write for archive_after in x_733168_aes_communication, for users with roles (x_733168_aes.admin, x_733168_aes.manager, x_733168_aes.author), and if the ACL condition (stateINdraft,submitted^EQ) evaluates to true.</description>
         <local_or_existing>Existing</local_or_existing>
-        <name>x_733168_aes_communication</name>
-        <operation display_value="delete">delete</operation>
+        <name>x_733168_aes_communication.archive_after</name>
+        <operation display_value="write">write</operation>
         <script/>
         <security_attribute/>
         <sys_class_name>sys_security_acl</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-09-18 20:46:01</sys_created_on>
-        <sys_id>2349135f93db4b50ef30f2918bba101e</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>x_733168_aes_communication</sys_name>
+        <sys_created_on>2026-09-21 20:24:01</sys_created_on>
+        <sys_id>d601b618932b4390ef30f2918bba104b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes_communication.archive_after</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
-        <sys_update_name>sys_security_acl_2349135f93db4b50ef30f2918bba101e</sys_update_name>
+        <sys_update_name>sys_security_acl_d601b618932b4390ef30f2918bba104b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-21 21:02:13</sys_updated_on>
+        <sys_updated_on>2026-09-21 20:24:01</sys_updated_on>
         <type display_value="record">record</type>
     </sys_security_acl>
 </record_update>

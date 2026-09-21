@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ux_form_action_layout_item">
+    <sys_ux_form_action_layout_item action="INSERT_OR_UPDATE">
+        <action display_value="Create Draft">08db7a9093ab4390ef30f2918bba10a9</action>
+        <active>true</active>
+        <animate_icon>false</animate_icon>
+        <color>secondary</color>
+        <description/>
+        <icon/>
+        <item_type>action</item_type>
+        <label>Create Draft</label>
+        <layout_group/>
+        <name>Create Draft</name>
+        <order>100</order>
+        <overflow>false</overflow>
+        <sys_class_name>sys_ux_form_action_layout_item</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-21 21:11:06</sys_created_on>
+        <sys_id>00db7a9093ab4390ef30f2918bba10ae</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create Draft</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_ux_form_action_layout_item_00db7a9093ab4390ef30f2918bba10ae</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-21 21:11:06</sys_updated_on>
+        <table>x_733168_aes_communication</table>
+    </sys_ux_form_action_layout_item>
+</record_update>
