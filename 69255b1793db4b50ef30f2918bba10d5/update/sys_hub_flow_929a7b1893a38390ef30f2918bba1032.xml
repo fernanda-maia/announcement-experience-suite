@@ -1,0 +1,1385 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_flow">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <allow_high_security_roles>false</allow_high_security_roles>
+        <annotation/>
+        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,timeFromCreateToActivate=215000,viewActivatedIn=naturalLanguage</attributes>
+        <authored_on_release_version>29000</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description>Automatically expire  a published communication when its configured expired date is reached. The flow ends without expire if the communication leaves the Publishe state before publication.</description>
+        <display_name_after_preview/>
+        <flow_priority>HIGH</flow_priority>
+        <generation_source/>
+        <internal_name>aes__communication_expiration</internal_name>
+        <label_cache>[{"name":"Updated_1.current.expiration_date","label":"Trigger - Record Updated➛Communication Record➛Expiration date","reference":"","reference_display":"Expiration date","type":"glide_date_time","base_type":"glide_date_time","parent_table_name":"x_733168_aes_communication","column_name":"expiration_date","usedInstances":{"956b6be2-e45c-45d3-af99-e206ba78c463":["timer_duration"]}},{"name":"Updated_1.current.state","label":"Trigger - Record Updated➛Communication Record➛State","reference":"","reference_display":"State","type":"choice","base_type":"choice","parent_table_name":"x_733168_aes_communication","column_name":"state","choices":[{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Draft"}},"sequence":1.0,"used":false,"label":"Draft","selected":false,"image":"","rawLabel":"Draft","missing":false,"reference":false,"value":"draft"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Submitted"}},"sequence":2.0,"used":false,"label":"Submitted","selected":false,"image":"","rawLabel":"Submitted","missing":false,"reference":false,"value":"submitted"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Scheduled"}},"sequence":3.0,"used":false,"label":"Scheduled","selected":false,"image":"","rawLabel":"Scheduled","missing":false,"reference":false,"value":"scheduled"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Published"}},"sequence":4.0,"used":false,"label":"Published","selected":false,"image":"","rawLabel":"Published","missing":false,"reference":false,"value":"published"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Retired"}},"sequence":5.0,"used":false,"label":"Retired","selected":false,"image":"","rawLabel":"Retired","missing":false,"reference":false,"value":"retired"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Expired"}},"sequence":6.0,"used":false,"label":"Expired","selected":false,"image":"","rawLabel":"Expired","missing":false,"reference":false,"value":"expired"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Canceled"}},"sequence":7.0,"used":false,"label":"Canceled","selected":false,"image":"","rawLabel":"Canceled","missing":false,"reference":false,"value":"canceled"}],"usedInstances":{"8e1dbee5-a025-46d2-8694-1c7414cc7a33":["condition"]}},{"name":"Updated_1.current","label":"Trigger - Record Updated➛Communication Record","reference":"x_733168_aes_communication","reference_display":"Communication","type":"reference","base_type":"reference","usedInstances":{"1645a3c3-419d-4ae5-a19d-b724a2fa90ff":["communication"],"6b1bf1f5-5c9c-4c72-931d-0ada4af62a8a":["record"]},"attributes":{}}]</label_cache>
+        <master_snapshot>136bbf9893a38390ef30f2918bba104b</master_snapshot>
+        <master_snapshot_digest/>
+        <name>AES - Communication Expiration</name>
+        <natlang/>
+        <outputs/>
+        <pre_compiled>false</pre_compiled>
+        <remote_trigger_id>776bbf9893a38390ef30f2918bba10f1</remote_trigger_id>
+        <run_as>system</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <show_draft_actions>false</show_draft_actions>
+        <show_triggered_flows>false</show_triggered_flows>
+        <status>published</status>
+        <substatus/>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:45:24</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>929a7b1893a38390ef30f2918bba1032</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>AES - Communication Expiration</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_hub_flow_929a7b1893a38390ef30f2918bba1032</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:03</sys_updated_on>
+        <type>flow</type>
+        <updation_source/>
+        <version>2</version>
+        <version_record>c07bff9893a38390ef30f2918bba107c</version_record>
+    </sys_hub_flow>
+    <sys_translated_text action="delete_multiple" query="documentkey=929a7b1893a38390ef30f2918bba1032"/>
+    <sys_variable_value action="delete_multiple" query="document_key=929a7b1893a38390ef30f2918bba1032"/>
+    <sys_flow_record_trigger action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition table="x_733168_aes_communication">state=published^expiration_dateISNOTEMPTY<item display_value="Published" endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="published"/>
+            <item endquery="false" field="expiration_date" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+        </condition>
+        <name/>
+        <on_delete>false</on_delete>
+        <on_insert>false</on_insert>
+        <on_update>true</on_update>
+        <published_version/>
+        <run_flow_in>background</run_flow_in>
+        <run_on_extended>false</run_on_extended>
+        <run_when_setting>both</run_when_setting>
+        <run_when_user_list/>
+        <run_when_user_setting>any</run_when_user_setting>
+        <sys_class_name>sys_flow_record_trigger</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:03</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>776bbf9893a38390ef30f2918bba10f1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:03</sys_updated_on>
+        <table>x_733168_aes_communication</table>
+        <trigger_definition/>
+    </sys_flow_record_trigger>
+    <sys_trigger_runner_mapping action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <data>{"run_flow_in":"background","run_when_user_list":[],"run_when_setting":"both","run_when_user_setting":"any","run_on_extended":"false"}</data>
+        <identifier>929a7b1893a38390ef30f2918bba1032</identifier>
+        <identifier_type>flow</identifier_type>
+        <runner>FDTriggerRunner</runner>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:03</sys_created_on>
+        <sys_id>736bbf9893a38390ef30f2918bba10f2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:03</sys_updated_on>
+        <trigger display_value="">776bbf9893a38390ef30f2918bba10f1</trigger>
+    </sys_trigger_runner_mapping>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=929a7b1893a38390ef30f2918bba1032^sys_idNOT IN736bbf9893a38390ef30f2918bba10f2"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=929a7b1893a38390ef30f2918bba1032"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=929a7b1893a38390ef30f2918bba1032^sys_idNOT INde9a7b1893a38390ef30f2918bba1032"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>929a7b1893a38390ef30f2918bba1032</id>
+        <name>AES - Communication Expiration</name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:45:24</sys_created_on>
+        <sys_id>de9a7b1893a38390ef30f2918bba1032</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:45:24</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=de9a7b1893a38390ef30f2918bba1032"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=929a7b1893a38390ef30f2918bba1032^sys_idNOT IN04aa335893a38390ef30f2918bba10c2,18aa335893a38390ef30f2918bba10e3,90aa335893a38390ef30f2918bba10d8"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name,uiTypeLabel=Table Name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>200</max_length>
+        <model display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</model>
+        <model_id>929a7b1893a38390ef30f2918bba1032</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_929a7b1893a38390ef30f2918bba1032</name>
+        <next_element/>
+        <order>101</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:45:32</sys_created_on>
+        <sys_id>04aa335893a38390ef30f2918bba10c2</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:58</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=04aa335893a38390ef30f2918bba10c2"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>child_label=FDChangeDetails,child_name=FDChangeDetails,child_type=object,child_type_label=Object,co_type_name=FDCollection,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,pwd2droppable=true,uiType=array.object,uiTypeLabel=Array.Object</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>changed_fields</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Changed Fields</label>
+        <mandatory>false</mandatory>
+        <max_length>4000</max_length>
+        <model display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</model>
+        <model_id>929a7b1893a38390ef30f2918bba1032</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_929a7b1893a38390ef30f2918bba1032</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:45:32</sys_created_on>
+        <sys_id>18aa335893a38390ef30f2918bba10e3</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:45:42</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=18aa335893a38390ef30f2918bba10e3"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=document_id,uiTypeLabel=Document ID</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent>table_name</dependent>
+        <dependent_on_field>table_name</dependent_on_field>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>current</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">document_id</internal_type>
+        <label>Record</label>
+        <mandatory>true</mandatory>
+        <max_length>200</max_length>
+        <model display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</model>
+        <model_id>929a7b1893a38390ef30f2918bba1032</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_929a7b1893a38390ef30f2918bba1032</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:45:32</sys_created_on>
+        <sys_id>90aa335893a38390ef30f2918bba10d8</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:58</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>true</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=90aa335893a38390ef30f2918bba10d8"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=929a7b1893a38390ef30f2918bba1032"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=929a7b1893a38390ef30f2918bba1032"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=929a7b1893a38390ef30f2918bba1032^sys_idNOT IN48aa335893a38390ef30f2918bba10ac"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <generation_source/>
+        <name>Updated</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:45:31</sys_created_on>
+        <sys_id>48aa335893a38390ef30f2918bba10ac</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:59</sys_updated_on>
+        <trigger_definition display_value="Updated">bb695e60c31322002841b63b12d3aea5</trigger_definition>
+        <trigger_inputs>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</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>record_update</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=929a7b1893a38390ef30f2918bba1032^sys_idNOT IN0a3b779893a38390ef30f2918bba10ea,b82bb39893a38390ef30f2918bba10d4"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Wait For Condition">89ce8a4187120010663ca1bb36cb0be3</action_type>
+        <action_type_parent display_value="Wait For Condition">8bb9a8160b10030085c083eb37673aec</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>89ce8a4187120010663ca1bb36cb0be3</compiled_snapshot>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <generation_source/>
+        <order>7➛8</order>
+        <parent_ui_id>bc815e6f-28fb-4bae-85a1-bc289e190aaf</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:48:07</sys_created_on>
+        <sys_id>0a3b779893a38390ef30f2918bba10ea</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-09-22 02:32:53</sys_updated_on>
+        <ui_id>6b1bf1f5-5c9c-4c72-931d-0ada4af62a8a</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+2X227bOBCGX6XVtekVJUqmclfYDjZAtgGctHvRLQSKh5gALak6pPEaefelJCqSLdtNNk6AAL3k8OB/fs7nob5tLMmsMwsFlGOCIJ5Ax7ah7fsuJTCKXJ9GdsSRNbJisuJ6ZcZpkjE9viOqrAKbzZeUkYKzEI5pmWU8Lh4e9DyTearI+qtZpiN0KRXT89bZt+8jKyWZPrHgmXW22Zl6qiRFIq700kWraVdjsU6rMUtoudK6QtkGL83OmZn5cDHTM3pTJQeOLH5f8JhxrUMQlfORtSKxTjLJ1tZZkZU6kHHCrmK1flyxlHHR5Lki97n8V/+w61TrBNeJUePB4zA0/jRhMSMFudYn06LMHu1KJOV5YwnjgpSqmPZjzYKrtJBJ3GwpSKTa3YkqV/HnxhDr8YDedZS5FsHTKs9KeZOWuF4mPxetyHMZ146YFFVCiXockaLIZFQWlZyNVcqbfWY34f12C6n09Ye16DBPyqw2aTGfXi1m4d+fbqZ/zhfhYn59s7iY3syrHVzx+ugVSVMZ34ZpltzJWqHOdzW+VXowFir5qRPL5W08JrQyZ6yvjozPdXxWh7+STFY/+pc+Rm+uVH6J5Y+SX9SFJwR0oe8DCG0XIBj5IMDcAzb3CPIc5Hu+Yz2MrHydTxXJ885jfbnhj7KyqHHceBvW19OkWVdotZlmMi0+aXl33Dj6MGph9I5WPukKvXdmB+R9OHG1fhwSnofallUZS0rqIhlQOd2ZfiaivxbaInpTV+Z+4YbSQeyyv/fD52bCMOocZ9REOkib6t7DKLbfEaMmrZdDuuX1NqNbbss8bCrViK5PfSsQHYgDjCIXuBHyAAqEANjGCCBObOo5bIIg/R8g/hK/441HdFVMk5jJKq+8h19e6Gb48Z/Stl2WlpGS+ZKzIXmHlp20SYoegdO+2H0JGAwHsct9BxgM3VO1SmTb7wnEUzXLLbO3Odyy+0144wz7kWdjwAXGALkTDALoOMD3CYMQUSbs1218NjtWzaL3Ci3kiidlEQpFbnvs2UPO2n+s53H1BCUtV/O4/sM0ig5KNHRFSaI4iXc7nC6nP86NUoMWemaHO8bWOyLrZC2uc3qnv/W9fhOuKCVYNywCApdygPyIAiyoAC6PPOF6EY4m9iv0MXq8hoNhqbIyax+Cd90FvfRD7gk6WpZmnYDD0gxJ9d3sxi+HBxmcvN84vQingd07X3bdxGsxtdT7ZmSdV1WhGR5SxiGZeFH1sUYAcgIISIAcEPh8wpHAvkuCV6AMw6PVLYalnFP90isVPy1lT9DRUnbdCTgszVDWFfo2YIte3BDmn4wwPHgM0lXcF7ePt15W75I7cc1JRpfnkqvqPs232QEa+9eyDWL/Yt6muzkOdBmnADL9dESO7wDsogmYBDiykS69yOUn5O77f5yflJmzFAAA</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=0a3b779893a38390ef30f2918bba10ea"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Expire Communication">1b50fb9093638390ef30f2918bba101d</action_type>
+        <action_type_parent display_value="Expire Communication">91cf635093638390ef30f2918bba107f</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>1b50fb9093638390ef30f2918bba101d</compiled_snapshot>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <generation_source/>
+        <order>5</order>
+        <parent_ui_id>8e1dbee5-a025-46d2-8694-1c7414cc7a33</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:47:45</sys_created_on>
+        <sys_id>b82bb39893a38390ef30f2918bba10d4</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-09-22 02:32:53</sys_updated_on>
+        <ui_id>1645a3c3-419d-4ae5-a19d-b724a2fa90ff</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/41SXWvbQBD8L/csC304rqy34mAItA00TV5CEKvTyj44nZT7cOwa//fuSUIRbkrzeLOzu7Mz93xmomI5g/Imqst1tE5XaZauI6zTqE7WcVaWEEdJwgKmoEFi8rZpnBIcrGgVwQeQzuPn82NXgcWqiEPutEZlLxeqV8J0Ek5PI40QvheyojrLn18C1oGmwRY1y89Xpc8qk1CiJOrmSto/FNtT52GNNdIqjiP0bZzyc4a3uvLC4oDh0aKqkBTVIA0GrAFF57b6xHKrHQEaobpX8jQx9kLZ4eIGjkb8pqVpEsz25uxYfEnTeJUVgKa41jkRi9HDD06sb8HCAwng1unJ31ZwNIOHFdbgpN3MsYFw3/Uz+hYLpfyvHt5K16gfg6lsGj1L1hnSip03yp8++lA/7Nu3ydWtUL2nY1G2HOSMiqD5fitQ+uytsNLHANZqUTrrDzgzJ379neAAfpQhSmxITtFA1wm1KzrdHkQvwf+McCfpEdayfSPpRuxUCNwfHFK6EG4Jv+3hJ9DCu/SdxlCz3/ioxKvDO690ebOKE1yWixjKdLGsYbWAOF4uSvq59GsyzrOMXQJmTmYjwZh3F+mI4tV5DwZPR/eKIRrfwrXo7FcSdcDRqMvLH4QVFYW4AwAA</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=b82bb39893a38390ef30f2918bba10d4"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=929a7b1893a38390ef30f2918bba1032"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=929a7b1893a38390ef30f2918bba1032^sys_idNOT IN332bf39893a38390ef30f2918bba10cb,4a3b779893a38390ef30f2918bba10eb,525bbb9893a38390ef30f2918bba1053,5fca775893a38390ef30f2918bba10c1,66fa3f5893a38390ef30f2918bba1094,d5da7fdc93638390ef30f2918bba108a,d9da7fdc93638390ef30f2918bba108b"/>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">f26b7f9893a38390ef30f2918bba10b1</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="End">d176605ea76103004f27b0d2187901c7</logic_definition>
+        <order>6</order>
+        <outputs_assigned/>
+        <parent_ui_id>8e1dbee5-a025-46d2-8694-1c7414cc7a33</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:47:58</sys_created_on>
+        <sys_id>332bf39893a38390ef30f2918bba10cb</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:59</sys_updated_on>
+        <ui_id>afb59e93-e52c-492c-9e9c-a0013db4db88</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">b66b7f9893a38390ef30f2918bba10b3</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="Parallel Branch">a1168de173311300b61e66476bf6a7d0</logic_definition>
+        <order>7</order>
+        <outputs_assigned/>
+        <parent_ui_id>3ae076c0-8c77-4e2f-9e45-bd5a934918f9</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:48:07</sys_created_on>
+        <sys_id>4a3b779893a38390ef30f2918bba10eb</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:59</sys_updated_on>
+        <ui_id>bc815e6f-28fb-4bae-85a1-bc289e190aaf</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">b26b7f9893a38390ef30f2918bba10b7</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="End">d176605ea76103004f27b0d2187901c7</logic_definition>
+        <order>9</order>
+        <outputs_assigned/>
+        <parent_ui_id>bc815e6f-28fb-4bae-85a1-bc289e190aaf</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:48:41</sys_created_on>
+        <sys_id>525bbb9893a38390ef30f2918bba1053</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:59</sys_updated_on>
+        <ui_id>dcaf7c2f-2330-4d4c-8cd0-dd3f0e7cfa99</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">e26b7f9893a38390ef30f2918bba1096</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="Do the following in Parallel">5d31e5dedfe50300b61ecae83df26326</logic_definition>
+        <order>1</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:46:18</sys_created_on>
+        <sys_id>5fca775893a38390ef30f2918bba10c1</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:59</sys_updated_on>
+        <ui_id>3ae076c0-8c77-4e2f-9e45-bd5a934918f9</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">726b7f9893a38390ef30f2918bba10ad</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>4</order>
+        <outputs_assigned/>
+        <parent_ui_id>a7b2f0d0-6e85-463f-aa41-d8a555f8c389</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:47:04</sys_created_on>
+        <sys_id>66fa3f5893a38390ef30f2918bba1094</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:59</sys_updated_on>
+        <ui_id>8e1dbee5-a025-46d2-8694-1c7414cc7a33</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1VXW/TMBT9K5Ofoyhp1or1bQJNQgKG2NgLTNGNfdNaOLaxnXal6n/nOh9dBa1WEI+8xed+nXN9rGyZaYNtg783197LhWbzL48Jkzpi9L1lUrA5qzOo8yue82IyKyZZNnl1mVezosonogCEgiVMQ4OUyY0WMkijyw5I2ApUGwN3AQJefG2zrBAXH9tKSb9EQQlCeqtg8/BSHl9KJRwODC046h/Qsfn2l1DYWCwVVKi6dk7qBZWfq2MsfD0KuXjXIacVxnmE+3GScSLSyrOE4VNALYj+vAblMWENaAHBuM0ecQjiVqtnYCl1oHYsJj95+YN6T6bTmFgjaeTYB/fHclhgD/OlkRxvbSTYIwEqNdRwo9pGf+h1xNVjDa0K4+oJaT31QxtJRxYDpfpuadafxoE3UncCh6AyHNT+BIHWULUBfbwYVNhQo7IBa2k5pXVmJbti4tKkC0WHtFZmTUOj+1LgkXhKO4L0hvA3HfwATkYV76kNFfc0K/CSl51TqV1wJGHXraX83kZCvcBBStlvgxI8d9KGa5qzwoH1LhlsfgXTeppn0+P2uJwdMcGBw7fbz5aIoyjzlLeOdhVSH9282/V2tqdd/0e1/+IlnCH1t5dwXP4J+09esH+8sDPdn2XZf/sf2l/6srfxoK0b/tfuf4wW7if43jcCufRE5D5ib8d/QQxsyACSH0Jr475FCc/Y7ieIO8BqVQYAAA==</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">326b7f9893a38390ef30f2918bba1099</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="Parallel Branch">a1168de173311300b61e66476bf6a7d0</logic_definition>
+        <order>2</order>
+        <outputs_assigned/>
+        <parent_ui_id>3ae076c0-8c77-4e2f-9e45-bd5a934918f9</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:46:25</sys_created_on>
+        <sys_id>d5da7fdc93638390ef30f2918bba108a</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:59</sys_updated_on>
+        <ui_id>a7b2f0d0-6e85-463f-aa41-d8a555f8c389</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">7a6b7f9893a38390ef30f2918bba109d</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="Wait for a duration of time">fdb2541473031300b61e66476bf6a70e</logic_definition>
+        <order>2➛3</order>
+        <outputs_assigned/>
+        <parent_ui_id>a7b2f0d0-6e85-463f-aa41-d8a555f8c389</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:46:25</sys_created_on>
+        <sys_id>d9da7fdc93638390ef30f2918bba108b</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:48:59</sys_updated_on>
+        <ui_id>956b6be2-e45c-45d3-af99-e206ba78c463</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1YS2/bOBD+K4bOhquHJSe+Fc0G6KHbovXmUgQCRY5sYmlJS1FJXMP/fUmKesSWbCVxsOm2J1sz5Mw3nG9GHG2ttBBZIfJF+j7P6TKx5t9vxxZNlEz+31qUWHNrejnz/AtnOvNsz/FsOwocCILpLIjiAM0ufGtsJWgNciUpOBI0TUKxyUCK7xArlJwDk/I7CKsFUkdonjG0uTFLvpolo9YSvKKMcDCwMsSlFwHcmm/3VMpdyFAETFr6sEopVt6Hgq82XhnPo0WJvico/TOXCIyblBOFybHtsQUPAhIC0nGMWA5ja40SgkTKN7WEAyKfE9YIVjQR0p6lFj/k9Ic0PrXVuhhkgBhKXf0YmoMrxSWKMllVHH88ZIxiKtpHWWUCjK6dCROAvRs3NrrScSyb1SG0bXwBjiERaNlpJau1HXbcncwqgRgVTHw4X4jOGUJ0zxSip0Is0/c506q55Sl6oYiZnOOUFevkz5KGVn0gN0cCNUuuHhdX13EVuUQFmaKr4p8hY/xtld5/rbh2TRON1ShZihGrn5AQnEaFUKnZWsBgLQ2Fa5RlNFmGGU/vqN4sw1hPlkw+TGKW3kunqtVMEFZAJrI60ORayq+0+AZxqg7gkzQjN+808cN/CuW3PAKDONQHphbkmNNMvMcqXwacSpGu/ih2SOAETjTzAldWvzfFAYbgEsBx0KVrN1XeypWga+Ch7oKhhAfquZXVw9717FZ1Ja2/W5Tmh+LtoJ4GPNKARwrwyCAeHJppaTpJWh4axSv0Nm3rKc2tro4nFcfPwnCZ+DwsKWxi085fzPwL2/M8+xL73qxmEiEAcTyLHBechh4lJxqSvA7VPyYClmW8A+EdEv0oZsNhWvv5zd2flbsQO1Mf993ZogMedLx6z9mkG+tD0XVs7QP8uPUe3jb+w1vlb/I+h7wEo6lj+z30cIN9LhxcNcNUwlPZbdEZxUJD3uN0JT7HoDQAd7Vxoe8bfP/+PGoBHx5izzjlvZlxqjrk/Vx0jU0RxClvv0FrQT2BHB9sTjhznuTMffGIUfOuc6yotHv1LnjxFsu9Qog34dHvEs0yQ82GdKd6w+NPBScahRO7PuktuJl3uoo6hpPt9q9MiUnoTHDB5dmLiZwTaWvHbveaE8yAqPrayOHkMiDwU6PL9H/wAn1hQXW/58a/TKHFke/LK1sPJQN3n285XgEp2CsNQnUGq4oZAK91n5SJGokVjOKUyQyopxbcvjDM+fKWa1Me/hnLw3MflwdeJ20QXaXyrVH/CnfO594tbxUTS0t5SSkCmObS4ULJPlYf7JViI0lAcVt0n/K/FdRGtvsXsyHJBvoXAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=929a7b1893a38390ef30f2918bba1032"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=929a7b1893a38390ef30f2918bba1032"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>current</element>
+        <help/>
+        <hint/>
+        <label>Record</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_929a7b1893a38390ef30f2918bba1032</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:45:32</sys_created_on>
+        <sys_id>10aa335893a38390ef30f2918bba10df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:45:32</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>changed_fields</element>
+        <help/>
+        <hint/>
+        <label>Changed Fields</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_929a7b1893a38390ef30f2918bba1032</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:45:32</sys_created_on>
+        <sys_id>94aa335893a38390ef30f2918bba10eb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:45:32</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_929a7b1893a38390ef30f2918bba1032</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:45:32</sys_created_on>
+        <sys_id>d8aa335893a38390ef30f2918bba10d3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:45:32</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_929a7b1893a38390ef30f2918bba1032"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_929a7b1893a38390ef30f2918bba1032"/>
+    <sys_hub_flow_snapshot action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <allow_high_security_roles>false</allow_high_security_roles>
+        <annotation/>
+        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,viewActivatedIn=naturalLanguage</attributes>
+        <authored_on_release_version>29000</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description>Automatically expire  a published communication when its configured expired date is reached. The flow ends without expire if the communication leaves the Publishe state before publication.</description>
+        <flow_priority>HIGH</flow_priority>
+        <internal_name>aes__communication_expiration</internal_name>
+        <label_cache>[{"name":"Updated_1.current.expiration_date","label":"Trigger - Record Updated➛Communication Record➛Expiration date","reference":"","reference_display":"Expiration date","type":"glide_date_time","base_type":"glide_date_time","parent_table_name":"x_733168_aes_communication","column_name":"expiration_date","usedInstances":{"956b6be2-e45c-45d3-af99-e206ba78c463":["timer_duration"]}},{"name":"Updated_1.current.state","label":"Trigger - Record Updated➛Communication Record➛State","reference":"","reference_display":"State","type":"choice","base_type":"choice","parent_table_name":"x_733168_aes_communication","column_name":"state","choices":[{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Draft"}},"sequence":1.0,"used":false,"label":"Draft","selected":false,"image":"","rawLabel":"Draft","missing":false,"reference":false,"value":"draft"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Submitted"}},"sequence":2.0,"used":false,"label":"Submitted","selected":false,"image":"","rawLabel":"Submitted","missing":false,"reference":false,"value":"submitted"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Scheduled"}},"sequence":3.0,"used":false,"label":"Scheduled","selected":false,"image":"","rawLabel":"Scheduled","missing":false,"reference":false,"value":"scheduled"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Published"}},"sequence":4.0,"used":false,"label":"Published","selected":false,"image":"","rawLabel":"Published","missing":false,"reference":false,"value":"published"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Retired"}},"sequence":5.0,"used":false,"label":"Retired","selected":false,"image":"","rawLabel":"Retired","missing":false,"reference":false,"value":"retired"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Expired"}},"sequence":6.0,"used":false,"label":"Expired","selected":false,"image":"","rawLabel":"Expired","missing":false,"reference":false,"value":"expired"},{"parameters":{"name":"x_733168_aes_communication","dependent_values":[""],"dependent_values_map":{"":"Canceled"}},"sequence":7.0,"used":false,"label":"Canceled","selected":false,"image":"","rawLabel":"Canceled","missing":false,"reference":false,"value":"canceled"}],"usedInstances":{"8e1dbee5-a025-46d2-8694-1c7414cc7a33":["condition"]}},{"name":"Updated_1.current","label":"Trigger - Record Updated➛Communication Record","reference":"x_733168_aes_communication","reference_display":"Communication","type":"reference","base_type":"reference","usedInstances":{"1645a3c3-419d-4ae5-a19d-b724a2fa90ff":["communication"],"6b1bf1f5-5c9c-4c72-931d-0ada4af62a8a":["record"]},"attributes":{}}]</label_cache>
+        <master>true</master>
+        <name>AES - Communication Expiration</name>
+        <natlang/>
+        <outputs/>
+        <parent_flow display_value="AES - Communication Expiration">929a7b1893a38390ef30f2918bba1032</parent_flow>
+        <remote_trigger_id/>
+        <run_as>system</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <status>published</status>
+        <sys_class_name>sys_hub_flow_snapshot</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:01</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>136bbf9893a38390ef30f2918bba104b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:01</sys_updated_on>
+        <type>flow</type>
+        <version>2</version>
+    </sys_hub_flow_snapshot>
+    <sys_translated_text action="delete_multiple" query="documentkey=136bbf9893a38390ef30f2918bba104b"/>
+    <sys_variable_value action="delete_multiple" query="document_key=136bbf9893a38390ef30f2918bba104b"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=136bbf9893a38390ef30f2918bba104b"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=136bbf9893a38390ef30f2918bba104b^sys_idNOT INdf6bbf9893a38390ef30f2918bba104b"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>136bbf9893a38390ef30f2918bba104b</id>
+        <name>AES - Communication Expiration</name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:01</sys_created_on>
+        <sys_id>df6bbf9893a38390ef30f2918bba104b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:01</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=df6bbf9893a38390ef30f2918bba104b"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=136bbf9893a38390ef30f2918bba104b^sys_idNOT IN576bbf9893a38390ef30f2918bba104d,5b6bbf9893a38390ef30f2918bba1061,db6bbf9893a38390ef30f2918bba106d"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=document_id,uiTypeLabel=Document ID</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent>table_name</dependent>
+        <dependent_on_field>table_name</dependent_on_field>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>current</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">document_id</internal_type>
+        <label>Record</label>
+        <mandatory>true</mandatory>
+        <max_length>200</max_length>
+        <model display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</model>
+        <model_id>136bbf9893a38390ef30f2918bba104b</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_136bbf9893a38390ef30f2918bba104b</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:01</sys_created_on>
+        <sys_id>576bbf9893a38390ef30f2918bba104d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:01</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>true</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=576bbf9893a38390ef30f2918bba104d"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>child_label=FDChangeDetails,child_name=FDChangeDetails,child_type=object,child_type_label=Object,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,pwd2droppable=true,uiType=array.object,uiTypeLabel=Array.Object</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>changed_fields</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Changed Fields</label>
+        <mandatory>false</mandatory>
+        <max_length>4000</max_length>
+        <model display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</model>
+        <model_id>136bbf9893a38390ef30f2918bba104b</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_136bbf9893a38390ef30f2918bba104b</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:01</sys_created_on>
+        <sys_id>5b6bbf9893a38390ef30f2918bba1061</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:01</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=5b6bbf9893a38390ef30f2918bba1061"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name,uiTypeLabel=Table Name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>200</max_length>
+        <model display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</model>
+        <model_id>136bbf9893a38390ef30f2918bba104b</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_136bbf9893a38390ef30f2918bba104b</name>
+        <next_element/>
+        <order>101</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>db6bbf9893a38390ef30f2918bba106d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=db6bbf9893a38390ef30f2918bba106d"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=136bbf9893a38390ef30f2918bba104b"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=136bbf9893a38390ef30f2918bba104b"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=136bbf9893a38390ef30f2918bba104b^sys_idNOT INeb6bbf9893a38390ef30f2918bba10ce"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <generation_source/>
+        <name>Updated</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>eb6bbf9893a38390ef30f2918bba10ce</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <trigger_definition display_value="Updated">bb695e60c31322002841b63b12d3aea5</trigger_definition>
+        <trigger_inputs>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</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>record_update</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=136bbf9893a38390ef30f2918bba104b^sys_idNOT INe76bbf9893a38390ef30f2918bba10cc,ef6bbf9893a38390ef30f2918bba10ca"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Wait For Condition">89ce8a4187120010663ca1bb36cb0be3</action_type>
+        <action_type_parent display_value="Wait For Condition">8bb9a8160b10030085c083eb37673aec</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>89ce8a4187120010663ca1bb36cb0be3</compiled_snapshot>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <generation_source/>
+        <order>7➛8</order>
+        <parent_ui_id>bc815e6f-28fb-4bae-85a1-bc289e190aaf</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>e76bbf9893a38390ef30f2918bba10cc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <ui_id>6b1bf1f5-5c9c-4c72-931d-0ada4af62a8a</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+2X227bOBCGX6XVtekVJUqmclfYDjZAtgGctHvRLQSKh5gALak6pPEaefelJCqSLdtNNk6AAL3k8OB/fs7nob5tLMmsMwsFlGOCIJ5Ax7ah7fsuJTCKXJ9GdsSRNbJisuJ6ZcZpkjE9viOqrAKbzZeUkYKzEI5pmWU8Lh4e9DyTearI+qtZpiN0KRXT89bZt+8jKyWZPrHgmXW22Zl6qiRFIq700kWraVdjsU6rMUtoudK6QtkGL83OmZn5cDHTM3pTJQeOLH5f8JhxrUMQlfORtSKxTjLJ1tZZkZU6kHHCrmK1flyxlHHR5Lki97n8V/+w61TrBNeJUePB4zA0/jRhMSMFudYn06LMHu1KJOV5YwnjgpSqmPZjzYKrtJBJ3GwpSKTa3YkqV/HnxhDr8YDedZS5FsHTKs9KeZOWuF4mPxetyHMZ146YFFVCiXockaLIZFQWlZyNVcqbfWY34f12C6n09Ye16DBPyqw2aTGfXi1m4d+fbqZ/zhfhYn59s7iY3syrHVzx+ugVSVMZ34ZpltzJWqHOdzW+VXowFir5qRPL5W08JrQyZ6yvjozPdXxWh7+STFY/+pc+Rm+uVH6J5Y+SX9SFJwR0oe8DCG0XIBj5IMDcAzb3CPIc5Hu+Yz2MrHydTxXJ885jfbnhj7KyqHHceBvW19OkWVdotZlmMi0+aXl33Dj6MGph9I5WPukKvXdmB+R9OHG1fhwSnofallUZS0rqIhlQOd2ZfiaivxbaInpTV+Z+4YbSQeyyv/fD52bCMOocZ9REOkib6t7DKLbfEaMmrZdDuuX1NqNbbss8bCrViK5PfSsQHYgDjCIXuBHyAAqEANjGCCBObOo5bIIg/R8g/hK/441HdFVMk5jJKq+8h19e6Gb48Z/Stl2WlpGS+ZKzIXmHlp20SYoegdO+2H0JGAwHsct9BxgM3VO1SmTb7wnEUzXLLbO3Odyy+0144wz7kWdjwAXGALkTDALoOMD3CYMQUSbs1218NjtWzaL3Ci3kiidlEQpFbnvs2UPO2n+s53H1BCUtV/O4/sM0ig5KNHRFSaI4iXc7nC6nP86NUoMWemaHO8bWOyLrZC2uc3qnv/W9fhOuKCVYNywCApdygPyIAiyoAC6PPOF6EY4m9iv0MXq8hoNhqbIyax+Cd90FvfRD7gk6WpZmnYDD0gxJ9d3sxi+HBxmcvN84vQingd07X3bdxGsxtdT7ZmSdV1WhGR5SxiGZeFH1sUYAcgIISIAcEPh8wpHAvkuCV6AMw6PVLYalnFP90isVPy1lT9DRUnbdCTgszVDWFfo2YIte3BDmn4wwPHgM0lXcF7ePt15W75I7cc1JRpfnkqvqPs232QEa+9eyDWL/Yt6muzkOdBmnADL9dESO7wDsogmYBDiykS69yOUn5O77f5yflJmzFAAA</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=e76bbf9893a38390ef30f2918bba10cc"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Expire Communication">1b50fb9093638390ef30f2918bba101d</action_type>
+        <action_type_parent display_value="Expire Communication">91cf635093638390ef30f2918bba107f</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>1b50fb9093638390ef30f2918bba101d</compiled_snapshot>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <generation_source/>
+        <order>5</order>
+        <parent_ui_id>8e1dbee5-a025-46d2-8694-1c7414cc7a33</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>ef6bbf9893a38390ef30f2918bba10ca</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <ui_id>1645a3c3-419d-4ae5-a19d-b724a2fa90ff</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/41SXWvbQBD8L/csC304rqy34mAItA00TV5CEKvTyj44nZT7cOwa//fuSUIRbkrzeLOzu7Mz93xmomI5g/Imqst1tE5XaZauI6zTqE7WcVaWEEdJwgKmoEFi8rZpnBIcrGgVwQeQzuPn82NXgcWqiEPutEZlLxeqV8J0Ek5PI40QvheyojrLn18C1oGmwRY1y89Xpc8qk1CiJOrmSto/FNtT52GNNdIqjiP0bZzyc4a3uvLC4oDh0aKqkBTVIA0GrAFF57b6xHKrHQEaobpX8jQx9kLZ4eIGjkb8pqVpEsz25uxYfEnTeJUVgKa41jkRi9HDD06sb8HCAwng1unJ31ZwNIOHFdbgpN3MsYFw3/Uz+hYLpfyvHt5K16gfg6lsGj1L1hnSip03yp8++lA/7Nu3ydWtUL2nY1G2HOSMiqD5fitQ+uytsNLHANZqUTrrDzgzJ379neAAfpQhSmxITtFA1wm1KzrdHkQvwf+McCfpEdayfSPpRuxUCNwfHFK6EG4Jv+3hJ9DCu/SdxlCz3/ioxKvDO690ebOKE1yWixjKdLGsYbWAOF4uSvq59GsyzrOMXQJmTmYjwZh3F+mI4tV5DwZPR/eKIRrfwrXo7FcSdcDRqMvLH4QVFYW4AwAA</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=ef6bbf9893a38390ef30f2918bba10ca"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=136bbf9893a38390ef30f2918bba104b"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=136bbf9893a38390ef30f2918bba104b^sys_idNOT IN276bbf9893a38390ef30f2918bba10c9,2b6bbf9893a38390ef30f2918bba109b,6b6bbf9893a38390ef30f2918bba10a2,af6bbf9893a38390ef30f2918bba1099,af6bbf9893a38390ef30f2918bba109c,e36bbf9893a38390ef30f2918bba109f,e36bbf9893a38390ef30f2918bba10a1"/>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">b26b7f9893a38390ef30f2918bba10b7</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="End">d176605ea76103004f27b0d2187901c7</logic_definition>
+        <order>9</order>
+        <outputs_assigned/>
+        <parent_ui_id>bc815e6f-28fb-4bae-85a1-bc289e190aaf</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>276bbf9893a38390ef30f2918bba10c9</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <ui_id>dcaf7c2f-2330-4d4c-8cd0-dd3f0e7cfa99</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">326b7f9893a38390ef30f2918bba1099</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="Parallel Branch">a1168de173311300b61e66476bf6a7d0</logic_definition>
+        <order>2</order>
+        <outputs_assigned/>
+        <parent_ui_id>3ae076c0-8c77-4e2f-9e45-bd5a934918f9</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>2b6bbf9893a38390ef30f2918bba109b</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <ui_id>a7b2f0d0-6e85-463f-aa41-d8a555f8c389</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">b66b7f9893a38390ef30f2918bba10b3</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="Parallel Branch">a1168de173311300b61e66476bf6a7d0</logic_definition>
+        <order>7</order>
+        <outputs_assigned/>
+        <parent_ui_id>3ae076c0-8c77-4e2f-9e45-bd5a934918f9</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>6b6bbf9893a38390ef30f2918bba10a2</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <ui_id>bc815e6f-28fb-4bae-85a1-bc289e190aaf</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">e26b7f9893a38390ef30f2918bba1096</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="Do the following in Parallel">5d31e5dedfe50300b61ecae83df26326</logic_definition>
+        <order>1</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>af6bbf9893a38390ef30f2918bba1099</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <ui_id>3ae076c0-8c77-4e2f-9e45-bd5a934918f9</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">7a6b7f9893a38390ef30f2918bba109d</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="Wait for a duration of time">fdb2541473031300b61e66476bf6a70e</logic_definition>
+        <order>2➛3</order>
+        <outputs_assigned/>
+        <parent_ui_id>a7b2f0d0-6e85-463f-aa41-d8a555f8c389</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>af6bbf9893a38390ef30f2918bba109c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <ui_id>956b6be2-e45c-45d3-af99-e206ba78c463</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1Z227bOBD9FUPPhlcXW078ViQNUKC7XSTZvCwKgaJGNlFa0lJUEq/hf98hRV1sy468dQsX7VPCIUWemTlnxJHXVlrIrJD5Y/ouz9k8sWZ/fx5aLFE2/H9tsciaWePrqTe5csZTz/Ycz7ZD3wHfH0/9MPbJ9GpiDa2ELAFXRoUgkqVJIFcZoPmZ8ELZBXC0P0NQLcC5iOUZJ6sns+TeLBm0ltAF45EAAysjAk+RIKzZemeqL0xOQuC49NacMXgscR6Ar//M8KyU0Wr80WxxUxlTESlIjm0PLXiVkESAaGLCcxhaS5JERKZiVVsEkOhTwhvDgiUS97PU4tec/Ysnjm21Lgb0j0I5Vw8DE7fSHN8SSR6kKKgshFlawi3zVzn8/jXjjDLZjm6VHDBz7eQYp+zNsNmjK0PHElwFpr3HnyAoJJLMO3fJ6tmOfdwNJjqCmBRc3pzPRecMLrpnctFTLpbp+5TpqZnlKd6RkFfJTXmxTP4o+WrVAXk64qhZcrutt65wFTmigkxRWHHSEDR+WKQv9xX/7liisZpJnlLC6xGRUrCwkCo1aws4LHGjYEmyjCXzIBPpM9MPoxvL0ZzjYBTz9AUPVdVnRKgCMkLFkNEd2m+1+YkIpgLwO26DD2+GVr7KbzjJ8yYMKI/gn0IhKYNifAh0CPUjVLBMvqMqgwauSpouHGHsRL7jO+HU810sHN6Y+hT8awDHIdeu3RSIVvYkW4IIdKkMEDCocSvP+wXu5HrWA1YH5zSugcY1ULgGBlhvD0zR09nR9qA1UVU/LDvw22Np/wYFUO91jgrYVTL2NXaSxH4UnSCL8qCkvfFNH/4N9HNle55nX9OJN62JGkUAcTwNHRechn0l5RoOnlcwPXDsC+YoOKMFJCjMdUjbGvhQW38p4CdXAMTOeEIPXT3DPZJ1XAzOwP8eKHYvwEeAbb8Htu0f97eprkIXeA3+JYHvIIGIkrFjTw6Qz/V3mbZ3nQ5SBKxI0hIFiaV2YkcZlfk0efRAWMnjUV+ixG43MGhB7O/MKV2kd4HyaVqbKu676enqFkOIU9F+wdeGuvE63s+9cZhz0mHuV3dWNRU7u6lqdqcoYEgvsSZUCOkqOPqFpllmONwQ8fQCsv1x5Y1q4sTuJDqo1an3tgA7erL1+q9MmaPAGdFCYDbkCBtm1npisznDe7gH+EOFZr9h6+Hf/+3YxhdYbL7Lu/orZdn9Sh3+xHKNw8kE754HGO+7u3TO6QKigp+5/+uBonX/xQwN5AIGccox9GrUQnUIrQlsw/Rtkd237EZkkzOKzHO3RUaXSRtcl+AemukLEN7pl+T4AYigizsGXKVY5+VH+874WbG83LuONGU5QnhUtg/Vzy1qYoUeMto2vaTiiwLf2Db/AQLoDDa4GQAA</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">726b7f9893a38390ef30f2918bba10ad</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>4</order>
+        <outputs_assigned/>
+        <parent_ui_id>a7b2f0d0-6e85-463f-aa41-d8a555f8c389</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>e36bbf9893a38390ef30f2918bba109f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <ui_id>8e1dbee5-a025-46d2-8694-1c7414cc7a33</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1VXW/aMBT9K8jPUZSPglbeKqpKk7p1Gl1ftiq6sR2w5sSZP6AM8d93HSeANqqCtse94eN7r885uUdsiXK2ddY8qhtjxKIh06/PERGNx/D3lghGpqRKoEqvaUrzbJJnSZK9u0rLSV6mGcuBQ04i0kDNsZKqhgkrVFN0QERWIJ2/mFuwfPTNJUnORp9cKYVZcoYFTJhWwubprTq6FJJp3jNsQeN8yzWZbn+7OpexhJJLLJ0NlEf3HfK6FrtpPW6sFs2iP9/3U+YDqDTzrNIkIvzF8oYh+2kF0vCI1NAwsEpv9ojmwB4aeQCWorE4jvjiFyN+4oPZeOwLK44SKQ+X+2PR+xfg6hYsIBVHrdN9KV0qQbkJ5jBegZN2doyFgofWSw0tFko5dCvp6uZjcITsBwyfCxFnkARvvVJPvddRzZdq/XlgeSeazpX+UioKcn8Ci96Vzno+W8Ilr3FQUUPboqNFq9VKdM3IpY4XEg9xJdUaH/UbGwP1xGM0FuI7xG87+Am08Co+4BhsDjRLMIIW3XbjOLSJk11EzMbMJBhzEInuFj+cpxgk9+KK4I9voVq09gZfXvFexy7qw3IN42qcJuPTq3c1ObFgRznZbr+0KIWzIo2p0+iejY3PxG4XQtG+np2Lei/L0xmi/sjTaaGXhCh7I0T+C56ZoSRJ/ofor0MkTBFWv9fWPf4PM/TsgxDe3HtNhUFqjx57P/wv+YsNLpegx9Ba6e9e1AHb/QIN7/Yl4QYAAA==</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">f26b7f9893a38390ef30f2918bba10b1</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="AES - Communication Expiration">136bbf9893a38390ef30f2918bba104b</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="End">d176605ea76103004f27b0d2187901c7</logic_definition>
+        <order>6</order>
+        <outputs_assigned/>
+        <parent_ui_id>8e1dbee5-a025-46d2-8694-1c7414cc7a33</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>e36bbf9893a38390ef30f2918bba10a1</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <ui_id>afb59e93-e52c-492c-9e9c-a0013db4db88</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=136bbf9893a38390ef30f2918bba104b"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=136bbf9893a38390ef30f2918bba104b"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_136bbf9893a38390ef30f2918bba104b</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>2f6bbf9893a38390ef30f2918bba108d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>current</element>
+        <help/>
+        <hint/>
+        <label>Record</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_136bbf9893a38390ef30f2918bba104b</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:01</sys_created_on>
+        <sys_id>536bbf9893a38390ef30f2918bba105d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:01</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>changed_fields</element>
+        <help/>
+        <hint/>
+        <label>Changed Fields</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_136bbf9893a38390ef30f2918bba104b</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:02</sys_created_on>
+        <sys_id>d36bbf9893a38390ef30f2918bba1069</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:02</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_136bbf9893a38390ef30f2918bba104b"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_136bbf9893a38390ef30f2918bba104b"/>
+    <sys_hub_flow action="UPDATE">
+        <sys_id>929a7b1893a38390ef30f2918bba1032</sys_id>
+        <latest_snapshot>136bbf9893a38390ef30f2918bba104b</latest_snapshot>
+        <compiler_build>glide-australia-02-11-2026__patch3-05-25-2026_06-12-2026_1106.zip</compiler_build>
+        <version_record/>
+    </sys_hub_flow>
+    <sys_flow_trigger_plan action="delete_multiple" query="plan_id=929a7b1893a38390ef30f2918bba1032^sys_idNOT IN7b6bbf9893a38390ef30f2918bba10f2"/>
+    <sys_flow_trigger_plan action="INSERT_OR_UPDATE">
+        <binding_strategy>com.snc.process_flow.engine.binding.RunAlways</binding_strategy>
+        <plan>{"@class":"com.snc.process_flow.engine.serialization.plan_data.ChunkingPlanData","chunk_data":{"table":"sys_flow_trigger_plan","id":"7b6bbf9893a38390ef30f2918bba10f2","name":"plan","plan_signature":null},"plan_data":"CHUNKING_PLAN"}</plan>
+        <plan_id>929a7b1893a38390ef30f2918bba1032</plan_id>
+        <snapshot>3575806093278390ef30f2918bba1042</snapshot>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 01:49:03</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>7b6bbf9893a38390ef30f2918bba10f2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 01:49:03</sys_updated_on>
+        <trigger display_value="">776bbf9893a38390ef30f2918bba10f1</trigger>
+    </sys_flow_trigger_plan>
+    <sys_flow_subflow_plan action="delete_multiple" query="plan_id=929a7b1893a38390ef30f2918bba1032"/>
+</record_update>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESCommunicationArchive</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AESCommunicationArchive</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESCommunicationArchive = Class.create();
+AESCommunicationArchive.prototype = {
+    initialize: function() {
+        this.TABLE = 'x_733168_aes_communication';
+        this.STATE_EXPIRED = 'expired';
+    },
+
+    /**
+     * Archives an expired communication.
+     * State remains Expired; active becomes false.
+     */
+    archive: function(source) {
+        var communication = this._resolveCommunication(source);
+
+        if (!communication)
+            return this._failure('not_found');
+
+        if (!this._isState(communication, this.STATE_EXPIRED))
+            return this._failure('invalid_transition');
+
+        if (communication.getValue('active') != '1')
+            return this._failure('already_archived');
+
+        communication.setValue('active', false);
+
+        return this._update(communication);
+    },
+
+    calculateArchiveDate: function(expirationDate, archiveAfter, periodType) {
+        var days = parseInt(archiveAfter, 10);
+
+        if (gs.nil(expirationDate) || isNaN(days) || days <= 0)
+            return null;
+
+        var archiveDate = new GlideDateTime(expirationDate);
+
+        if (periodType == 'days') {
+            archiveDate.addDaysUTC(days);
+            return archiveDate;
+        }
+
+        if (periodType == 'weekdays')
+            return this._addWeekdays(archiveDate, days);
+
+        return null;
+    },
+
+    _addWeekdays: function(date, days) {
+        var result = new GlideDateTime(date);
+        var added = 0;
+
+        while (added < days) {
+            result.addDaysUTC(1);
+
+            var dayOfWeek = result.getDayOfWeekUTC();
+
+            if (dayOfWeek != 6 && dayOfWeek != 7)
+                added++;
+        }
+
+        return result;
+    },
+
+    _resolveCommunication: function(source) {
+        if (gs.nil(source))
+            return null;
+
+        if (
+            typeof source == 'object' &&
+            typeof source.getTableName == 'function'
+        ) {
+            if (!source.isValidRecord())
+                return null;
+
+            return source;
+        }
+
+        var communication = new GlideRecord(this.TABLE);
+
+        if (!communication.get(source))
+            return null;
+
+        return communication;
+    },
+
+    _isState: function(communication, state) {
+        return communication.getValue('state') == state;
+    },
+
+    _update: function(communication) {
+        var updatedId = communication.update();
+
+        if (!updatedId)
+            return this._failure('update_failed');
+
+        return this._success();
+    },
+
+    _success: function() {
+        return {
+            success: true
+        };
+    },
+
+    _failure: function(reason) {
+        return {
+            success: false,
+            reason: reason
+        };
+    },
+
+    type: 'AESCommunicationArchive'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 02:08:50</sys_created_on>
+        <sys_id>b7df3f1493e38390ef30f2918bba1040</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>AESCommunicationArchive</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_b7df3f1493e38390ef30f2918bba1040</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 19:00:26</sys_updated_on>
+    </sys_script_include>
+</record_update>
