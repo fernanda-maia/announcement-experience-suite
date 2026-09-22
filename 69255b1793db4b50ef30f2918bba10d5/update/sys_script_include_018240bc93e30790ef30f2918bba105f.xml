@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESAudienceResolver</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AESAudienceResolver</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESAudienceResolver = Class.create();
+AESAudienceResolver.prototype = {
+    initialize: function() {
+        this.COMMUNICATION_TABLE = 'x_733168_aes_communication';
+        this.AVAILABLE_TABLE = 'x_733168_aes_communication_user_criteria';
+        this.EXCLUSION_TABLE = 'x_733168_aes_communication_user_criteria_exclusion';
+    },
+
+    /**
+     * Determines whether a user belongs to the audience
+     * of a Communication.
+     *
+     * Audience rules:
+     * 1. Exclusion always wins.
+     * 2. If no inclusion criteria exist, the Communication
+     *    is available to everyone.
+     * 3. If inclusion criteria exist, the user must match
+     *    at least one of them.
+     *
+     * @param {GlideRecord|string} source Communication record or sys_id
+     * @param {string} userId sys_user sys_id
+     * @return {Boolean}
+     */
+    canView: function(source, userId) {
+        var communication = this._resolveCommunication(source);
+
+        if (!communication)
+            return false;
+
+        userId = userId || gs.getUserID();
+
+        if (this._matchesExclusion(communication, userId))
+            return false;
+
+        var availableCriteria =
+            this._getCriteriaIds(
+                this.AVAILABLE_TABLE,
+                communication.getUniqueValue()
+            );
+
+        if (availableCriteria.length === 0)
+            return true;
+
+        return this._matchesAnyCriteria(
+            availableCriteria,
+            userId
+        );
+    },
+
+    /**
+     * Returns true when the user matches at least one
+     * exclusion criterion.
+     */
+    _matchesExclusion: function(communication, userId) {
+        var exclusionCriteria =
+            this._getCriteriaIds(
+                this.EXCLUSION_TABLE,
+                communication.getUniqueValue()
+            );
+
+        if (exclusionCriteria.length === 0)
+            return false;
+
+        return this._matchesAnyCriteria(
+            exclusionCriteria,
+            userId
+        );
+    },
+
+    /**
+     * Retrieves the User Criteria associated with a Communication.
+     */
+    _getCriteriaIds: function(tableName, communicationId) {
+        var criteria = [];
+
+        var gr = new GlideRecord(tableName);
+        gr.addQuery('communication', communicationId);
+        gr.query();
+
+        while (gr.next()) {
+            var criteriaId = gr.getValue('user_criteria');
+
+            if (!gs.nil(criteriaId))
+                criteria.push(criteriaId);
+        }
+
+        return criteria;
+    },
+
+    /**
+     * Determines whether the user matches at least one
+     * User Criteria in the supplied list.
+     */
+    _matchesAnyCriteria: function(criteriaIds, userId) {
+        if (!criteriaIds || criteriaIds.length === 0)
+            return false;
+
+        var matchedCriteria =
+            sn_uc.UserCriteriaLoader.getMatchingCriteria(
+                userId,
+                criteriaIds
+            );
+
+        return matchedCriteria &&
+            matchedCriteria.length > 0;
+    },
+
+    _resolveCommunication: function(source) {
+        if (gs.nil(source))
+            return null;
+
+        if (
+            typeof source == 'object' &&
+            typeof source.getTableName == 'function'
+        ) {
+            if (!source.isValidRecord())
+                return null;
+
+            return source;
+        }
+
+        var communication =
+            new GlideRecord(this.COMMUNICATION_TABLE);
+
+        if (!communication.get(source))
+            return null;
+
+        return communication;
+    },
+
+    type: 'AESAudienceResolver'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 20:58:48</sys_created_on>
+        <sys_id>018240bc93e30790ef30f2918bba105f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>AESAudienceResolver</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_018240bc93e30790ef30f2918bba105f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 21:02:22</sys_updated_on>
+    </sys_script_include>
+</record_update>

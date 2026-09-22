@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="x_733168_aes_announcement_display_type">
     <x_733168_aes_announcement_display_type action="INSERT_OR_UPDATE">
         <active>true</active>
+        <communication_table>x_733168_aes_announcement</communication_table>
+        <eligibility_condition table="x_733168_aes_announcement">stateINpublished,expired^active=true^EQ<item display_value="published,expired" endquery="false" field="state" goto="false" newquery="false" operator="IN" or="false" value="published,expired"/>
+            <item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </eligibility_condition>
         <internal_name>feed</internal_name>
         <name>Feed</name>
         <sys_class_name>x_733168_aes_announcement_display_type</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-19 20:18:59</sys_created_on>
         <sys_id>77acd8b793170f50ef30f2918bba102d</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Feed</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>x_733168_aes_announcement_display_type_77acd8b793170f50ef30f2918bba102d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-19 20:18:59</sys_updated_on>
+        <sys_updated_on>2026-09-22 20:52:32</sys_updated_on>
     </x_733168_aes_announcement_display_type>
 </record_update>

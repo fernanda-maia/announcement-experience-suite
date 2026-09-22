@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="54faf72893e30790ef30f2918bba10fa" sys_domain="global" table="x_733168_aes_announcement_display_type" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-22 20:25:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d8fa3b2893e30790ef30f2918bba1070</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_733168_aes_announcement_display_type" name="x_733168_aes_announcement_display_type" sys_domain="global" view="Default view">54faf72893e30790ef30f2918bba10fa</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_733168_aes_announcement_display_type" sys_domain="global" view="Default view">24db983793170f50ef30f2918bba10df</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-22 20:25:23</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-22 20:25:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d0fa3b2893e30790ef30f2918bba1072</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_733168_aes_announcement_display_type" name="x_733168_aes_announcement_display_type" sys_domain="global" view="Default view">54faf72893e30790ef30f2918bba10fa</sys_ui_form>
+            <sys_ui_section caption="Eligibility" display_value="Eligibility" name="x_733168_aes_announcement_display_type" sys_domain="global" view="Default view">58faf72893e30790ef30f2918bba10f7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-22 20:25:23</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_733168_aes_announcement_display_type</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-22 20:25:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>54faf72893e30790ef30f2918bba10fa</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_733168_aes_announcement_display_type</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+            <sys_update_name>sys_ui_form_sections_54faf72893e30790ef30f2918bba10fa</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-22 20:25:23</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESCommunicationResolver</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AESCommunicationResolver</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESCommunicationResolver = Class.create();
+AESCommunicationResolver.prototype = {
+    initialize: function() {
+        this.COMMUNICATION_TABLE = 'x_733168_aes_communication';
+        this.STATE_PUBLISHED = 'published';
+        this.STATE_EXPIRED = 'expired';
+    },
+
+    /**
+     * Returns communications eligible for a Display Type.
+     *
+     * The Display Type defines:
+     * - the Communication table to query
+     * - the eligibility condition applied to that table
+     *
+     * Global AES visibility rules are applied separately.
+     *
+     * @param {GlideRecord|string} displayType Display Type record or sys_id
+     * @return {GlideRecord|null}
+     */
+    getCommunications: function(displayType) {
+        var type = this._resolveDisplayType(displayType);
+
+        if (!type)
+            return null;
+
+        if (type.getValue('active') != '1')
+            return null;
+
+        var tableName = type.getValue('communication_table');
+
+        if (!this._isValidCommunicationTable(tableName))
+            return null;
+
+        var communication = new GlideRecord(tableName);
+
+        /*
+         * Global AES rule:
+         * inactive communications are never displayable.
+         */
+        communication.addQuery('active', true);
+
+        /*
+         * Display Type-specific eligibility.
+         */
+        var condition = type.getValue('eligibility_condition');
+
+        if (!gs.nil(condition))
+            communication.addEncodedQuery(condition);
+
+        /*
+         * Publication date is a global visibility rule.
+         *
+         * A published communication cannot be displayed before
+         * its configured publication date.
+         *
+         * Expired communications are intentionally not excluded here.
+         */
+        var dateQuery = communication.addNullQuery('publish_date');
+        dateQuery.addOrCondition('publish_date', '<=', new GlideDateTime());
+
+        communication.query();
+
+        return communication;
+    },
+
+    /**
+     * Determines whether one Communication is eligible for a Display Type.
+     *
+     * @param {GlideRecord|string} source Communication record or sys_id
+     * @param {GlideRecord|string} displayType Display Type record or sys_id
+     * @return {Boolean}
+     */
+    isVisible: function(source, displayType) {
+        var type = this._resolveDisplayType(displayType);
+
+        if (!type)
+            return false;
+
+        if (type.getValue('active') != '1')
+            return false;
+
+        var tableName = type.getValue('communication_table');
+
+        if (!this._isValidCommunicationTable(tableName))
+            return false;
+
+        var communication = this._resolveCommunication(source, tableName);
+
+        if (!communication)
+            return false;
+
+        if (!this._isActive(communication))
+            return false;
+
+        if (!this._isDateEligible(communication))
+            return false;
+
+        if (!this._matchesEligibilityCondition(communication, type))
+            return false;
+
+        return true;
+    },
+
+    /**
+     * Evaluates the global temporal visibility rules.
+     */
+    _isDateEligible: function(communication) {
+        var now = new GlideDateTime();
+        var publishDate = communication.getValue('publish_date');
+        var expirationDate = communication.getValue('expiration_date');
+        var state = communication.getValue('state');
+
+        /*
+         * A future publication date is never visible.
+         */
+        if (!gs.nil(publishDate)) {
+            var publish = new GlideDateTime(publishDate);
+
+            if (publish.after(now))
+                return false;
+        }
+
+        /*
+         * Expired is a historical state.
+         *
+         * The Display Type decides whether Expired communications
+         * are eligible through its eligibility condition.
+         */
+        if (state == this.STATE_EXPIRED)
+            return true;
+
+        /*
+         * Current content must still be inside its publication window.
+         */
+        if (!gs.nil(expirationDate)) {
+            var expiration = new GlideDateTime(expirationDate);
+
+            if (!expiration.after(now))
+                return false;
+        }
+
+        return true;
+    },
+
+    /**
+     * Evaluates the Display Type eligibility condition against
+     * the Communication table configured on the Display Type.
+     */
+    _matchesEligibilityCondition: function(communication, displayType) {
+        var condition = displayType.getValue('eligibility_condition');
+
+        if (gs.nil(condition))
+            return true;
+
+        var tableName = displayType.getValue('communication_table');
+
+        var candidate = new GlideRecord(tableName);
+        candidate.addQuery('sys_id', communication.getUniqueValue());
+        candidate.addEncodedQuery(condition);
+        candidate.setLimit(1);
+        candidate.query();
+
+        return candidate.hasNext();
+    },
+
+    /**
+     * Resolves a Communication using the table configured
+     * on the Display Type.
+     *
+     * This allows conditions to use fields defined by an
+     * extended Communication table such as Announcement.
+     */
+    _resolveCommunication: function(source, tableName) {
+        if (gs.nil(source))
+            return null;
+
+        var sysId = '';
+
+        if (
+            typeof source == 'object' &&
+            typeof source.getUniqueValue == 'function'
+        ) {
+            if (!source.isValidRecord())
+                return null;
+
+            sysId = source.getUniqueValue();
+        } else {
+            sysId = source;
+        }
+
+        var communication = new GlideRecord(tableName);
+
+        if (!communication.get(sysId))
+            return null;
+
+        return communication;
+    },
+
+    _resolveDisplayType: function(source) {
+        if (gs.nil(source))
+            return null;
+
+        if (
+            typeof source == 'object' &&
+            typeof source.getTableName == 'function'
+        ) {
+            if (!source.isValidRecord())
+                return null;
+
+            return source;
+        }
+
+        var displayType =
+            new GlideRecord('x_733168_aes_announcement_display_type');
+
+        if (!displayType.get(source))
+            return null;
+
+        return displayType;
+    },
+
+    /**
+     * Ensures that the configured table belongs to the
+     * Communication hierarchy.
+     */
+    _isValidCommunicationTable: function(tableName) {
+        if (gs.nil(tableName))
+            return false;
+
+        var hierarchy = new GlideTableHierarchy(this.COMMUNICATION_TABLE);
+        var tables = hierarchy.getAllExtensions();
+
+        for (var i = 0; i < tables.size(); i++) {
+            if (tables.get(i) == tableName)
+                return true;
+        }
+
+        return tableName == this.COMMUNICATION_TABLE;
+    },
+
+    _isActive: function(communication) {
+        return communication.getValue('active') == '1';
+    },
+
+    type: 'AESCommunicationResolver'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 20:43:32</sys_created_on>
+        <sys_id>8677ff2093e30790ef30f2918bba10c7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AESCommunicationResolver</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_8677ff2093e30790ef30f2918bba10c7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 20:43:32</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_script_include_8677ff2093e30790ef30f2918bba10c7</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_733168_aes.AESCommunicationResolver&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description/&gt;&lt;mobile_callable&gt;false&lt;/mobile_callable&gt;&lt;name&gt;AESCommunicationResolver&lt;/name&gt;&lt;sandbox_callable&gt;false&lt;/sandbox_callable&gt;&lt;script&gt;&lt;![CDATA[var AESCommunicationResolver = Class.create();
+AESCommunicationResolver.prototype = {
+    initialize: function() {
+        this.COMMUNICATION_TABLE = 'x_733168_aes_communication';
+        this.STATE_PUBLISHED = 'published';
+        this.STATE_EXPIRED = 'expired';
+    },
+
+    /**
+     * Returns communications eligible for a Display Type.
+     *
+     * The Display Type defines:
+     * - the Communication table to query
+     * - the eligibility condition applied to that table
+     *
+     * Global AES visibility rules are applied separately.
+     *
+     * @param {GlideRecord|string} displayType Display Type record or sys_id
+     * @return {GlideRecord|null}
+     */
+    getCommunications: function(displayType) {
+        var type = this._resolveDisplayType(displayType);
+
+        if (!type)
+            return null;
+
+        if (type.getValue('active') != '1')
+            return null;
+
+        var tableName = type.getValue('communication_table');
+
+        if (!this._isValidCommunicationTable(tableName))
+            return null;
+
+        var communication = new GlideRecord(tableName);
+
+        /*
+         * Global AES rule:
+         * inactive communications are never displayable.
+         */
+        communication.addQuery('active', true);
+
+        /*
+         * Display Type-specific eligibility.
+         */
+        var condition = type.getValue('eligibility_condition');
+
+        if (!gs.nil(condition))
+            communication.addEncodedQuery(condition);
+
+        /*
+         * Publication date is a global visibility rule.
+         *
+         * A published communication cannot be displayed before
+         * its configured publication date.
+         *
+         * Expired communications are intentionally not excluded here.
+         */
+        var dateQuery = communication.addNullQuery('publish_date');
+        dateQuery.addOrCondition('publish_date', '&lt;=', new GlideDateTime());
+
+        communication.query();
+
+        return communication;
+    },
+
+    /**
+     * Determines whether one Communication is eligible for a Display Type.
+     *
+     * @param {GlideRecord|string} source Communication record or sys_id
+     * @param {GlideRecord|string} displayType Display Type record or sys_id
+     * @return {Boolean}
+     */
+    isVisible: function(source, displayType) {
+        var type = this._resolveDisplayType(displayType);
+
+        if (!type)
+            return false;
+
+        if (type.getValue('active') != '1')
+            return false;
+
+        var tableName = type.getValue('communication_table');
+
+        if (!this._isValidCommunicationTable(tableName))
+            return false;
+
+        var communication = this._resolveCommunication(source, tableName);
+
+        if (!communication)
+            return false;
+
+        if (!this._isActive(communication))
+            return false;
+
+        if (!this._isDateEligible(communication))
+            return false;
+
+        if (!this._matchesEligibilityCondition(communication, type))
+            return false;
+
+        return true;
+    },
+
+    /**
+     * Evaluates the global temporal visibility rules.
+     */
+    _isDateEligible: function(communication) {
+        var now = new GlideDateTime();
+        var publishDate = communication.getValue('publish_date');
+        var expirationDate = communication.getValue('expiration_date');
+        var state = communication.getValue('state');
+
+        /*
+         * A future publication date is never visible.
+         */
+        if (!gs.nil(publishDate)) {
+            var publish = new GlideDateTime(publishDate);
+
+            if (publish.after(now))
+                return false;
+        }
+
+        /*
+         * Expired is a historical state.
+         *
+         * The Display Type decides whether Expired communications
+         * are eligible through its eligibility condition.
+         */
+        if (state == this.STATE_EXPIRED)
+            return true;
+
+        /*
+         * Current content must still be inside its publication window.
+         */
+        if (!gs.nil(expirationDate)) {
+            var expiration = new GlideDateTime(expirationDate);
+
+            if (!expiration.after(now))
+                return false;
+        }
+
+        return true;
+    },
+
+    /**
+     * Evaluates the Display Type eligibility condition against
+     * the Communication table configured on the Display Type.
+     */
+    _matchesEligibilityCondition: function(communication, displayType) {
+        var condition = displayType.getValue('eligibility_condition');
+
+        if (gs.nil(condition))
+            return true;
+
+        var tableName = displayType.getValue('communication_table');
+
+        var candidate = new GlideRecord(tableName);
+        candidate.addQuery('sys_id', communication.getUniqueValue());
+        candidate.addEncodedQuery(condition);
+        candidate.setLimit(1);
+        candidate.query();
+
+        return candidate.hasNext();
+    },
+
+    /**
+     * Resolves a Communication using the table configured
+     * on the Display Type.
+     *
+     * This allows conditions to use fields defined by an
+     * extended Communication table such as Announcement.
+     */
+    _resolveCommunication: function(source, tableName) {
+        if (gs.nil(source))
+            return null;
+
+        var sysId = '';
+
+        if (
+            typeof source == 'object' &amp;&amp;
+            typeof source.getUniqueValue == 'function'
+        ) {
+            if (!source.isValidRecord())
+                return null;
+
+            sysId = source.getUniqueValue();
+        } else {
+            sysId = source;
+        }
+
+        var communication = new GlideRecord(tableName);
+
+        if (!communication.get(sysId))
+            return null;
+
+        return communication;
+    },
+
+    _resolveDisplayType: function(source) {
+        if (gs.nil(source))
+            return null;
+
+        if (
+            typeof source == 'object' &amp;&amp;
+            typeof source.getTableName == 'function'
+        ) {
+            if (!source.isValidRecord())
+                return null;
+
+            return source;
+        }
+
+        var displayType =
+            new GlideRecord('x_733168_aes_announcement_display_type');
+
+        if (!displayType.get(source))
+            return null;
+
+        return displayType;
+    },
+
+    /**
+     * Ensures that the configured table belongs to the
+     * Communication hierarchy.
+     */
+    _isValidCommunicationTable: function(tableName) {
+        if (gs.nil(tableName))
+            return false;
+
+        var hierarchy = new GlideTableHierarchy(this.COMMUNICATION_TABLE);
+        var tables = hierarchy.getAllExtensions();
+
+        for (var i = 0; i &lt; tables.size(); i++) {
+            if (tables.get(i) == tableName)
+                return true;
+        }
+
+        return tableName == this.COMMUNICATION_TABLE;
+    },
+
+    _isActive: function(communication) {
+        return communication.getValue('active') == '1';
+    },
+
+    type: 'AESCommunicationResolver'
+};]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2026-09-22 20:43:32&lt;/sys_created_on&gt;&lt;sys_id&gt;8677ff2093e30790ef30f2918bba10c7&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;AESCommunicationResolver&lt;/sys_name&gt;&lt;sys_package display_value="Announcement Experience Suite" source="x_733168_aes"&gt;69255b1793db4b50ef30f2918bba10d5&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="Announcement Experience Suite"&gt;69255b1793db4b50ef30f2918bba10d5&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_8677ff2093e30790ef30f2918bba10c7&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2026-09-22 20:43:32&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1920937325</payload_hash>
+        <record_name>AESCommunicationResolver</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 20:43:33</sys_created_on>
+        <sys_id>d21f776093270790ef30f2918bba10f7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0cadc09980000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 20:43:33</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>921f7760f7270790aaba84bd4a0fdef6</update_guid>
+        <update_guid_history>921f7760f7270790aaba84bd4a0fdef6:-1920937325</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-22 20:56:50</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>304e99e3a09742088f1bfbf125ec9f90</sys_id>
+        <sys_metadata>8677ff2093e30790ef30f2918bba10c7</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AESCommunicationResolver</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_script_include_8677ff2093e30790ef30f2918bba10c7</sys_update_name>
+        <sys_update_version display_value="sys_script_include_8677ff2093e30790ef30f2918bba10c7">d21f776093270790ef30f2918bba10f7</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 20:56:50</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
