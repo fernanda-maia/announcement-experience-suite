@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESCommunicationQuery</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AESCommunicationQuery</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESCommunicationQuery = Class.create();
+AESCommunicationQuery.prototype = {
+
+    DISPLAY_TYPE_TABLE: 'x_733168_aes_announcement_display_type',
+    CHANNEL_TABLE: 'x_733168_aes_communication_channel',
+    CHANNEL_M2M_TABLE: 'x_733168_aes_communication_m2m_channel',
+
+    initialize: function() {
+        this._audienceResolver = new AESAudienceResolver();
+    },
+
+    /**
+     * Returns the communications available for the given context.
+     *
+     * Options:
+     *
+     * displayType:
+     *   - sys_id or internal_name
+     *   - required
+     *
+     * channel:
+     *   - sys_id or internal_name
+     *   - required
+     *
+     * user:
+     *   - sys_user sys_id
+     *   - optional; defaults to current user
+     *
+     * additionalFilter:
+     *   - encoded query
+     *   - optional
+     *
+     * orderBy:
+     *   - field name
+     *   - optional; overrides Display Type order_by
+     *
+     * orderDirection:
+     *   - asc / desc
+     *   - optional; overrides Display Type order_direction
+     *
+     * limit:
+     *   - maximum number of eligible records returned
+     *   - optional; 0 means unlimited
+     *
+     * offset:
+     *   - number of eligible records to skip
+     *   - optional; defaults to 0
+     */
+    getAvailable: function(options) {
+        options = options || {};
+
+        var displayType = this._getDisplayType(options.displayType);
+        if (!displayType)
+            return [];
+
+        var channel = this._getChannel(options.channel);
+        if (!channel)
+            return [];
+
+        var userId = options.user || gs.getUserID();
+
+        var limit = this._normalizeNumber(options.limit);
+        var offset = this._normalizeNumber(options.offset);
+
+        return this._queryCommunications(
+            displayType,
+            channel,
+            userId,
+            {
+                additionalFilter: options.additionalFilter,
+                orderBy: options.orderBy,
+                orderDirection: options.orderDirection,
+                limit: limit,
+                offset: offset
+            }
+        );
+    },
+
+    /**
+     * Resolves and validates the Display Type.
+     */
+    _getDisplayType: function(identifier) {
+        var gr = this._getRecord(
+            this.DISPLAY_TYPE_TABLE,
+            identifier
+        );
+
+        if (!gr || gr.getValue('active') != '1')
+            return null;
+
+        return gr;
+    },
+
+    /**
+     * Resolves and validates the Channel.
+     */
+    _getChannel: function(identifier) {
+        var gr = this._getRecord(
+            this.CHANNEL_TABLE,
+            identifier
+        );
+
+        if (!gr || gr.getValue('active') != '1')
+            return null;
+
+        return gr;
+    },
+
+    /**
+     * Resolves a configuration record by sys_id
+     * or internal_name.
+     */
+    _getRecord: function(table, identifier) {
+        if (gs.nil(identifier))
+            return null;
+
+        var gr = new GlideRecord(table);
+
+        // Try sys_id first.
+        if (gr.get(identifier))
+            return gr;
+
+        // Otherwise resolve by internal_name.
+        gr.initialize();
+        gr.addQuery('internal_name', identifier);
+        gr.setLimit(1);
+        gr.query();
+
+        if (gr.next())
+            return gr;
+
+        return null;
+    },
+
+    /**
+     * Executes the structural Communication query.
+     */
+    _queryCommunications: function(
+        displayType,
+        channel,
+        userId,
+        options
+    ) {
+        options = options || {};
+
+        var table = displayType.getValue(
+            'communication_table'
+        );
+
+        if (gs.nil(table))
+            return [];
+
+        /*
+         * Resolve Communications associated with
+         * the requested Channel.
+         */
+        var channelCommunicationIds =
+            this._getCommunicationIdsForChannel(
+                channel.getUniqueValue()
+            );
+
+        if (channelCommunicationIds.length === 0)
+            return [];
+
+        /*
+         * Evaluate the Display Type filter independently.
+         *
+         * This prevents ^NQ clauses from bypassing
+         * structural conditions.
+         */
+        var displayTypeFilter =
+            displayType.getValue('filter');
+
+        var displayTypeFilterIds = null;
+
+        if (!gs.nil(displayTypeFilter)) {
+            displayTypeFilterIds =
+                this._getFilteredCommunicationIds(
+                    table,
+                    displayTypeFilter
+                );
+
+            if (displayTypeFilterIds.length === 0)
+                return [];
+        }
+
+        /*
+         * Evaluate the consumer-provided filter
+         * independently for the same reason.
+         */
+        var additionalFilterIds = null;
+
+        if (!gs.nil(options.additionalFilter)) {
+            additionalFilterIds =
+                this._getFilteredCommunicationIds(
+                    table,
+                    options.additionalFilter
+                );
+
+            if (additionalFilterIds.length === 0)
+                return [];
+        }
+
+        /*
+         * Structural query.
+         */
+        var gr = new GlideRecord(table);
+
+        // Must belong to the requested Display Type.
+        gr.addQuery(
+            'display_type',
+            displayType.getUniqueValue()
+        );
+
+        // Must belong to the requested Channel.
+        gr.addQuery(
+            'sys_id',
+            'IN',
+            channelCommunicationIds.join(',')
+        );
+
+        // Must satisfy the Display Type filter.
+        if (displayTypeFilterIds !== null) {
+            gr.addQuery(
+                'sys_id',
+                'IN',
+                displayTypeFilterIds.join(',')
+            );
+        }
+
+        // Must satisfy the consumer filter.
+        if (additionalFilterIds !== null) {
+            gr.addQuery(
+                'sys_id',
+                'IN',
+                additionalFilterIds.join(',')
+            );
+        }
+
+        /*
+         * Apply ordering before querying.
+         */
+        this._applyOrdering(
+            gr,
+            table,
+            displayType,
+            options
+        );
+
+        gr.query();
+
+        /*
+         * Audience eligibility and pagination.
+         *
+         * Pagination happens AFTER Audience because
+         * the requested limit represents eligible
+         * Communications, not raw query candidates.
+         */
+        var result = [];
+        var eligibleIndex = 0;
+
+        while (gr.next()) {
+            if (!this._audienceResolver.canView(gr, userId))
+                continue;
+
+            if (eligibleIndex < options.offset) {
+                eligibleIndex++;
+                continue;
+            }
+
+            eligibleIndex++;
+
+            result.push(gr.getUniqueValue());
+
+            if (
+                options.limit > 0 &&
+                result.length >= options.limit
+            ) {
+                break;
+            }
+        }
+
+        return result;
+    },
+
+    /**
+     * Executes a configurable filter independently
+     * and returns the matching Communication sys_ids.
+     *
+     * Keeping filters isolated prevents ^NQ clauses
+     * from escaping structural conditions.
+     */
+    _getFilteredCommunicationIds: function(table, filter) {
+        var ids = [];
+
+        if (gs.nil(filter))
+            return ids;
+
+        var gr = new GlideRecord(table);
+
+        gr.addEncodedQuery(filter);
+        gr.query();
+
+        while (gr.next())
+            ids.push(gr.getUniqueValue());
+
+        return ids;
+    },
+
+    /**
+     * Returns Communication sys_ids associated with
+     * the requested Channel.
+     */
+    _getCommunicationIdsForChannel: function(channelId) {
+        var ids = [];
+
+        var m2m = new GlideRecord(
+            this.CHANNEL_M2M_TABLE
+        );
+
+        m2m.addQuery(
+            'x_733168_aes_communication_channel',
+            channelId
+        );
+
+        m2m.query();
+
+        while (m2m.next()) {
+            ids.push(
+                m2m.getValue(
+                    'x_733168_aes_communication'
+                )
+            );
+        }
+
+        return ids;
+    },
+
+    /**
+     * Applies consumer ordering when provided.
+     * Otherwise falls back to the Display Type
+     * default ordering.
+     */
+    _applyOrdering: function(
+        gr,
+        table,
+        displayType,
+        options
+    ) {
+        var orderBy = options.orderBy;
+
+        if (gs.nil(orderBy))
+            orderBy = displayType.getValue('order_by');
+
+        if (gs.nil(orderBy))
+            return;
+
+        /*
+         * Never blindly trust a field supplied
+         * by a consumer.
+         */
+        if (!this._isValidField(table, orderBy))
+            return;
+
+        var direction = options.orderDirection;
+
+        if (gs.nil(direction))
+            direction =
+                displayType.getValue('order_direction');
+
+        direction =
+            this._normalizeOrderDirection(direction);
+
+        if (direction == 'asc')
+            gr.orderBy(orderBy);
+        else
+            gr.orderByDesc(orderBy);
+    },
+
+    /**
+     * Validates that an ordering field exists
+     * on the target Communication table.
+     */
+    _isValidField: function(table, field) {
+        if (gs.nil(field))
+            return false;
+
+        var gr = new GlideRecord(table);
+
+        return gr.isValidField(field);
+    },
+
+    /**
+     * Normalizes order direction.
+     *
+     * Defaults to descending.
+     */
+    _normalizeOrderDirection: function(direction) {
+        if (
+            !gs.nil(direction) &&
+            direction.toString().toLowerCase() == 'asc'
+        ) {
+            return 'asc';
+        }
+
+        return 'desc';
+    },
+
+    /**
+     * Converts pagination values into safe
+     * non-negative integers.
+     */
+    _normalizeNumber: function(value) {
+        var number = parseInt(value, 10);
+
+        if (isNaN(number) || number < 0)
+            return 0;
+
+        return number;
+    },
+
+    type: 'AESCommunicationQuery'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 01:40:23</sys_created_on>
+        <sys_id>d3c24134936f0790ef30f2918bba104b</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>AESCommunicationQuery</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_d3c24134936f0790ef30f2918bba104b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 02:35:43</sys_updated_on>
+    </sys_script_include>
+</record_update>

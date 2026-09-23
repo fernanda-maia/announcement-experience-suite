@@ -4,13 +4,13 @@
             <element>name</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-22 21:32:18</sys_created_on>
-            <sys_id>a84ac87893670790ef30f2918bba1046</sys_id>
+            <sys_created_on>2026-09-23 02:32:10</sys_created_on>
+            <sys_id>c5ee0d7c93af0790ef30f2918bba10ab</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_733168_aes_announcement_display_type" sys_domain="global" view="Default view">24db983793170f50ef30f2918bba10df</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-22 21:32:18</sys_updated_on>
+            <sys_updated_on>2026-09-23 02:32:10</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>.begin_split</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-22 21:32:18</sys_created_on>
-            <sys_id>284ac87893670790ef30f2918bba1047</sys_id>
+            <sys_created_on>2026-09-23 02:32:10</sys_created_on>
+            <sys_id>45ee0d7c93af0790ef30f2918bba10ac</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_733168_aes_announcement_display_type" sys_domain="global" view="Default view">24db983793170f50ef30f2918bba10df</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-22 21:32:18</sys_updated_on>
+            <sys_updated_on>2026-09-23 02:32:10</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>internal_name</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-22 21:32:18</sys_created_on>
-            <sys_id>a44ac87893670790ef30f2918bba1048</sys_id>
+            <sys_created_on>2026-09-23 02:32:10</sys_created_on>
+            <sys_id>c1ee0d7c93af0790ef30f2918bba10ad</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_733168_aes_announcement_display_type" sys_domain="global" view="Default view">24db983793170f50ef30f2918bba10df</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-22 21:32:18</sys_updated_on>
+            <sys_updated_on>2026-09-23 02:32:10</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -46,13 +46,13 @@
             <element>.split</element>
             <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-22 21:32:18</sys_created_on>
-            <sys_id>244ac87893670790ef30f2918bba1049</sys_id>
+            <sys_created_on>2026-09-23 02:32:10</sys_created_on>
+            <sys_id>41ee0d7c93af0790ef30f2918bba10ae</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_733168_aes_announcement_display_type" sys_domain="global" view="Default view">24db983793170f50ef30f2918bba10df</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-22 21:32:18</sys_updated_on>
+            <sys_updated_on>2026-09-23 02:32:10</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
@@ -60,13 +60,13 @@
             <element>active</element>
             <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-22 21:32:18</sys_created_on>
-            <sys_id>a04ac87893670790ef30f2918bba104a</sys_id>
+            <sys_created_on>2026-09-23 02:32:10</sys_created_on>
+            <sys_id>cdee0d7c93af0790ef30f2918bba10ae</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_733168_aes_announcement_display_type" sys_domain="global" view="Default view">24db983793170f50ef30f2918bba10df</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-22 21:32:18</sys_updated_on>
+            <sys_updated_on>2026-09-23 02:32:10</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
