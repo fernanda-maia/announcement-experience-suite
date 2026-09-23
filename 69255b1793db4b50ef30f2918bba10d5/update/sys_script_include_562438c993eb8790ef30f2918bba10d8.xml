@@ -14,22 +14,17 @@ AESAnnouncementService.prototype = {
 
     initialize: function() {
         this._query = new AESCommunicationQuery();
+        this._tracking = new AESCommunicationTracking();
     },
-
     /**
      * Returns the announcements available for the given context.
      */
     getAvailable: function(options) {
         options = options || {};
-
         options = this.prepareQueryOptions(options);
 
         var ids = this._query.getAvailable(options);
-
-        var announcements = this._buildAnnouncements(
-            ids,
-            options
-        );
+        var announcements = this._buildAnnouncements(ids, options);
 
         return this.afterBuild(
             announcements,
@@ -80,11 +75,22 @@ AESAnnouncementService.prototype = {
             number: gr.getValue('number'),
             title: gr.getDisplayValue('title'),
             short_description: gr.getDisplayValue('short_description'),
-            content: gr.getDisplayValue('content'),
-            priority: gr.getValue('priority'),
+            content: gr.getValue('content'),
+            priority: {
+                value: gr.getValue('priority'),
+                label: gr.getDisplayValue('priority')
+            },
             publish_date: gr.getValue('publish_date'),
             expiration_date: gr.getValue('expiration_date'),
-            image: gr.getValue('image')
+            image: gr.getValue('image'),
+            image_alt_text: gr.getDisplayValue('image_alt_text'),
+            glyph: gr.getValue('glyph'),
+            glyph_alt_text: gr.getDisplayValue('glyph_alt_text'),
+            urgent: gr.getValue('mark_as_urgent') == 'true',
+            dismiss_option: gr.getValue('dismiss_option'),
+            categories: this._getCategories(gr.getUniqueValue()),
+            actions: this._getActions(gr.getUniqueValue()),
+            tracking: this._getTracking(gr.getUniqueValue())
         };
     },
 
@@ -113,6 +119,115 @@ AESAnnouncementService.prototype = {
         return announcement;
     },
 
+    _getCategories: function(communicationId) {
+        var categories = [];
+
+        var m2m = new GlideRecord('x_733168_aes_communication_m2m_category');
+
+        m2m.addQuery('x_733168_aes_communication', communicationId);
+        m2m.query();
+
+        while (m2m.next()) {
+            var category = m2m.x_733168_aes_communication_category.getRefRecord();
+
+            if (!category.isValidRecord())
+                continue;
+
+            categories.push({
+                sys_id: category.getUniqueValue(),
+                name: category.getDisplayValue('name'),
+                internal_name: category.getValue('internal_name')
+            });
+        }
+
+        return categories;
+    },
+
+    _getActions: function(communicationId) {
+        var actions = [];
+
+        var gr = new GlideRecord(
+            'x_733168_aes_communication_action'
+        );
+
+        gr.addQuery('communication', communicationId);
+        gr.orderBy('order');
+        gr.query();
+
+        while (gr.next()) {
+            actions.push(
+                this._buildAction(gr)
+            );
+        }
+
+        return actions;
+    },
+
+    _buildAction: function(gr) {
+        var action = {
+            sys_id: gr.getUniqueValue(),
+            label: gr.getDisplayValue('label'),
+            type: gr.getValue('action_type'),
+            level: gr.getValue('action_level'),
+            target: gr.getValue('link_target'),
+            order: parseInt(gr.getValue('order'), 10) || 0
+        };
+
+        switch (action.type) {
+
+            case 'url':
+                action.url =
+                    gr.getValue('url');
+                break;
+
+            case 'knowledge_article':
+                action.knowledge_article = {
+                    sys_id: gr.getValue('knowledge_article'),
+                    label: gr.getDisplayValue(
+                        'knowledge_article'
+                    )
+                };
+                break;
+
+            case 'catalog_item':
+                action.catalog_item = {
+                    sys_id: gr.getValue('catalog_item'),
+                    label: gr.getDisplayValue(
+                        'catalog_item'
+                    )
+                };
+                break;
+
+            case 'agent_chat':
+                action.queue = {
+                    sys_id: gr.getValue('queue'),
+                    label: gr.getDisplayValue('queue')
+                };
+                break;
+        }
+
+        return action;
+    },
+
+    _getTracking: function(communicationId) {
+        var tracking = this._tracking.getTracking(communicationId);
+
+        if (!tracking)
+            return null;
+
+        return {
+            displayed: tracking.displayed,
+            first_displayed_on: tracking.first_displayed_on,
+            last_displayed_on: tracking.last_displayed_on,
+            read: tracking.read,
+            read_on: tracking.read_on,
+            saved: tracking.saved,
+            saved_on: tracking.saved_on,
+            dismissed: tracking.dismissed,
+            dismissed_on: tracking.dismissed_on
+        };
+    },
+
     /**
      * Extension point.
      * Allows implementations to modify the final result.
@@ -127,13 +242,13 @@ AESAnnouncementService.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-23 19:16:32</sys_created_on>
         <sys_id>562438c993eb8790ef30f2918bba10d8</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>AESAnnouncementService</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sys_script_include_562438c993eb8790ef30f2918bba10d8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-23 20:46:16</sys_updated_on>
+        <sys_updated_on>2026-09-23 23:45:42</sys_updated_on>
     </sys_script_include>
 </record_update>
