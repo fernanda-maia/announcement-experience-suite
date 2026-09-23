@@ -2,29 +2,29 @@
     <sys_security_acl action="INSERT_OR_UPDATE">
         <active>true</active>
         <admin_overrides>false</admin_overrides>
-        <advanced>true</advanced>
+        <advanced>false</advanced>
         <applies_to/>
         <condition/>
         <controlled_by_refs/>
         <decision_type>allow</decision_type>
-        <description>Allow write for records in x_733168_aes_communication_m2m_channel, for users with roles (x_733168_aes.manager, x_733168_aes.author, x_733168_aes.admin), and if the ACL script returns true.</description>
+        <description>Allow create for records in x_733168_aes_communication_m2m_channel, for users with roles (x_733168_aes.manager, x_733168_aes.author, x_733168_aes.admin).</description>
         <local_or_existing>Existing</local_or_existing>
         <name>x_733168_aes_communication_m2m_channel</name>
-        <operation display_value="write">write</operation>
-        <script><![CDATA[answer = current.isNewRecord();]]></script>
+        <operation display_value="create">create</operation>
+        <script/>
         <security_attribute/>
         <sys_class_name>sys_security_acl</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-09-20 02:02:52</sys_created_on>
-        <sys_id>264be9bb939f0f50ef30f2918bba1074</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_created_on>2026-09-22 22:23:53</sys_created_on>
+        <sys_id>68d5187493e70790ef30f2918bba10e8</sys_id>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>x_733168_aes_communication_m2m_channel</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
-        <sys_update_name>sys_security_acl_264be9bb939f0f50ef30f2918bba1074</sys_update_name>
+        <sys_update_name>sys_security_acl_68d5187493e70790ef30f2918bba10e8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-22 22:34:07</sys_updated_on>
+        <sys_updated_on>2026-09-22 22:44:04</sys_updated_on>
         <type display_value="record">record</type>
     </sys_security_acl>
 </record_update>

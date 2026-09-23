@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element attributes="enforce_dot_walk_cross_scope_access=true,update_synch=true" db_object_id="0a3b94f393170f50ef30f2918bba100b" extends="sys_metadata" label="Announcement Display Type" max_length="40" name="x_733168_aes_announcement_display_type" type="collection">
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" dependent="communication_table" dependent_on_field="communication_table" label="Filter" max_length="4000" name="filter" type="conditions" use_dependent_field="true"/>
         <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
         <element label="Internal name" max_length="200" name="internal_name" read_only="true" read_only_option="strict_read_only" type="string"/>
-        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" dependent="communication_table" dependent_on_field="communication_table" label="Eligibility condition" max_length="4000" name="eligibility_condition" type="conditions" use_dependent_field="true"/>
         <element display="true" label="Name" mandatory="true" max_length="150" name="name" type="translated_text"/>
-        <element attributes="base_table=x_733168_aes_communication" calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" default="x_733168_aes_communication" label="Communication table" max_length="80" name="communication_table" type="table_name"/>
+        <element attributes="base_table=x_733168_aes_communication" calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" default="x_733168_aes_communication" label="Communication table" mandatory="true" max_length="80" name="communication_table" type="table_name"/>
     </element>
 </database>
