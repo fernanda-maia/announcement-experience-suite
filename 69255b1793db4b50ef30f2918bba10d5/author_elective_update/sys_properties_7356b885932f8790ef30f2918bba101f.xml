@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="DELETE">
+        <choices/>
+        <description>Specifies the Script Include used to provide Announcement services. &#13;
+To customize the default behavior, configure a Script Include that extends AESAnnouncementService.</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_733168_aes.announcement.service</name>
+        <read_roles/>
+        <suffix>announcement.service</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 19:24:34</sys_created_on>
+        <sys_id>7356b885932f8790ef30f2918bba101f</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_733168_aes.announcement.service</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_properties_7356b885932f8790ef30f2918bba101f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 19:43:05</sys_updated_on>
+        <type>string</type>
+        <value>x_733168_aes.AESAnnouncementService</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="DELETE" query="documentkey=7356b885932f8790ef30f2918bba101f"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sys_properties_7356b885932f8790ef30f2918bba101f</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties"><sys_properties action="INSERT_OR_UPDATE"><choices/><description>Specifies the Script Include used to provide Announcement services. &#13;
+To customize the default behavior, configure a Script Include that extends AESAnnouncementService.</description><ignore_cache>true</ignore_cache><is_private>false</is_private><name>x_733168_aes.announcement.service</name><read_roles/><suffix>announcement.service</suffix><sys_class_name>sys_properties</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-23 19:24:34</sys_created_on><sys_id>7356b885932f8790ef30f2918bba101f</sys_id><sys_mod_count>3</sys_mod_count><sys_name>x_733168_aes.announcement.service</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>sys_properties_7356b885932f8790ef30f2918bba101f</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-23 19:43:05</sys_updated_on><type>string</type><value>x_733168_aes.AESAnnouncementService</value><write_roles/></sys_properties><sys_translated_text action="delete_multiple" query="documentkey=7356b885932f8790ef30f2918bba101f"/></record_update>]]></payload>
+        <payload_hash>214584632</payload_hash>
+        <record_name>x_733168_aes.announcement.service</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 19:43:05</sys_created_on>
+        <sys_id>9eda3ccd932f8790ef30f2918bba104b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0cfcb0bc00000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 19:43:05</sys_updated_on>
+        <type>System Property</type>
+        <update_guid>dada3ccde72f879066e4bed1b3c8084a</update_guid>
+        <update_guid_history>dada3ccde72f879066e4bed1b3c8084a:214584632,188af845842f87900985d7fcf5f593e7:1799708555,62b8b4c9832f879058680370ca8d4231:399659690,179670c5652f8790440b27ac90675af9:214584632</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 20:04:25</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties">sys_properties</sys_db_object>
+        <sys_id>41a4e6dbc46f4280bf261d309ee64000</sys_id>
+        <sys_metadata>7356b885932f8790ef30f2918bba101f</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_733168_aes.announcement.service</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sys_properties_7356b885932f8790ef30f2918bba101f</sys_update_name>
+        <sys_update_version display_value="sys_properties_7356b885932f8790ef30f2918bba101f">9eda3ccd932f8790ef30f2918bba104b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 20:04:25</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

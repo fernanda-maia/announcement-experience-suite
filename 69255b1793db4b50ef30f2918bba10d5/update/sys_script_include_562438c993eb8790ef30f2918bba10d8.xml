@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESAnnouncementService</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AESAnnouncementService</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESAnnouncementService = Class.create();
+AESAnnouncementService.prototype = {
+
+    initialize: function() {
+        this._query = new AESCommunicationQuery();
+    },
+
+    /**
+     * Returns the announcements available for the given context.
+     */
+    getAvailable: function(options) {
+        options = options || {};
+
+        options = this.prepareQueryOptions(options);
+
+        var ids = this._query.getAvailable(options);
+
+        var announcements = this._buildAnnouncements(
+            ids,
+            options
+        );
+
+        return this.afterBuild(
+            announcements,
+            options
+        );
+    },
+
+    /**
+     * Extension point.
+     * Allows implementations to modify query options
+     * before AESCommunicationQuery is executed.
+     */
+    prepareQueryOptions: function(options) {
+        return options;
+    },
+
+    /**
+     * Builds the consumer representation of
+     * the available announcements.
+     */
+    _buildAnnouncements: function(ids, options) {
+        var result = [];
+
+        for (var i = 0; i < ids.length; i++) {
+
+            var gr = new GlideRecord('x_733168_aes_announcement');
+
+            if (!gr.get(ids[i]))
+                continue;
+
+            var announcement = this._buildAnnouncement(gr, options);
+
+            announcement = this._applyExtensions(announcement, gr, options);
+
+            if (announcement)
+                result.push(announcement);
+        }
+
+        return result;
+    },
+
+    /**
+     * Builds the standard AES Announcement DTO.
+     */
+    _buildAnnouncement: function(gr, options) {
+        return {
+            sys_id: gr.getUniqueValue(),
+            number: gr.getValue('number'),
+            title: gr.getDisplayValue('title'),
+            short_description: gr.getDisplayValue('short_description'),
+            content: gr.getDisplayValue('content'),
+            priority: gr.getValue('priority'),
+            publish_date: gr.getValue('publish_date'),
+            expiration_date: gr.getValue('expiration_date'),
+            image: gr.getValue('image')
+        };
+    },
+
+    /**
+     * Extension point.
+     * Allows implementations to enrich or modify
+     * a single Announcement DTO.
+     */
+    _applyExtensions: function(announcement, gr, options) {
+
+        var extensions = new GlideScriptedExtensionPoint().getExtensions('x_733168_aes.AESAnnouncementExtension');
+
+        for (var i = 0; i < extensions.length; i++) {
+
+            try {
+                var result = extensions[i].transformAnnouncement(announcement, gr, options);
+
+                if (result)
+                    announcement = result;
+
+            } catch (ex) {
+                gs.error('[AES] Announcement extension failed: ' + ex.message);
+            }
+        }
+
+        return announcement;
+    },
+
+    /**
+     * Extension point.
+     * Allows implementations to modify the final result.
+     */
+    afterBuild: function(announcements, options) {
+        return announcements;
+    },
+
+    type: 'AESAnnouncementService'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 19:16:32</sys_created_on>
+        <sys_id>562438c993eb8790ef30f2918bba10d8</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>AESAnnouncementService</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_562438c993eb8790ef30f2918bba10d8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 20:15:25</sys_updated_on>
+    </sys_script_include>
+</record_update>
