@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESPortalChannelResolver</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Resolves the active AES Portal Channel associated with a Service Portal.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AESPortalChannelResolver</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESPortalChannelResolver = Class.create();
+AESPortalChannelResolver.prototype = {
+
+    PORTAL_CHANNEL_TABLE: 'x_733168_aes_portal_channel',
+
+    initialize: function() {},
+
+    getChannel: function(portalId) {
+        if (!portalId)
+            return null;
+
+        var channel = new GlideRecord(this.PORTAL_CHANNEL_TABLE);
+        channel.addQuery('portal', portalId);
+        channel.addQuery('active', true);
+        channel.query();
+
+        if (!channel.next())
+            return null;
+
+        return channel.getUniqueValue();
+    },
+
+    type: 'AESPortalChannelResolver'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 19:58:20</sys_created_on>
+        <sys_id>d7550e5193e74b90ef30f2918bba10c5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AESPortalChannelResolver</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_d7550e5193e74b90ef30f2918bba10c5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 19:58:20</sys_updated_on>
+    </sys_script_include>
+</record_update>

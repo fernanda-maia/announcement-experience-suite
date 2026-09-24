@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <human_readable_url_structure/>
+        <id>aes_announcements</id>
+        <internal>false</internal>
+        <omit_watcher>false</omit_watcher>
+        <public>false</public>
+        <roles>x_733168_aes.user</roles>
+        <seo_script/>
+        <short_description>A centralized experience for users to discover and interact with announcements relevant to them.</short_description>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 19:29:40</sys_created_on>
+        <sys_id>44800ed593a74b90ef30f2918bba102c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>aes_announcements</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sp_page_44800ed593a74b90ef30f2918bba102c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 19:29:40</sys_updated_on>
+        <title>Announcements</title>
+        <use_seo_script>false</use_seo_script>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=44800ed593a74b90ef30f2918bba102c"/>
+</record_update>
