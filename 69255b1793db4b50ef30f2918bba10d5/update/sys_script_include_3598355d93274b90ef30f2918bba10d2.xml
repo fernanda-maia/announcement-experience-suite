@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESCommunicationInteractionQuery</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Combines AES Communication availability rules with user interaction state, allowing Communications to be filtered by interactions such as saved, read, dismissed, and displayed without coupling interaction logic to AESCommunicationQuery.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AESCommunicationInteractionQuery</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESCommunicationInteractionQuery = Class.create();
+
+AESCommunicationInteractionQuery.prototype = {
+
+    TRACKING_TABLE: 'x_733168_aes_communication_user_tracking',
+
+    initialize: function() {
+        this._query = new AESCommunicationQuery();
+    },
+
+    /**
+     * Returns Communications available for the given context,
+     * filtered by the current user's interaction state.
+     *
+     * Interaction semantics:
+     *
+     * interaction: {}
+     *   -> no interaction filtering
+     *
+     * interaction: { saved: true }
+     *   -> only saved Communications
+     *
+     * interaction: { saved: false }
+     *   -> only non-saved Communications
+     *      (saved=false OR no Tracking record)
+     *
+     * interaction: { saved: true, read: false }
+     *   -> saved AND unread Communications
+     *
+     * The presence of the property enables the filter.
+     * Only the literal boolean true means positive.
+     * false / undefined / null are treated as negative.
+     */
+    getAvailable: function(options) {
+        options = options || {};
+
+        var interaction = options.interaction || {};
+
+        /*
+         * If no interaction filter was requested,
+         * delegate directly to AESCommunicationQuery.
+         */
+        if (!this._hasInteractionFilters(interaction))
+            return this._query.getAvailable(options);
+
+        var limit = this._normalizeNumber(options.limit);
+        var offset = this._normalizeNumber(options.offset);
+
+        /*
+         * AESCommunicationQuery must not paginate yet.
+         *
+         * Interaction filtering happens after the base
+         * availability query, so pagination belongs here.
+         */
+        var queryOptions = this._copyOptions(options);
+
+        queryOptions.limit = 0;
+        queryOptions.offset = 0;
+
+        delete queryOptions.interaction;
+
+        var availableIds = this._query.getAvailable(queryOptions);
+
+        if (availableIds.length === 0)
+            return [];
+
+        var userId = options.user || gs.getUserID();
+
+        /*
+         * Load Tracking only for Communications that are
+         * already available in this experience.
+         */
+        var trackingByCommunication = this._getTrackingMap(availableIds, userId);
+
+        return this._filterAndPaginate(
+            availableIds,
+            trackingByCommunication,
+            interaction,
+            limit,
+            offset
+        );
+    },
+
+    /**
+     * Returns Tracking records indexed by Communication sys_id.
+     *
+     * Only Tracking belonging to the requested user and to
+     * Communications already considered available is queried.
+     */
+    _getTrackingMap: function(communicationIds, userId) {
+        var result = {};
+
+        if (
+            communicationIds.length === 0 ||
+            gs.nil(userId)
+        ) {
+            return result;
+        }
+
+        var gr = new GlideRecord(this.TRACKING_TABLE);
+
+        gr.addQuery(
+            'communication',
+            'IN',
+            communicationIds.join(',')
+        );
+
+        gr.addQuery('user', userId);
+        gr.query();
+
+        while (gr.next()) {
+            result[gr.getValue('communication')] = {
+                saved: gr.getValue('saved') == '1',
+                read: gr.getValue('read') == '1',
+                dismissed: gr.getValue('dismissed') == '1',
+                displayed:
+                    !gs.nil(gr.getValue('first_displayed_on'))
+            };
+        }
+
+        return result;
+    },
+
+    /**
+     * Applies interaction filters while preserving the order
+     * returned by AESCommunicationQuery.
+     *
+     * Pagination happens only after interaction filtering.
+     */
+    _filterAndPaginate: function(
+        availableIds,
+        trackingByCommunication,
+        interaction,
+        limit,
+        offset
+    ) {
+        var result = [];
+        var eligibleIndex = 0;
+
+        for (var i = 0; i < availableIds.length; i++) {
+
+            var communicationId = availableIds[i];
+
+            var tracking =
+                trackingByCommunication[communicationId] || null;
+
+            if (!this._matchesInteraction(
+                    tracking,
+                    interaction
+                )) {
+                continue;
+            }
+
+            if (eligibleIndex < offset) {
+                eligibleIndex++;
+                continue;
+            }
+
+            eligibleIndex++;
+
+            result.push(communicationId);
+
+            if (
+                limit > 0 &&
+                result.length >= limit
+            ) {
+                break;
+            }
+        }
+
+        return result;
+    },
+
+    /**
+     * Determines whether a Communication matches every
+     * requested interaction condition.
+     *
+     * Missing Tracking is equivalent to the initial state:
+     *
+     * saved     = false
+     * read      = false
+     * dismissed = false
+     * displayed = false
+     */
+    _matchesInteraction: function(tracking, interaction) {
+
+        if (this._hasProperty(interaction, 'saved') &&
+            !this._matchesBoolean(
+                tracking ? tracking.saved : false,
+                interaction.saved
+            )
+        ) {
+            return false;
+        }
+
+        if (this._hasProperty(interaction, 'read') &&
+            !this._matchesBoolean(
+                tracking ? tracking.read : false,
+                interaction.read
+            )
+        ) {
+            return false;
+        }
+
+        if (this._hasProperty(interaction, 'dismissed') &&
+            !this._matchesBoolean(
+                tracking ? tracking.dismissed : false,
+                interaction.dismissed
+            )
+        ) {
+            return false;
+        }
+
+        if (this._hasProperty(interaction, 'displayed') &&
+            !this._matchesBoolean(
+                tracking ? tracking.displayed : false,
+                interaction.displayed
+            )) {
+            return false;
+        }
+
+        return true;
+    },
+
+    /**
+     * Only literal true means true.
+     *
+     * false / undefined / null are interpreted as false
+     * when the property itself is present.
+     */
+    _matchesBoolean: function(actualValue, requestedValue) {
+        var expectedValue =
+            requestedValue === true;
+
+        return actualValue === expectedValue;
+    },
+
+    /**
+     * Determines whether at least one supported interaction
+     * property was explicitly supplied.
+     */
+    _hasInteractionFilters: function(interaction) {
+        return (
+            this._hasProperty(interaction, 'saved') ||
+            this._hasProperty(interaction, 'read') ||
+            this._hasProperty(interaction, 'dismissed') ||
+            this._hasProperty(interaction, 'displayed')
+        );
+    },
+
+    /**
+     * Property existence is different from its value.
+     *
+     * { saved: false }     -> property exists
+     * { saved: undefined } -> property exists
+     * {}                   -> property does not exist
+     */
+    _hasProperty: function(object, property) {
+        return object &&
+            Object.prototype.hasOwnProperty.call(
+                object,
+                property
+            );
+    },
+
+    _copyOptions: function(options) {
+        var copy = {};
+
+        for (var property in options) {
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    options,
+                    property
+                )
+            ) {
+                copy[property] = options[property];
+            }
+        }
+
+        return copy;
+    },
+
+    _normalizeNumber: function(value) {
+        var number = parseInt(value, 10);
+
+        if (isNaN(number) || number < 0)
+            return 0;
+
+        return number;
+    },
+
+    type: 'AESCommunicationInteractionQuery'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 18:53:55</sys_created_on>
+        <sys_id>3598355d93274b90ef30f2918bba10d2</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>AESCommunicationInteractionQuery</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_3598355d93274b90ef30f2918bba10d2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 18:59:46</sys_updated_on>
+    </sys_script_include>
+</record_update>

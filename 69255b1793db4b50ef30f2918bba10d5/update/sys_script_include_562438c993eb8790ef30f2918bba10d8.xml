@@ -14,6 +14,7 @@ AESAnnouncementService.prototype = {
 
     initialize: function() {
         this._query = new AESCommunicationQuery();
+        this._interactionQuery = new AESCommunicationInteractionQuery();
         this._tracking = new AESCommunicationTracking();
     },
     /**
@@ -39,6 +40,32 @@ AESAnnouncementService.prototype = {
      */
     prepareQueryOptions: function(options) {
         return options;
+    },
+
+
+    /**
+     * Returns saved announcements available for
+     * the given context.
+     */
+    getSaved: function(options) {
+        options = options || {};
+
+        options = this.prepareQueryOptions(options);
+
+        var interactionOptions = this._copyOptions(options);
+
+        interactionOptions.interaction = {
+            saved: true
+        };
+
+        var ids = this._interactionQuery.getAvailable(interactionOptions);
+
+        var announcements = this._buildAnnouncements(ids, interactionOptions);
+
+        return this.afterBuild(
+            announcements,
+            interactionOptions
+        );
     },
 
     /**
@@ -176,8 +203,7 @@ AESAnnouncementService.prototype = {
         switch (action.type) {
 
             case 'url':
-                action.url =
-                    gr.getValue('url');
+                action.url = gr.getValue('url');
                 break;
 
             case 'knowledge_article':
@@ -228,6 +254,18 @@ AESAnnouncementService.prototype = {
         };
     },
 
+    _copyOptions: function(options) {
+        var copy = {};
+
+        for (var property in options) {
+            if (Object.prototype.hasOwnProperty.call(options, property)) {
+                copy[property] = options[property];
+            }
+        }
+
+        return copy;
+    },
+
     /**
      * Extension point.
      * Allows implementations to modify the final result.
@@ -242,13 +280,13 @@ AESAnnouncementService.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-23 19:16:32</sys_created_on>
         <sys_id>562438c993eb8790ef30f2918bba10d8</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>AESAnnouncementService</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sys_script_include_562438c993eb8790ef30f2918bba10d8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-23 23:45:42</sys_updated_on>
+        <sys_updated_on>2026-09-24 18:59:16</sys_updated_on>
     </sys_script_include>
 </record_update>
