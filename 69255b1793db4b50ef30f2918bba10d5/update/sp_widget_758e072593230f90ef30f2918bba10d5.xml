@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+
+    c.activeTab = 'all';
+    c.viewMode = 'grid';
+    c.sort = 'recent';
+
+    c.selectTab = function(tab) {
+        c.activeTab = tab;
+    };
+
+    c.setViewMode = function(viewMode) {
+        c.viewMode = viewMode;
+    };
+
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.aes-announcement-toolbar {&#13;
+  position: relative;&#13;
+  z-index: 10;&#13;
+&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  justify-content: space-between;&#13;
+&#13;
+  min-height: 72px;&#13;
+  padding: $aes-space-md $aes-space-xl;&#13;
+&#13;
+  background-color: $background-primary;&#13;
+  border-radius: $aes-radius-lg;&#13;
+&#13;
+  box-shadow:&#13;
+    0 4px 12px rgba(0, 0, 0, 0.10),&#13;
+    0 1px 3px rgba(0, 0, 0, 0.06);&#13;
+&#13;
+  transform: translateY(-24px);&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__tabs {&#13;
+  display: inline-flex;&#13;
+  align-items: center;&#13;
+  gap: 4px;&#13;
+  padding: 4px;&#13;
+  border: 0;&#13;
+  border-radius: $aes-radius-lg;&#13;
+  box-shadow: none;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__tab {&#13;
+  padding: 7px 16px;&#13;
+  color: $text-secondary;&#13;
+  background: transparent;&#13;
+  border: 0;&#13;
+  border-radius: 8px;&#13;
+  font-size: $font-size-h4;&#13;
+  font-weight: 500;&#13;
+  cursor: pointer;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__tab-label {&#13;
+  position: relative;&#13;
+  display: inline-block;&#13;
+  padding-bottom: 6px;&#13;
+}&#13;
+&#13;
+&#13;
+/* Hover */&#13;
+.aes-announcement-toolbar__tab:hover&#13;
+.aes-announcement-toolbar__tab-label::after {&#13;
+  background-color: $aes-accent;&#13;
+}&#13;
+&#13;
+&#13;
+.aes-announcement-toolbar__tab:focus {&#13;
+  outline: 1px solid $aes-accent;&#13;
+  outline-offset: 1px;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__tab--active {&#13;
+  color: $text-primary;&#13;
+  background: transparent;&#13;
+  font-weight: 600;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__controls {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: $aes-space-md;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__tab .aes-announcement-toolbar__tab-label::after {&#13;
+  position: absolute;&#13;
+  right: 0;&#13;
+  bottom: 0;&#13;
+  left: 0;&#13;
+&#13;
+  height: 2px;&#13;
+&#13;
+  background-color: transparent;&#13;
+  border-radius: 2px;&#13;
+  transition: background-color $aes-transition-fast;&#13;
+  content: "";&#13;
+}&#13;
+&#13;
+/* Active */&#13;
+.aes-announcement-toolbar__tab--active&#13;
+.aes-announcement-toolbar__tab-label::after,&#13;
+.aes-announcement-toolbar__tab--active:hover&#13;
+.aes-announcement-toolbar__tab-label::after {&#13;
+  background-color: $text-primary;&#13;
+}&#13;
+&#13;
+&#13;
+.aes-announcement-toolbar__view {&#13;
+  display: inline-flex;&#13;
+  align-items: center;&#13;
+  gap: 0;&#13;
+  background-color: $background-secondary;&#13;
+  border-radius: $aes-radius-sm;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__view-button {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  justify-content: center;&#13;
+&#13;
+  width: 45px;&#13;
+  height: 45px;&#13;
+  padding: 0;&#13;
+&#13;
+  color: $text-secondary;&#13;
+  background-color: transparent;&#13;
+  border: 0;&#13;
+  border-radius: 0;&#13;
+&#13;
+  font-size: $font-size-h4;&#13;
+  cursor: pointer;&#13;
+&#13;
+  transition:&#13;
+    color $aes-transition-fast,&#13;
+    background-color $aes-transition-fast;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__view-button:first-child {&#13;
+  border-radius: $aes-radius-sm 0 0 $aes-radius-sm;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__view-button:last-child {&#13;
+  border-radius: 0 $aes-radius-sm $aes-radius-sm 0;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__view-button:hover {&#13;
+  color: $text-primary;&#13;
+  background-color: $aes-accent;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__view-button:focus {&#13;
+  outline: none;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__view-button:focus-visible {&#13;
+  outline: 2px solid $aes-accent;&#13;
+  outline-offset: 2px;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__view-button--active {&#13;
+  color: $aes-accent;&#13;
+  background-color: $aes-control-selected-bg;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__view-button--active,&#13;
+.aes-announcement-toolbar__view-button--active:hover {&#13;
+  color: $aes-accent;&#13;
+  background-color: $aes-control-selected-bg;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__sort-wrapper {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: $aes-space-sm;&#13;
+  height: 48px;&#13;
+  margin-left: $aes-space-md;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__sort-label {&#13;
+  margin: 0;&#13;
+&#13;
+  color: $text-secondary;&#13;
+&#13;
+  font-size: $font-size-base;&#13;
+  font-weight: 400;&#13;
+&#13;
+  white-space: nowrap;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__sort {&#13;
+  height: 40px;&#13;
+  min-width: 156px;&#13;
+  padding: 0 36px 0 14px;&#13;
+&#13;
+  color: $text-primary;&#13;
+  background-color: $background-primary;&#13;
+&#13;
+  border: 1px solid $border-secondary;&#13;
+  border-radius: $aes-radius-lg;&#13;
+&#13;
+  font-size: $font-size-base;&#13;
+  font-weight: 500;&#13;
+  line-height: $line-height-base;&#13;
+&#13;
+  cursor: pointer;&#13;
+&#13;
+  transition:&#13;
+    border-color $aes-transition-fast,&#13;
+    box-shadow $aes-transition-fast;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__sort:hover {&#13;
+  border-color: $text-tertiary;&#13;
+}&#13;
+&#13;
+.aes-announcement-toolbar__sort:focus {&#13;
+  border-color: $aes-accent;&#13;
+  box-shadow: 0 0 0 1px $aes-accent;&#13;
+  outline: 0;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Provides navigation, view, and sorting controls for the Announcement experience.</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>aes-announcement-toolbar</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>AES - Announcement Toolbar</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_733168_aes.user</roles>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 19:46:44</sys_created_on>
+        <sys_id>758e072593230f90ef30f2918bba10d5</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>AES - Announcement Toolbar</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sp_widget_758e072593230f90ef30f2918bba10d5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-25 23:01:04</sys_updated_on>
+        <template><![CDATA[<nav class="aes-announcement-toolbar" aria-label="Announcement controls">
+
+  <!-- Content views -->
+  <div class="aes-announcement-toolbar__tabs" role="tablist" aria-label="Announcement views">
+
+    <button type="button" class="aes-announcement-toolbar__tab aes-announcement-toolbar__tab"  ng-class="{'aes-announcement-toolbar__tab--active': c.activeTab === 'all'}" ng-click="c.selectTab('all')" role="tab"  ng-attr-aria-selected="{{c.activeTab === 'all'}}">
+      <span class="aes-announcement-toolbar__tab-label">${All}</span>
+    </button>
+
+    <button type="button" class="aes-announcement-toolbar__tab" role="tab" ng-class="{'aes-announcement-toolbar__tab--active': c.activeTab === 'saved'}" ng-click="c.selectTab('saved')"  ng-attr-aria-selected="{{c.activeTab === 'saved'}}">
+      <span class="aes-announcement-toolbar__tab-label">${My Saved}</span>
+    </button>
+
+    <button type="button" class="aes-announcement-toolbar__tab" role="tab"  ng-class="{'aes-announcement-toolbar__tab--active': c.activeTab === 'expired'}" ng-click="c.selectTab('expired')"  ng-attr-aria-selected="{{c.activeTab === 'expired'}}">
+      <span class="aes-announcement-toolbar__tab-label">${Expired}</span>
+    </button>
+  </div>
+
+  <!-- View and sorting controls -->
+  <div class="aes-announcement-toolbar__controls">
+
+    <!-- Grid / List -->
+    <div class="aes-announcement-toolbar__view" role="group" aria-label="Announcement view">
+
+      <button type="button" class="aes-announcement-toolbar__view-button aes-announcement-toolbar__view-button"    ng-class="{'aes-announcement-toolbar__view-button--active': c.viewMode === 'grid'}" ng-click="c.setViewMode('grid')" aria-label="Grid view" ng-attr-aria-pressed="{{c.viewMode === 'grid'}}" title="Grid view">
+        <span class="fa fa-th-large" aria-hidden="true"></span>
+      </button>
+
+      <button type="button" class="aes-announcement-toolbar__view-button" ng-class="{'aes-announcement-toolbar__view-button--active': c.viewMode === 'list'}" ng-click="c.setViewMode('list')" aria-label="List view" ng-attr-aria-pressed="{{c.viewMode === 'list'}}" title="List view">
+        <span class="fa fa-list" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Sort -->
+   <div class="aes-announcement-toolbar__sort-wrapper">
+     <label class="aes-announcement-toolbar__sort-label" for="aes-announcement-sort">${Sort by}</label>
+     <select id="aes-announcement-sort" class="aes-announcement-toolbar__sort" aria-label="Sort announcements">
+       <option value="recent">${Most recent}</option>
+       <option value="oldest">${Oldest}</option>
+     </select>
+    </div>
+    
+  </div>
+
+</nav>]]></template>
+    </sp_widget>
+</record_update>

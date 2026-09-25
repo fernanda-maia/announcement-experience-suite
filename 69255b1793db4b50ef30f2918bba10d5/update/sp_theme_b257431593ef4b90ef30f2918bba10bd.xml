@@ -392,10 +392,16 @@ $aes-header-search-width: 896px;&#13;
 &#13;
 $aes-radius-sm: 6px;&#13;
 $aes-radius-md: 8px;&#13;
-$aes-radius-lg: 12px;</css_variables>
+$aes-radius-lg: 12px;&#13;
+&#13;
+&#13;
+$aes-content-max-width: 1600px;&#13;
+$aes-page-gutter: 32px;&#13;
+&#13;
+$aes-control-selected-bg: #2A2D2F;</css_variables>
         <footer/>
         <footer_fixed>false</footer_fixed>
-        <header display_value="Stock Header">bf5ec2f2cb10120000f8d856634c9c0c</header>
+        <header/>
         <icon/>
         <logo/>
         <logo_alt_text/>
@@ -406,14 +412,14 @@ $aes-radius-lg: 12px;</css_variables>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-25 00:37:19</sys_created_on>
         <sys_id>b257431593ef4b90ef30f2918bba10bd</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_name>AES Charcoal + Lime</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sp_theme_b257431593ef4b90ef30f2918bba10bd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-25 19:35:44</sys_updated_on>
+        <sys_updated_on>2026-09-25 21:39:33</sys_updated_on>
         <turn_off_scss_compilation>true</turn_off_scss_compilation>
     </sp_theme>
     <sys_translated_text action="delete_multiple" query="documentkey=b257431593ef4b90ef30f2918bba10bd"/>
