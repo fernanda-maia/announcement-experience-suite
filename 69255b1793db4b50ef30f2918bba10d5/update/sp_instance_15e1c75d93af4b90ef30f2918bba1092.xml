@@ -32,23 +32,23 @@
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">84e2ca1d93a74b90ef30f2918bba1024</sp_column>
-        <sp_widget display_value="AES - Announcement Feed">acd10a9993a74b90ef30f2918bba1001</sp_widget>
+        <sp_column display_value="1">b0120f5d93af4b90ef30f2918bba109f</sp_column>
+        <sp_widget display_value="AES - Announcement Header">9921cfd993af4b90ef30f2918bba10d6</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-09-24 19:36:21</sys_created_on>
-        <sys_id>25e20e1d93a74b90ef30f2918bba104b</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_created_on>2026-09-25 00:11:35</sys_created_on>
+        <sys_id>15e1c75d93af4b90ef30f2918bba1092</sys_id>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name/>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
-        <sys_update_name>sp_instance_25e20e1d93a74b90ef30f2918bba104b</sys_update_name>
+        <sys_update_name>sp_instance_15e1c75d93af4b90ef30f2918bba1092</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-25 00:12:25</sys_updated_on>
+        <sys_updated_on>2026-09-25 00:12:24</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters/>
     </sp_instance>
-    <sys_translated_text action="delete_multiple" query="documentkey=25e20e1d93a74b90ef30f2918bba104b"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=15e1c75d93af4b90ef30f2918bba1092"/>
 </record_update>

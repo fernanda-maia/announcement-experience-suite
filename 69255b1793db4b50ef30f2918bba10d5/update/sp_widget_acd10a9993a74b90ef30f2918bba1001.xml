@@ -44,29 +44,50 @@
         offset: 0
     });
 
-    data.debug = {
-        portal: portal.getUniqueValue(),
-        channel: channelId
-    };
-
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-24 19:34:36</sys_created_on>
         <sys_id>acd10a9993a74b90ef30f2918bba1001</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>AES - Announcement Feed</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sp_widget_acd10a9993a74b90ef30f2918bba1001</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-24 20:14:22</sys_updated_on>
-        <template><![CDATA[<pre>
-{{data.announcements | json}}
-</pre>
+        <sys_updated_on>2026-09-24 20:17:16</sys_updated_on>
+        <template><![CDATA[<div class="aes-announcement-feed">
 
-<pre>{{data.debug | json}}</pre>]]></template>
+  <div class="aes-announcement-list">
+    <article class="aes-announcement-card"
+             ng-repeat="announcement in data.announcements track by announcement.sys_id">
+
+      <div class="aes-announcement-card__categories"
+           ng-if="announcement.categories.length">
+        <span ng-repeat="category in announcement.categories">
+          {{::category.name}}
+        </span>
+      </div>
+
+      <h3 class="aes-announcement-card__title">
+        {{::announcement.title}}
+      </h3>
+
+      <p class="aes-announcement-card__description"
+         ng-if="announcement.short_description">
+        {{::announcement.short_description}}
+      </p>
+
+    </article>
+  </div>
+
+  <div class="aes-announcement-feed__empty"
+       ng-if="!data.announcements.length">
+    No announcements available.
+  </div>
+
+</div>]]></template>
     </sp_widget>
 </record_update>

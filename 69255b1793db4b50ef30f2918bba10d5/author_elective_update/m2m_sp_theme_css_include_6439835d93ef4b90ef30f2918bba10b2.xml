@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_theme_css_include">
+    <m2m_sp_theme_css_include action="DELETE">
+        <order/>
+        <sp_css_include display_value="ec-theme-knowledge">150937ef1b783c5047582171604bcba5</sp_css_include>
+        <sp_theme display_value="AES Charcoal + Lime">b257431593ef4b90ef30f2918bba10bd</sp_theme>
+        <sys_class_name>m2m_sp_theme_css_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 00:43:29</sys_created_on>
+        <sys_id>6439835d93ef4b90ef30f2918bba10b2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ec-theme-knowledge.AES Charcoal + Lime</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>m2m_sp_theme_css_include_6439835d93ef4b90ef30f2918bba10b2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-25 00:43:29</sys_updated_on>
+    </m2m_sp_theme_css_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>m2m_sp_theme_css_include_6439835d93ef4b90ef30f2918bba10b2</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_theme_css_include"><m2m_sp_theme_css_include action="INSERT_OR_UPDATE"><order/><sp_css_include display_value="ec-theme-knowledge">150937ef1b783c5047582171604bcba5</sp_css_include><sp_theme display_value="AES Charcoal + Lime">b257431593ef4b90ef30f2918bba10bd</sp_theme><sys_class_name>m2m_sp_theme_css_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-25 00:43:29</sys_created_on><sys_id>6439835d93ef4b90ef30f2918bba10b2</sys_id><sys_mod_count>0</sys_mod_count><sys_name>ec-theme-knowledge.AES Charcoal + Lime</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>m2m_sp_theme_css_include_6439835d93ef4b90ef30f2918bba10b2</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-25 00:43:29</sys_updated_on></m2m_sp_theme_css_include></record_update>]]></payload>
+        <payload_hash>-268260238</payload_hash>
+        <record_name>ec-theme-knowledge.AES Charcoal + Lime</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 00:43:29</sys_created_on>
+        <sys_id>ac39835d93ef4b90ef30f2918bba10b5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0d6046d590000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-25 00:43:29</sys_updated_on>
+        <type>Stylesheets</type>
+        <update_guid>6c39835d3def4b901da53232b49cfcb4</update_guid>
+        <update_guid_history>6c39835d3def4b901da53232b49cfcb4:-268260238</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="ec-theme-knowledge.AES Charcoal + Lime">721f1b1d93a38b90ef30f2918bba10b6</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 02:19:12</sys_created_on>
+        <sys_db_object display_value="" name="m2m_sp_theme_css_include">m2m_sp_theme_css_include</sys_db_object>
+        <sys_id>06cc210f334d441995ae5369fb589659</sys_id>
+        <sys_metadata>6439835d93ef4b90ef30f2918bba10b2</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ec-theme-knowledge.AES Charcoal + Lime</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>m2m_sp_theme_css_include_6439835d93ef4b90ef30f2918bba10b2</sys_update_name>
+        <sys_update_version display_value="m2m_sp_theme_css_include_6439835d93ef4b90ef30f2918bba10b2">ac39835d93ef4b90ef30f2918bba10b5</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-25 02:19:12</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

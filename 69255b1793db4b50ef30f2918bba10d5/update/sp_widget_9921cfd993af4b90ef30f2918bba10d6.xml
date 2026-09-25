@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.aes-page-header {&#13;
+  width: 100%;&#13;
+  margin: 0;&#13;
+  border-radius: 0;&#13;
+  background-position: center;&#13;
+  background-repeat: no-repeat;&#13;
+  background-size: cover;&#13;
+  padding: $aes-space-3xl;&#13;
+&#13;
+}&#13;
+&#13;
+.aes-page-header__content {&#13;
+  max-width: 760px;&#13;
+  padding: $aes-space-3xl;&#13;
+}&#13;
+&#13;
+.aes-page-header__title {&#13;
+  margin: 0 0 $aes-space-sm;&#13;
+  color: $aes-header-text-color;&#13;
+  font-size: $font-size-h1;&#13;
+  font-weight: 600;&#13;
+  line-height: $headings-line-height;&#13;
+}&#13;
+&#13;
+.aes-page-header__subtitle {&#13;
+  margin: 0 0 $aes-space-xl;&#13;
+  color: $aes-header-secondary-text-color;&#13;
+  font-size: $font-size-base;&#13;
+  line-height: $line-height-base;&#13;
+}&#13;
+&#13;
+.aes-page-header__search {&#13;
+  position: relative;&#13;
+  width: 100%;&#13;
+  max-width: 620px;&#13;
+}&#13;
+&#13;
+.aes-page-header__search-icon {&#13;
+  position: absolute;&#13;
+  top: 50%;&#13;
+  left: 16px;&#13;
+  z-index: 2;&#13;
+&#13;
+  color: $text-tertiary;&#13;
+  font-size: 16px;&#13;
+&#13;
+  transform: translateY(-50%);&#13;
+  pointer-events: none;&#13;
+}&#13;
+&#13;
+.aes-page-header__search-input {&#13;
+  width: 100%;&#13;
+  height: 44px;&#13;
+&#13;
+  padding-top: 10px;&#13;
+  padding-right: 16px;&#13;
+  padding-bottom: 10px;&#13;
+  padding-left: 44px;&#13;
+&#13;
+  color: $input-color;&#13;
+  background-color: $input-bg;&#13;
+  border: 1px solid $input-border;&#13;
+  border-radius: $aes-radius-sm;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Displays the title and supporting description for an AES experience page.</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>aes-announcement-header</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>AES - Announcement Header</name>
+        <option_schema>[&#13;
+  {&#13;
+    "name": "title",&#13;
+    "section": "Content",&#13;
+    "label": "Title",&#13;
+    "type": "string",&#13;
+    "default_value": "Announcements"&#13;
+  },&#13;
+  {&#13;
+    "name": "subtitle",&#13;
+    "section": "Content",&#13;
+    "label": "Subtitle",&#13;
+    "type": "string",&#13;
+    "default_value": "Stay informed about what's happening across your organization."&#13;
+  },&#13;
+  {&#13;
+    "name": "search_placeholder",&#13;
+    "section": "Content",&#13;
+    "label": "Search placeholder",&#13;
+    "type": "string",&#13;
+    "default_value": "Search announcements"&#13;
+  },&#13;
+  {&#13;
+    "name": "background_image",&#13;
+    "section": "Content",&#13;
+    "label": "Background image",&#13;
+    "type": "string",&#13;
+    "default_value": "x_733168_aes.announcements_banner.png"&#13;
+  }&#13;
+]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 00:10:58</sys_created_on>
+        <sys_id>9921cfd993af4b90ef30f2918bba10d6</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>AES - Announcement Header</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sp_widget_9921cfd993af4b90ef30f2918bba10d6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-25 02:17:03</sys_updated_on>
+        <template><![CDATA[<header class="aes-page-header" ng-style="{'background-image': 'url(' + options.background_image + ')'}">
+   <div class="aes-page-header__content">
+  <div class="aes-page-header__heading">
+    <h1 class="aes-page-header__title">
+      {{::options.title}}
+    </h1>
+
+    <p class="aes-page-header__subtitle" ng-if="::options.subtitle">
+      {{::options.subtitle}}
+    </p>
+  </div>
+
+  <div class="aes-page-header__search">
+    <span class="fa fa-search aes-page-header__search-icon" aria-hidden="true"></span>
+
+    <input type="search" class="form-control aes-page-header__search-input" placeholder="{{::options.search_placeholder}}" aria-label="{{::options.search_placeholder}}">
+  </div>
+  </div>
+</header>]]></template>
+    </sp_widget>
+</record_update>
