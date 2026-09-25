@@ -1,74 +1,288 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {
-  /* widget controller */
-  var c = this;
+        <client_script><![CDATA[api.controller = function($scope, $timeout) {
+    var c = this;
+
+    c.clearSearch = function() {
+        c.search = '';
+
+        $timeout(function() {
+            var searchInput = document.getElementById('aes-announcement-search');
+
+            if (searchInput) {
+                searchInput.focus();
+            }
+        });
+    };
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>.aes-page-header {&#13;
+        <css>/* ============================================================&#13;
+   AES - ANNOUNCEMENT HEADER&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-page-header {&#13;
   width: 100%;&#13;
   margin: 0;&#13;
-  border-radius: 0;&#13;
+  padding: $aes-header-padding-y 0;&#13;
+&#13;
   background-position: center;&#13;
   background-repeat: no-repeat;&#13;
   background-size: cover;&#13;
-  padding: $aes-space-3xl;&#13;
 &#13;
+  border-radius: 0;&#13;
 }&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   CONTENT&#13;
+   ============================================================ */&#13;
 &#13;
 .aes-page-header__content {&#13;
-  max-width: 760px;&#13;
-  padding: $aes-space-3xl;&#13;
+  display: grid;&#13;
+  grid-template-columns: $aes-header-logo-size 1fr;&#13;
+  column-gap: $aes-header-logo-gap;&#13;
+  align-items: start;&#13;
+&#13;
+  width: 100%;&#13;
+  max-width: $aes-header-content-width;&#13;
+  margin: 0;&#13;
+  padding: 0 $aes-header-padding-x;&#13;
 }&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   LOGO&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-page-header__logo {&#13;
+  display: block;&#13;
+&#13;
+  width: auto;&#13;
+  height: $aes-header-logo-size;&#13;
+&#13;
+  align-self: start;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   MAIN CONTENT&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-page-header__main {&#13;
+  min-width: 0;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   HEADING&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-page-header__heading {&#13;
+  margin: 0 0 $aes-header-search-gap;&#13;
+}&#13;
+&#13;
+&#13;
+/* Title */&#13;
 &#13;
 .aes-page-header__title {&#13;
-  margin: 0 0 $aes-space-sm;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+&#13;
+  min-height: $aes-header-logo-size;&#13;
+  margin: 0;&#13;
+&#13;
   color: $aes-header-text-color;&#13;
-  font-size: $font-size-h1;&#13;
-  font-weight: 600;&#13;
-  line-height: $headings-line-height;&#13;
+  font-size: $aes-header-title-size;&#13;
+  font-weight: $aes-header-title-weight;&#13;
+  line-height: 1;&#13;
 }&#13;
 &#13;
+&#13;
+/* Subtitle */&#13;
+&#13;
 .aes-page-header__subtitle {&#13;
-  margin: 0 0 $aes-space-xl;&#13;
+  margin: $aes-header-heading-gap 0 0;&#13;
+&#13;
   color: $aes-header-secondary-text-color;&#13;
-  font-size: $font-size-base;&#13;
-  line-height: $line-height-base;&#13;
+  font-size: $aes-header-subtitle-size;&#13;
+  font-style: $aes-header-subtitle-style;&#13;
+  line-height: 1.4;&#13;
 }&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   SEARCH&#13;
+   ============================================================ */&#13;
 &#13;
 .aes-page-header__search {&#13;
   position: relative;&#13;
   width: 100%;&#13;
-  max-width: 620px;&#13;
+  max-width: $aes-header-search-width;&#13;
 }&#13;
 &#13;
+&#13;
+/* Search icon */&#13;
 .aes-page-header__search-icon {&#13;
   position: absolute;&#13;
   top: 50%;&#13;
   left: 16px;&#13;
   z-index: 2;&#13;
-&#13;
-  color: $text-tertiary;&#13;
+  color: $aes-header-secondary-text-color;&#13;
   font-size: 16px;&#13;
-&#13;
   transform: translateY(-50%);&#13;
   pointer-events: none;&#13;
 }&#13;
 &#13;
+&#13;
+/* Search input */&#13;
+&#13;
 .aes-page-header__search-input {&#13;
   width: 100%;&#13;
   height: 44px;&#13;
+  padding: 10px 44px;&#13;
+  color: $aes-header-text-color;&#13;
+  background-color: transparent;&#13;
+  border: 1px solid $border-secondary;&#13;
+  border-radius: $aes-radius-lg;&#13;
+  box-shadow: none;&#13;
+  outline: 0;&#13;
+  transition:&#13;
+    background-color $aes-transition-fast,&#13;
+    border-color $aes-transition-fast,&#13;
+    box-shadow $aes-transition-fast,&#13;
+    color $aes-transition-fast;&#13;
+}&#13;
 &#13;
-  padding-top: 10px;&#13;
-  padding-right: 16px;&#13;
-  padding-bottom: 10px;&#13;
-  padding-left: 44px;&#13;
 &#13;
+/* Placeholder */&#13;
+&#13;
+.aes-page-header__search-input::placeholder {&#13;
+  color: $aes-header-secondary-text-color;&#13;
+  opacity: 1;&#13;
+}&#13;
+&#13;
+&#13;
+/* Empty + focus */&#13;
+&#13;
+.aes-page-header__search-input:focus {&#13;
+  color: $aes-header-text-color;&#13;
+  background-color: transparent;&#13;
+&#13;
+  border-color: $aes-accent;&#13;
+  box-shadow: 0 0 0 1px $aes-accent;&#13;
+&#13;
+  outline: 0;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   SEARCH - HAS VALUE&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-page-header__search-input--has-value {&#13;
   color: $input-color;&#13;
   background-color: $input-bg;&#13;
-  border: 1px solid $input-border;&#13;
-  border-radius: $aes-radius-sm;&#13;
+  border-color: $input-border;&#13;
+}&#13;
+&#13;
+&#13;
+/* Has value + focus */&#13;
+&#13;
+.aes-page-header__search-input--has-value:focus {&#13;
+  color: $input-color;&#13;
+  background-color: $input-bg;&#13;
+&#13;
+  border-color: $aes-accent;&#13;
+  box-shadow: 0 0 0 1px $aes-accent;&#13;
+}&#13;
+&#13;
+&#13;
+/* Search icon when input contains text */&#13;
+&#13;
+.aes-page-header__search-icon--has-value {&#13;
+  color: $text-tertiary;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   CLEAR SEARCH&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-page-header__search-clear {&#13;
+  position: absolute;&#13;
+  top: 50%;&#13;
+  right: 12px;&#13;
+  z-index: 2;&#13;
+&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  justify-content: center;&#13;
+&#13;
+  width: 28px;&#13;
+  height: 28px;&#13;
+  padding: 0;&#13;
+&#13;
+  color: $text-tertiary;&#13;
+  background: transparent;&#13;
+&#13;
+  border: 0;&#13;
+  border-radius: 50%;&#13;
+&#13;
+  transform: translateY(-50%);&#13;
+  cursor: pointer;&#13;
+&#13;
+  transition:&#13;
+    color $aes-transition-fast,&#13;
+    background-color $aes-transition-fast;&#13;
+}&#13;
+&#13;
+.aes-page-header__search-clear:hover {&#13;
+  color: $text-primary;&#13;
+  background-color: $background-secondary;&#13;
+}&#13;
+&#13;
+.aes-page-header__search-clear:focus {&#13;
+  color: $text-primary;&#13;
+&#13;
+  outline: 1px solid $aes-accent;&#13;
+  outline-offset: 1px;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   RESPONSIVE&#13;
+   ============================================================ */&#13;
+&#13;
+@media (max-width: 767px) {&#13;
+&#13;
+  .aes-page-header {&#13;
+    padding: $aes-space-2xl 0;&#13;
+  }&#13;
+&#13;
+  .aes-page-header__content {&#13;
+    grid-template-columns: 42px 1fr;&#13;
+    column-gap: $aes-space-md;&#13;
+&#13;
+    padding: 0 $aes-space-xl;&#13;
+  }&#13;
+&#13;
+  .aes-page-header__logo {&#13;
+    height: 42px;&#13;
+  }&#13;
+&#13;
+  .aes-page-header__title {&#13;
+    min-height: 42px;&#13;
+    font-size: $font-size-h2;&#13;
+  }&#13;
+&#13;
+  .aes-page-header__heading {&#13;
+    margin-bottom: $aes-space-2xl;&#13;
+  }&#13;
+&#13;
+  .aes-page-header__search {&#13;
+    max-width: 100%;&#13;
+  }&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -110,6 +324,13 @@
     "label": "Background image",&#13;
     "type": "string",&#13;
     "default_value": "x_733168_aes.announcements_banner.png"&#13;
+  },&#13;
+  {&#13;
+    "name": "logo",&#13;
+    "section": "Content",&#13;
+    "label": "Logo image",&#13;
+    "type": "string",&#13;
+    "default_value": "x_733168_aes.aes_icon.png"&#13;
   }&#13;
 ]</option_schema>
         <public>false</public>
@@ -124,32 +345,49 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-25 00:10:58</sys_created_on>
         <sys_id>9921cfd993af4b90ef30f2918bba10d6</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>34</sys_mod_count>
         <sys_name>AES - Announcement Header</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sp_widget_9921cfd993af4b90ef30f2918bba10d6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-25 02:17:03</sys_updated_on>
+        <sys_updated_on>2026-09-25 19:31:14</sys_updated_on>
         <template><![CDATA[<header class="aes-page-header" ng-style="{'background-image': 'url(' + options.background_image + ')'}">
-   <div class="aes-page-header__content">
-  <div class="aes-page-header__heading">
-    <h1 class="aes-page-header__title">
-      {{::options.title}}
-    </h1>
 
-    <p class="aes-page-header__subtitle" ng-if="::options.subtitle">
-      {{::options.subtitle}}
-    </p>
+  <div class="aes-page-header__content">
+    
+    <img ng-if="::options.logo" class="aes-page-header__logo" ng-src="{{::options.logo}}" alt="" aria-hidden="true">
+    
+    <!--TITLE-->
+    <div class="aes-page-header__main">
+      <div class="aes-page-header__heading">
+        <h1 class="aes-page-header__title">{{::options.title}}</h1>
+        <p class="aes-page-header__subtitle" ng-if="::options.subtitle">{{::options.subtitle}}</p>
+      </div>
+      
+      <!--SEARCH-->
+      <div class="aes-page-header__search">
+        <span class="fa fa-search aes-page-header__search-icon" ng-class="{'aes-page-header__search-icon--has-value': c.search}" aria-hidden="true"></span>
+
+        <input id="aes-announcement-search"
+          type="search"
+          class="form-control aes-page-header__search-input"
+          ng-class="{
+            'aes-page-header__search-input--has-value': c.search
+          }"
+          ng-model="c.search"
+          placeholder="{{::options.search_placeholder}}"
+          aria-label="{{::options.search_placeholder}}">
+
+        <button type="button" class="aes-page-header__search-clear" ng-if="c.search" ng-click="c.clearSearch()" aria-label="Clear search">
+          <span class="fa fa-times" aria-hidden="true"></span>
+        </button>
+      </div>
+      
+    </div>
   </div>
 
-  <div class="aes-page-header__search">
-    <span class="fa fa-search aes-page-header__search-icon" aria-hidden="true"></span>
-
-    <input type="search" class="form-control aes-page-header__search-input" placeholder="{{::options.search_placeholder}}" aria-label="{{::options.search_placeholder}}">
-  </div>
-  </div>
 </header>]]></template>
     </sp_widget>
 </record_update>
