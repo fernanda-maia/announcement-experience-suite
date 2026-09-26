@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>aes-announcement-grid-card.html</id>
+        <sp_widget display_value="AES - Announcement Content">acd10a9993a74b90ef30f2918bba1001</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 23:20:48</sys_created_on>
+        <sys_id>10cf33a993e70f90ef30f2918bba1043</sys_id>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>aes-announcement-grid-card.html</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sp_ng_template_10cf33a993e70f90ef30f2918bba1043</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-26 04:07:52</sys_updated_on>
+        <template><![CDATA[<article class="aes-announcement-card aes-announcement-card--grid">
+  
+  <div class="aes-announcement-card__media">  
+    <img ng-if="announcement.image" class="aes-announcement-card__image" ng-src="{{::announcement.image.url}}" alt="{{::announcement.image.alt_text}}">
+    <img ng-if="!announcement.image" class="aes-announcement-card__image aes-announcement-card__image--placeholder" src="x_733168_aes.aes-no-image.png" alt="">
+    <span class="aes-announcement-card__new" ng-if="announcement.is_new">${New}</span>
+  </div>
+  
+  <div class="aes-announcement-card__body">
+    
+    <div class="aes-announcement-card__metadata">
+     <span class="aes-announcement-card__category">
+       <span ng-if="announcement.categories.length">{{::announcement.categories[0].name}}</span>
+     </span>
+     
+     <span class="aes-announcement-card__urgent" ng-if="announcement.urgent">${Urgent}</span>
+    </div>
+    
+    <h2 class="aes-announcement-card__title">{{announcement.title}}</h2>
+
+    <p class="aes-announcement-card__description" ng-if="announcement.short_description">
+      {{announcement.short_description}}
+    </p>
+
+    <div class="aes-announcement-card__footer">
+      
+      <a class="aes-announcement-card__primary-action" ng-repeat="action in announcement.actions | filter:{level:'primary'}">
+        {{::action.label}}
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+      </a>
+      
+      <div class="aes-announcement-card__footer-meta">
+        <time class="aes-announcement-card__date">{{::announcement.publish_date_display_date}}</time>
+        
+        <div class="aes-announcement-card__actions">
+          
+          <button type="button" class="aes-announcement-card__action"
+            ng-class="{'aes-announcement-card__action--active': announcement.tracking && announcement.tracking.saved}"
+            ng-click="c.toggleSaved(announcement, $event)"
+            aria-label="{{announcement.tracking && announcement.tracking.saved? '${Remove from saved}' : '${Save announcement}'}}">
+            
+            <i class="fa" ng-class="announcement.tracking && announcement.tracking.saved? 'fa-bookmark' : 'fa-bookmark-o'" aria-hidden="true"></i>
+          </button>
+          
+          <button type="button" class="aes-announcement-card__action" aria-label="${More actions}">
+             <i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+</article>]]></template>
+    </sp_ng_template>
+</record_update>

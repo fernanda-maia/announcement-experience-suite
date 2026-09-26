@@ -398,7 +398,16 @@ $aes-radius-lg: 12px;&#13;
 $aes-content-max-width: 1600px;&#13;
 $aes-page-gutter: 32px;&#13;
 &#13;
-$aes-control-selected-bg: #2A2D2F;</css_variables>
+$aes-control-selected-bg: $text-primary;&#13;
+$aes-control-active-bg: $text-primary;&#13;
+&#13;
+$aes-urgent-background: #892116;&#13;
+$aes-urgent-color: #FFFFFF;&#13;
+&#13;
+$aes-new-background: #CFFF04;&#13;
+$aes-new-color: #2A2D2F;&#13;
+&#13;
+$aes-saved-color: #2E5A44;</css_variables>
         <footer/>
         <footer_fixed>false</footer_fixed>
         <header/>
@@ -412,14 +421,14 @@ $aes-control-selected-bg: #2A2D2F;</css_variables>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-25 00:37:19</sys_created_on>
         <sys_id>b257431593ef4b90ef30f2918bba10bd</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>AES Charcoal + Lime</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sp_theme_b257431593ef4b90ef30f2918bba10bd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-25 21:39:33</sys_updated_on>
+        <sys_updated_on>2026-09-26 04:17:04</sys_updated_on>
         <turn_off_scss_compilation>true</turn_off_scss_compilation>
     </sp_theme>
     <sys_translated_text action="delete_multiple" query="documentkey=b257431593ef4b90ef30f2918bba10bd"/>

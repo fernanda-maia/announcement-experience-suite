@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="x_733168_aes_portal_channel">
     <x_733168_aes_portal_channel action="INSERT_OR_UPDATE">
         <active>true</active>
-        <internal_name>knowledge_portal</internal_name>
-        <name>Knowledge Portal</name>
-        <portal display_value="Knowledge Portal">45d6680fdb52220099f93691f0b8f5ad</portal>
-        <short_description>Enables communications to be delivered and displayed through the 	Knowledge Portal.</short_description>
+        <internal_name>aes_communication_portal</internal_name>
+        <name>AES Communication Portal</name>
+        <portal display_value="AES Communication Portal">a9265b5993638b90ef30f2918bba109d</portal>
+        <short_description>Enables communications to be delivered and displayed through the AES Communication Portal.</short_description>
         <sys_class_name>x_733168_aes_portal_channel</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-09-24 20:05:13</sys_created_on>
-        <sys_id>0f298e5993e74b90ef30f2918bba10a2</sys_id>
+        <sys_created_on>2026-09-25 23:24:28</sys_created_on>
+        <sys_id>e0900cf993e70f90ef30f2918bba108c</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name>Knowledge Portal</sys_name>
+        <sys_name>AES Communication Portal</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
-        <sys_update_name>x_733168_aes_portal_channel_0f298e5993e74b90ef30f2918bba10a2</sys_update_name>
+        <sys_update_name>x_733168_aes_portal_channel_e0900cf993e70f90ef30f2918bba108c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-24 20:05:13</sys_updated_on>
+        <sys_updated_on>2026-09-25 23:24:28</sys_updated_on>
     </x_733168_aes_portal_channel>
 </record_update>

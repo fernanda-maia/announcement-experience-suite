@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_733168_aes_portal_channel">
+    <x_733168_aes_portal_channel action="DELETE">
+        <active>true</active>
+        <internal_name>knowledge_portal</internal_name>
+        <name>Knowledge Portal</name>
+        <portal display_value="Knowledge Portal">45d6680fdb52220099f93691f0b8f5ad</portal>
+        <short_description>Enables communications to be delivered and displayed through the 	Knowledge Portal.</short_description>
+        <sys_class_name>x_733168_aes_portal_channel</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 20:05:13</sys_created_on>
+        <sys_id>0f298e5993e74b90ef30f2918bba10a2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Knowledge Portal</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>x_733168_aes_portal_channel_0f298e5993e74b90ef30f2918bba10a2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 20:05:13</sys_updated_on>
+    </x_733168_aes_portal_channel>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>x_733168_aes_portal_channel_0f298e5993e74b90ef30f2918bba10a2</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_733168_aes_portal_channel"><x_733168_aes_portal_channel action="INSERT_OR_UPDATE"><active>true</active><internal_name>knowledge_portal</internal_name><name>Knowledge Portal</name><portal display_value="Knowledge Portal">45d6680fdb52220099f93691f0b8f5ad</portal><short_description>Enables communications to be delivered and displayed through the 	Knowledge Portal.</short_description><sys_class_name>x_733168_aes_portal_channel</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-24 20:05:13</sys_created_on><sys_id>0f298e5993e74b90ef30f2918bba10a2</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Knowledge Portal</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>x_733168_aes_portal_channel_0f298e5993e74b90ef30f2918bba10a2</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-24 20:05:13</sys_updated_on></x_733168_aes_portal_channel></record_update>]]></payload>
+        <payload_hash>-445580524</payload_hash>
+        <record_name>Knowledge Portal</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 20:05:14</sys_created_on>
+        <sys_id>20898a9993e74b90ef30f2918bba10bb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0d505ae4a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 20:05:14</sys_updated_on>
+        <type>Portal Channel</type>
+        <update_guid>20898a5909e74b906095d5aeccb595be</update_guid>
+        <update_guid_history>20898a5909e74b906095d5aeccb595be:-445580524</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Knowledge Portal">7780c8f993e70f90ef30f2918bba101b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 23:23:51</sys_created_on>
+        <sys_db_object display_value="" name="x_733168_aes_portal_channel">x_733168_aes_portal_channel</sys_db_object>
+        <sys_id>1b18d903169c4a24a7e1ff159b4feb84</sys_id>
+        <sys_metadata>0f298e5993e74b90ef30f2918bba10a2</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Knowledge Portal</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>x_733168_aes_portal_channel_0f298e5993e74b90ef30f2918bba10a2</sys_update_name>
+        <sys_update_version display_value="x_733168_aes_portal_channel_0f298e5993e74b90ef30f2918bba10a2">20898a9993e74b90ef30f2918bba10bb</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-25 23:23:51</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

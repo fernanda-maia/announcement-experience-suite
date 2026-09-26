@@ -97,6 +97,9 @@ AESAnnouncementService.prototype = {
      * Builds the standard AES Announcement DTO.
      */
     _buildAnnouncement: function(gr, options) {
+        var publishDate = this._getDateTimeDisplay(gr.getValue('publish_date'));
+        var tracking = this._tracking.getTracking(gr.getUniqueValue());
+
         return {
             sys_id: gr.getUniqueValue(),
             number: gr.getValue('number'),
@@ -108,16 +111,20 @@ AESAnnouncementService.prototype = {
                 label: gr.getDisplayValue('priority')
             },
             publish_date: gr.getValue('publish_date'),
+            publish_date_display: publishDate.display,
+            publish_date_display_date: publishDate.date,
+            publish_date_display_time: publishDate.time,
             expiration_date: gr.getValue('expiration_date'),
-            image: gr.getValue('image'),
+            image: this._getImage(gr),
             image_alt_text: gr.getDisplayValue('image_alt_text'),
             glyph: gr.getValue('glyph'),
             glyph_alt_text: gr.getDisplayValue('glyph_alt_text'),
-            urgent: gr.getValue('mark_as_urgent') == 'true',
+            urgent: gr.getValue('mark_as_urgent') == '1',
             dismiss_option: gr.getValue('dismiss_option'),
             categories: this._getCategories(gr.getUniqueValue()),
             actions: this._getActions(gr.getUniqueValue()),
-            tracking: this._getTracking(gr.getUniqueValue())
+            tracking: tracking,
+            is_new: this._isNew(gr, tracking)
         };
     },
 
@@ -266,6 +273,72 @@ AESAnnouncementService.prototype = {
         return copy;
     },
 
+    _getImage: function(gr) {
+        var imageId = gr.getValue('image');
+
+        if (!imageId)
+            return null;
+
+        var attachment = new GlideRecord('sys_attachment');
+
+        if (!attachment.get(imageId))
+            return null;
+
+        return {
+            sys_id: imageId,
+            url: '/sys_attachment.do?sys_id=' + imageId,
+            alt_text: gr.getValue('image_alt_text') || ''
+        };
+    },
+
+    _getDateTimeDisplay: function(value) {
+        if (!value) {
+            return {
+                display: '',
+                date: '',
+                time: ''
+            };
+        }
+
+        var gdt = new GlideDateTime(value);
+        var localDate = gdt.getLocalDate();
+        var localTime = gdt.getLocalTime();
+
+        return {
+            display: gdt.getDisplayValue(),
+            date: localDate.getDisplayValue(),
+            time: localTime.getDisplayValue()
+        };
+    },
+
+    _getNewWindowHours: function() {
+        var hours = parseInt(gs.getProperty('x_733168_aes.new_announcement_window_hours', '24'), 10);
+        return isNaN(hours) || hours < 0 ? 24 : hours;
+    },
+
+    _isNew: function(gr, tracking) {
+        if (tracking && tracking.read)
+            return false;
+
+        var windowHours = this._getNewWindowHours();
+
+        if (windowHours <= 0)
+            return false;
+
+        var publishDateValue = gr.getValue('publish_date');
+        if (!publishDateValue)
+            return false;
+
+        var publishDate = new GlideDateTime(publishDateValue);
+        var now = new GlideDateTime();
+
+        var threshold = new GlideDateTime(now);
+        threshold.add(-windowHours * 60 * 60 * 1000);
+
+        return publishDate.compareTo(threshold) >= 0 &&
+            publishDate.compareTo(now) <= 0;
+    },
+
     /**
      * Extension point.
      * Allows implementations to modify the final result.
@@ -280,13 +353,13 @@ AESAnnouncementService.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-23 19:16:32</sys_created_on>
         <sys_id>562438c993eb8790ef30f2918bba10d8</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>AESAnnouncementService</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sys_script_include_562438c993eb8790ef30f2918bba10d8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-24 18:59:16</sys_updated_on>
+        <sys_updated_on>2026-09-26 04:03:43</sys_updated_on>
     </sys_script_include>
 </record_update>

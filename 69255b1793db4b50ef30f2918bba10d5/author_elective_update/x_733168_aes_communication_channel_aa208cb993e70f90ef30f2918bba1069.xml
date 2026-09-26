@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_733168_aes_communication_channel">
+    <x_733168_aes_communication_channel action="DELETE">
+        <active>true</active>
+        <internal_name>aes_portal</internal_name>
+        <name>AES Portal</name>
+        <short_description/>
+        <sys_class_name>x_733168_aes_communication_channel</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 23:22:24</sys_created_on>
+        <sys_id>aa208cb993e70f90ef30f2918bba1069</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AES Portal</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>x_733168_aes_communication_channel_aa208cb993e70f90ef30f2918bba1069</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-25 23:22:24</sys_updated_on>
+    </x_733168_aes_communication_channel>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>x_733168_aes_communication_channel_aa208cb993e70f90ef30f2918bba1069</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_733168_aes_communication_channel"><x_733168_aes_communication_channel action="INSERT_OR_UPDATE"><active>true</active><internal_name>aes_portal</internal_name><name>AES Portal</name><short_description/><sys_class_name>x_733168_aes_communication_channel</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-25 23:22:24</sys_created_on><sys_id>aa208cb993e70f90ef30f2918bba1069</sys_id><sys_mod_count>0</sys_mod_count><sys_name>AES Portal</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>x_733168_aes_communication_channel_aa208cb993e70f90ef30f2918bba1069</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-25 23:22:24</sys_updated_on></x_733168_aes_communication_channel></record_update>]]></payload>
+        <payload_hash>-776352130</payload_hash>
+        <record_name>AES Portal</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 23:22:24</sys_created_on>
+        <sys_id>ee3004b993e70f90ef30f2918bba10ca</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0dae08e860000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-25 23:22:24</sys_updated_on>
+        <type>Communication Channel</type>
+        <update_guid>ae3004b913e70f9055e1449c40c22fc9</update_guid>
+        <update_guid_history>ae3004b913e70f9055e1449c40c22fc9:-776352130</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="AES Portal">5e6084f993e70f90ef30f2918bba10fa</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-25 23:23:12</sys_created_on>
+        <sys_db_object display_value="" name="x_733168_aes_communication_channel">x_733168_aes_communication_channel</sys_db_object>
+        <sys_id>444643b23eed42b6937803a3867588d9</sys_id>
+        <sys_metadata>aa208cb993e70f90ef30f2918bba1069</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AES Portal</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>x_733168_aes_communication_channel_aa208cb993e70f90ef30f2918bba1069</sys_update_name>
+        <sys_update_version display_value="x_733168_aes_communication_channel_aa208cb993e70f90ef30f2918bba1069">ee3004b993e70f90ef30f2918bba10ca</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-25 23:23:12</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

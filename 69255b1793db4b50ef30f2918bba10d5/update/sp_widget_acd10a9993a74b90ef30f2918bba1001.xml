@@ -1,24 +1,278 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {
-  /* widget controller */
-  var c = this;
+        <client_script><![CDATA[api.controller = function() {
+    /* widget controller */
+    var c = this;
+
+    c.toggleSaved = function(announcement, event) {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        if (!announcement || !announcement.sys_id || !announcement.tracking)
+            return;
+
+        if (announcement._saving)
+            return;
+
+        var shouldSave = !announcement.tracking.saved;
+        announcement._saving = true;
+
+        c.server.get({
+            action: 'toggle_saved',
+            communication_id: announcement.sys_id,
+            saved: shouldSave
+
+        }).then(function(response) {
+            var result = response.data;
+
+            if (result && result.success)
+                announcement.tracking.saved = result.saved;
+
+            announcement._saving = false;
+			
+        }, function() {
+            announcement._saving = false;
+        });
+    };
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>.aes-announcement-feed__grid {&#13;
+  display: grid;&#13;
+  grid-template-columns: repeat(4, minmax(0, 1fr));&#13;
+  gap: $aes-space-lg;&#13;
+}&#13;
+&#13;
+.aes-announcement-feed__grid-item {&#13;
+  min-width: 0;&#13;
+}&#13;
+&#13;
+.aes-announcement-card {&#13;
+  overflow: hidden;&#13;
+&#13;
+  background-color: $background-primary;&#13;
+  border: 1px solid $border-secondary;&#13;
+  border-radius: $aes-radius-lg;&#13;
+}&#13;
+&#13;
+.aes-announcement-card--grid {&#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+  height: 100%;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__media {&#13;
+  position: relative;&#13;
+  width: 100%;&#13;
+  aspect-ratio: 16 / 9;&#13;
+  overflow: hidden;&#13;
+  background-color: $background-secondary;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__image {&#13;
+  display: block;&#13;
+  width: 100%;&#13;
+  height: 100%;&#13;
+  object-fit: cover;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__new {&#13;
+  position: absolute;&#13;
+  top: $aes-space-sm;&#13;
+  left: $aes-space-sm;&#13;
+&#13;
+  padding: 2px $aes-space-sm;&#13;
+&#13;
+  color: $aes-new-color;&#13;
+  font-size: $font-size-base;&#13;
+  font-weight: 600;&#13;
+&#13;
+  background-color: $aes-new-background;&#13;
+  border-radius: $aes-radius-sm;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__body {&#13;
+  display: flex;&#13;
+  flex: 1;&#13;
+  flex-direction: column;&#13;
+  padding: $aes-space-md;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__metadata {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  justify-content: space-between;&#13;
+  gap: $aes-space-sm;&#13;
+&#13;
+  min-height: $line-height-base;&#13;
+  margin-bottom: $aes-space-sm;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__category {&#13;
+  min-height: 1em;&#13;
+  overflow: hidden;&#13;
+  color: $text-secondary;&#13;
+  font-size: $font-size-base;&#13;
+  font-weight: 500;&#13;
+  text-overflow: ellipsis;&#13;
+  white-space: nowrap;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__urgent {&#13;
+  flex-shrink: 0;&#13;
+  padding: 2px $aes-space-sm;&#13;
+&#13;
+  color: $aes-urgent-color;&#13;
+  font-size: $font-size-base;&#13;
+  font-weight: 600;&#13;
+&#13;
+  background-color: $aes-urgent-background;&#13;
+  border-radius: $aes-radius-sm;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__title {&#13;
+  display: -webkit-box;&#13;
+  overflow: hidden;&#13;
+  margin: 0;&#13;
+  color: $text-primary;&#13;
+  font-size: $font-size-h3;&#13;
+  font-weight: 600;&#13;
+  line-height: $headings-line-height;&#13;
+&#13;
+  -webkit-box-orient: vertical;&#13;
+  -webkit-line-clamp: 2;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__description {&#13;
+  display: -webkit-box;&#13;
+  overflow: hidden;&#13;
+&#13;
+  margin: $aes-space-sm 0 0;&#13;
+&#13;
+  color: $text-secondary;&#13;
+  font-size: $font-size-base;&#13;
+  line-height: $line-height-base;&#13;
+&#13;
+  -webkit-box-orient: vertical;&#13;
+  -webkit-line-clamp: 2;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__footer {&#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+  align-items: stretch;&#13;
+  gap: $aes-space-sm;&#13;
+&#13;
+  width: 100%;&#13;
+  margin-top: auto;&#13;
+  padding-top: $aes-space-lg;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__footer-meta {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  justify-content: space-between;&#13;
+  gap: $aes-space-md;&#13;
+&#13;
+  width: 100%;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__date {&#13;
+  color: $text-tertiary;&#13;
+  font-size: $font-size-base;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__actions {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: $aes-space-sm;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__action {&#13;
+  display: inline-flex;&#13;
+  align-items: center;&#13;
+  justify-content: center;&#13;
+&#13;
+  width: 32px;&#13;
+  height: 32px;&#13;
+  padding: 0;&#13;
+&#13;
+  color: $text-secondary;&#13;
+  background: transparent;&#13;
+  border: 0;&#13;
+  border-radius: $aes-radius-sm;&#13;
+&#13;
+  transition:&#13;
+    color $aes-transition-fast,&#13;
+    background-color $aes-transition-fast;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__action:hover,&#13;
+.aes-announcement-card__action:focus {&#13;
+  color: $text-primary;&#13;
+  background-color: $background-secondary;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__action--active {&#13;
+  color: $aes-saved-color;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__primary-action {&#13;
+  display: inline-flex;&#13;
+  align-items: center;&#13;
+  align-self: flex-start;&#13;
+  gap: $aes-space-sm;&#13;
+&#13;
+  color: $text-primary;&#13;
+  font-weight: 600;&#13;
+  text-decoration: none;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__primary-action:hover,&#13;
+.aes-announcement-card__primary-action:focus {&#13;
+  color: $aes-accent;&#13;
+  text-decoration: none;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__action .fa-plus {&#13;
+  transition: transform $aes-transition-fast;&#13;
+}&#13;
+&#13;
+.aes-announcement-card__action--open .fa-plus {&#13;
+  transform: rotate(45deg);&#13;
+}&#13;
+&#13;
+@media (max-width: 1200px) {&#13;
+  .aes-announcement-feed__grid {&#13;
+    grid-template-columns: repeat(3, minmax(0, 1fr));&#13;
+  }&#13;
+}&#13;
+&#13;
+@media (max-width: 900px) {&#13;
+  .aes-announcement-feed__grid {&#13;
+    grid-template-columns: repeat(2, minmax(0, 1fr));&#13;
+  }&#13;
+}&#13;
+&#13;
+@media (max-width: 600px) {&#13;
+  .aes-announcement-feed__grid {&#13;
+    grid-template-columns: 1fr;&#13;
+  }&#13;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description>Displays announcements available to the current user within the selected AES experience and channel.</description>
         <docs/>
         <field_list/>
         <has_preview>false</has_preview>
-        <id>aes-announcement-feed</id>
+        <id>aes-announcement-content</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>AES - Announcement Feed</name>
+        <name>AES - Announcement Content</name>
         <option_schema/>
         <public>false</public>
         <roles>x_733168_aes.user</roles>
@@ -32,6 +286,22 @@
 
     if (!channelId) {
         data.announcements = [];
+        return;
+    }
+
+    if (input && input.action === 'toggle_saved') {
+        var tracking = new AESCommunicationTracking();
+        var result;
+
+        if (input.saved)
+            result = tracking.save(input.communication_id);
+        else
+            result = tracking.unsave(input.communication_id);
+
+        data.success = result.success;
+        data.reason = result.reason || '';
+        data.saved = result.success ? !!input.saved : null;
+
         return;
     }
 
@@ -50,44 +320,22 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-24 19:34:36</sys_created_on>
         <sys_id>acd10a9993a74b90ef30f2918bba1001</sys_id>
-        <sys_mod_count>5</sys_mod_count>
-        <sys_name>AES - Announcement Feed</sys_name>
+        <sys_mod_count>30</sys_mod_count>
+        <sys_name>AES - Announcement Content</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sp_widget_acd10a9993a74b90ef30f2918bba1001</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-24 20:17:16</sys_updated_on>
-        <template><![CDATA[<div class="aes-announcement-feed">
+        <sys_updated_on>2026-09-26 04:17:47</sys_updated_on>
+        <template><![CDATA[<section class="aes-announcement-feed" aria-label="${Announcements}">
 
-  <div class="aes-announcement-list">
-    <article class="aes-announcement-card"
-             ng-repeat="announcement in data.announcements track by announcement.sys_id">
-
-      <div class="aes-announcement-card__categories"
-           ng-if="announcement.categories.length">
-        <span ng-repeat="category in announcement.categories">
-          {{::category.name}}
-        </span>
-      </div>
-
-      <h3 class="aes-announcement-card__title">
-        {{::announcement.title}}
-      </h3>
-
-      <p class="aes-announcement-card__description"
-         ng-if="announcement.short_description">
-        {{::announcement.short_description}}
-      </p>
-
-    </article>
+  <div class="aes-announcement-feed__grid" ng-if="c.data.announcements.length">
+    <div class="aes-announcement-feed__grid-item" ng-repeat="announcement in c.data.announcements track by announcement.sys_id" ng-include="'aes-announcement-grid-card.html'"></div>
   </div>
 
-  <div class="aes-announcement-feed__empty"
-       ng-if="!data.announcements.length">
-    No announcements available.
-  </div>
+  <div class="aes-announcement-feed__empty" ng-if="!c.data.announcements.length">${No announcements available.}</div>
 
-</div>]]></template>
+</section>]]></template>
     </sp_widget>
 </record_update>
