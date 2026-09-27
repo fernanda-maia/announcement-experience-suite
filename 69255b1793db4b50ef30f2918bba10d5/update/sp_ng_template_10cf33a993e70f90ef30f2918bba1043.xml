@@ -6,14 +6,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-25 23:20:48</sys_created_on>
         <sys_id>10cf33a993e70f90ef30f2918bba1043</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>aes-announcement-grid-card.html</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sp_ng_template_10cf33a993e70f90ef30f2918bba1043</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-26 04:07:52</sys_updated_on>
+        <sys_updated_on>2026-09-27 02:23:32</sys_updated_on>
         <template><![CDATA[<article class="aes-announcement-card aes-announcement-card--grid">
   
   <div class="aes-announcement-card__media">  
@@ -25,32 +25,39 @@
   <div class="aes-announcement-card__body">
     
     <div class="aes-announcement-card__metadata">
-     <span class="aes-announcement-card__category">
-       <span ng-if="announcement.categories.length">{{::announcement.categories[0].name}}</span>
-     </span>
-     
      <span class="aes-announcement-card__urgent" ng-if="announcement.urgent">${Urgent}</span>
+     <span class="aes-announcement-card__category">
+       <span ng-if="announcement.categories.length" ng-attr-title="{{::announcement.categories[0].name}}">{{::announcement.categories[0].name}}</span>
+     </span>
     </div>
     
-    <h2 class="aes-announcement-card__title">{{announcement.title}}</h2>
-
-    <p class="aes-announcement-card__description" ng-if="announcement.short_description">
-      {{announcement.short_description}}
+    <h2 class="aes-announcement-card__title" ng-attr-title="{{::announcement.title}}">{{announcement.title}}</h2>
+    
+    <p class="aes-announcement-card__description">
+      <span ng-if="announcement.short_description">{{::announcement.short_description}}</span>
     </p>
 
     <div class="aes-announcement-card__footer">
       
-      <a class="aes-announcement-card__primary-action" ng-repeat="action in announcement.actions | filter:{level:'primary'}">
-        {{::action.label}}
-        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-      </a>
+      <div class="aes-announcement-card__primary-action-slot">
+        <a class="aes-announcement-card__primary-action" ng-repeat="action in announcement.actions | filter:{level:'primary'}">
+          {{::action.label}}
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
       
       <div class="aes-announcement-card__footer-meta">
-        <time class="aes-announcement-card__date">{{::announcement.publish_date_display_date}}</time>
+        
+        <time class="aes-announcement-card__date">
+          <span ng-attr-title="{{::announcement.publish_date_display}}">
+            {{::announcement.publish_date_relative}}
+          </span>
+        </time>
         
         <div class="aes-announcement-card__actions">
           
           <button type="button" class="aes-announcement-card__action"
+            ng-disabled="announcement._saving"
             ng-class="{'aes-announcement-card__action--active': announcement.tracking && announcement.tracking.saved}"
             ng-click="c.toggleSaved(announcement, $event)"
             aria-label="{{announcement.tracking && announcement.tracking.saved? '${Remove from saved}' : '${Save announcement}'}}">

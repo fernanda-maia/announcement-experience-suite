@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($sce, $timeout) {
+    var c = this;
+    var copyFeedbackTimeout = null;
+    c.linkCopied = false;
+
+    c.trustedContent = $sce.trustAsHtml(c.data.announcement ? c.data.announcement.content || '' : '');
+
+    c.primaryActions = [];
+    c.secondaryActions = [];
+    c.tertiaryActions = [];
+
+    var actions = c.data.announcement && c.data.announcement.actions ? c.data.announcement.actions : [];
+
+    actions.forEach(function(action) {
+        switch (action.level) {
+            case 'primary':
+                c.primaryActions.push(action);
+                break;
+
+            case 'secondary':
+                c.secondaryActions.push(action);
+                break;
+
+            case 'tertiary':
+                c.tertiaryActions.push(action);
+                break;
+        }
+    });
+
+    c.toggleSaved = function() {
+        var announcement = c.data.announcement;
+
+        if (!announcement || !announcement.tracking || announcement._saving) {
+            return;
+        }
+
+        var shouldSave = !announcement.tracking.saved;
+        announcement._saving = true;
+
+        c.server.get({
+            action: 'toggle_saved',
+            communication_id: announcement.sys_id,
+            saved: shouldSave
+
+        }).then(function(response) {
+            if (response.data.success) {
+                announcement.tracking.saved = response.data.saved;
+            }
+
+        }).finally(function() {
+            announcement._saving = false;
+        });
+    };
+
+    function showCopied() {
+        if (copyFeedbackTimeout) {
+            $timeout.cancel(copyFeedbackTimeout);
+        }
+
+        $timeout(function() {
+            c.linkCopied = true;
+
+            copyFeedbackTimeout = $timeout(function() {
+                c.linkCopied = false;
+                copyFeedbackTimeout = null;
+            }, 2000);
+        });
+    }
+
+    c.copyLink = function() {
+        var announcement = c.data.announcement;
+
+        if (!announcement)
+            return;
+
+        var url = window.location.origin + window.location.pathname + '?id=aes_details&announcement=' + encodeURIComponent(announcement.sys_id);
+
+        navigator.clipboard.writeText(url).then(function() {
+            showCopied();
+
+        })
+    };
+
+    c.backToAnnouncements = function() {
+        window.location.href = window.location.pathname + '?id=aes_announcements';
+    };
+
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.aes-announcement-detail {&#13;
+    max-width: 1120px;&#13;
+    margin: 0 auto;&#13;
+    padding: $aes-space-2xl $aes-page-gutter;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   TOP BAR&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__topbar {&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+    justify-content: space-between;&#13;
+    gap: $aes-space-lg;&#13;
+    margin-bottom: $aes-space-lg;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__tools {&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+    gap: $aes-space-sm;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__back,&#13;
+.aes-announcement-detail__tool,&#13;
+.aes-announcement-detail__more {&#13;
+    display: inline-flex;&#13;
+    align-items: center;&#13;
+    justify-content: center;&#13;
+    gap: $aes-space-sm;&#13;
+&#13;
+    border: 0;&#13;
+    background: transparent;&#13;
+&#13;
+    color: $link-color;&#13;
+    font-size: $font-size-small;&#13;
+    font-weight: 600;&#13;
+&#13;
+    cursor: pointer;&#13;
+    transition:&#13;
+        color $aes-transition-fast,&#13;
+        background $aes-transition-fast;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__back:hover,&#13;
+.aes-announcement-detail__tool:hover {&#13;
+    color: $link-hover-color;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__tool[disabled] {&#13;
+    opacity: $aes-opacity-disabled;&#13;
+    cursor: default;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__tool[aria-pressed="true"] {&#13;
+    color: $aes-saved-color;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__more {&#13;
+    width: 36px;&#13;
+    height: 36px;&#13;
+    border-radius: 50%;&#13;
+    color: $text-primary;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__more:hover {&#13;
+    background: $background-tertiary;&#13;
+}&#13;
+&#13;
+/* ============================================================&#13;
+   ARTICLE&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__article {&#13;
+    overflow: hidden;&#13;
+&#13;
+    background: $background-primary;&#13;
+    border: 1px solid $border-tertiary;&#13;
+    border-radius: $aes-radius-lg;&#13;
+    box-shadow: $aes-shadow-lg;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   HEADER&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__header {&#13;
+    padding:&#13;
+        $aes-space-2xl&#13;
+        $aes-space-2xl&#13;
+        $aes-space-xl;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__badges {&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+    flex-wrap: wrap;&#13;
+    gap: $aes-space-sm;&#13;
+&#13;
+    margin-bottom: $aes-space-lg;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__badge,&#13;
+.aes-announcement-detail__category {&#13;
+    display: inline-flex;&#13;
+    align-items: center;&#13;
+&#13;
+    padding: $aes-space-xs $aes-space-sm;&#13;
+&#13;
+    border-radius: 999px;&#13;
+&#13;
+    font-size: $font-size-xs;&#13;
+    font-weight: 600;&#13;
+    line-height: 1.2;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__badge--new {&#13;
+    background: $aes-new-background;&#13;
+    color: $aes-new-color;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__badge--urgent {&#13;
+    background: $aes-urgent-background;&#13;
+    color: $aes-urgent-color;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__category {&#13;
+    background: $brand-primary-lightest;&#13;
+    color: $aes-deep-forest;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   TITLE&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__title {&#13;
+    max-width: 850px;&#13;
+&#13;
+    margin: 0 0 $aes-space-sm;&#13;
+&#13;
+    color: $text-primary;&#13;
+&#13;
+    font-family: $headings-font-family;&#13;
+    font-size: $font-size-h1;&#13;
+    font-weight: $headings-font-weight;&#13;
+    line-height: $headings-line-height;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__description {&#13;
+    max-width: 850px;&#13;
+&#13;
+    margin: 0 0 $aes-space-lg;&#13;
+&#13;
+    color: $text-secondary;&#13;
+&#13;
+    font-size: $font-size-large;&#13;
+    line-height: $line-height-base;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   DATES&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__dates {&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+    flex-wrap: wrap;&#13;
+    gap: $aes-space-sm;&#13;
+&#13;
+    color: $text-tertiary;&#13;
+&#13;
+    font-size: $font-size-small;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__date {&#13;
+    display: inline-flex;&#13;
+    align-items: center;&#13;
+    gap: $aes-space-xs;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__date-separator {&#13;
+    color: $border-secondary;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   HERO IMAGE&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__media {&#13;
+    max-width: 850px;&#13;
+    margin:&#13;
+        $aes-space-lg&#13;
+        auto&#13;
+        0;&#13;
+&#13;
+    overflow: hidden;&#13;
+    background: $background-secondary;&#13;
+    border-radius: $aes-radius-md;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__image {&#13;
+    display: block;&#13;
+    width: 100%;&#13;
+    height: 300px;&#13;
+    object-fit: contain;&#13;
+}&#13;
+&#13;
+/* ============================================================&#13;
+   RICH CONTENT&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__content {&#13;
+    max-width: 850px;&#13;
+&#13;
+    margin: 0 auto;&#13;
+    padding:&#13;
+        $aes-space-xl&#13;
+        0;&#13;
+&#13;
+    color: $text-primary;&#13;
+&#13;
+    font-size: $font-size-base;&#13;
+    line-height: 1.7;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__content p:last-child {&#13;
+    margin-bottom: 0;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__content img {&#13;
+    max-width: 100%;&#13;
+    height: auto;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   ACTIONS&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__actions {&#13;
+    max-width: 850px;&#13;
+&#13;
+    margin: 0 auto;&#13;
+    padding:&#13;
+        $aes-space-xl&#13;
+        $aes-space-xl;&#13;
+&#13;
+    border-top: 1px solid $border-tertiary;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__primary-actions {&#13;
+    display: flex;&#13;
+    flex-wrap: wrap;&#13;
+    gap: $aes-space-sm;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__action {&#13;
+    font-weight: $btn-font-weight;&#13;
+    cursor: pointer;&#13;
+&#13;
+    transition:&#13;
+        background $aes-transition-fast,&#13;
+        color $aes-transition-fast,&#13;
+        border-color $aes-transition-fast;&#13;
+}&#13;
+&#13;
+&#13;
+/* Primary */&#13;
+&#13;
+.aes-announcement-detail__action--primary {&#13;
+    display: inline-flex;&#13;
+    align-items: center;&#13;
+    justify-content: center;&#13;
+    gap: $aes-space-sm;&#13;
+&#13;
+    min-height: 44px;&#13;
+&#13;
+    padding:&#13;
+        $aes-space-sm&#13;
+        $aes-space-xl;&#13;
+&#13;
+    border: 1px solid $btn-primary-border;&#13;
+    border-radius: $aes-radius-md;&#13;
+&#13;
+    background: $btn-primary-bg;&#13;
+    color: $btn-primary-color;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__action--primary:hover {&#13;
+    background: $aes-deep-forest;&#13;
+    border-color: $aes-deep-forest;&#13;
+}&#13;
+&#13;
+&#13;
+/* Secondary */&#13;
+&#13;
+.aes-announcement-detail__secondary-actions {&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+    flex-wrap: wrap;&#13;
+    gap: $aes-space-lg;&#13;
+&#13;
+    margin-top: $aes-space-lg;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__action--secondary {&#13;
+    padding: 0;&#13;
+&#13;
+    border: 0;&#13;
+    background: transparent;&#13;
+&#13;
+    color: $link-color;&#13;
+}&#13;
+&#13;
+.aes-announcement-detail__action--secondary:hover {&#13;
+    color: $link-hover-color;&#13;
+    text-decoration: underline;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   FOOTER&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__footer {&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+    flex-wrap: wrap;&#13;
+    gap: $aes-space-sm;&#13;
+&#13;
+    margin:&#13;
+        $aes-space-lg&#13;
+        $aes-space-2xl&#13;
+        0;&#13;
+&#13;
+    padding:&#13;
+        $aes-space-lg&#13;
+        0&#13;
+        $aes-space-xl;&#13;
+&#13;
+    border-top: 1px solid $border-tertiary;&#13;
+&#13;
+    color: $text-tertiary;&#13;
+&#13;
+    font-size: $font-size-xs;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   UNAVAILABLE&#13;
+   ============================================================ */&#13;
+&#13;
+.aes-announcement-detail__unavailable {&#13;
+    max-width: 720px;&#13;
+&#13;
+    margin: $aes-space-3xl auto;&#13;
+    padding: $aes-space-2xl;&#13;
+&#13;
+    text-align: center;&#13;
+&#13;
+    background: $background-primary;&#13;
+    border: 1px solid $border-tertiary;&#13;
+    border-radius: $aes-radius-lg;&#13;
+}&#13;
+&#13;
+&#13;
+/* ============================================================&#13;
+   MOBILE&#13;
+   ============================================================ */&#13;
+&#13;
+@media (max-width: 767px) {&#13;
+&#13;
+    .aes-announcement-detail {&#13;
+        padding:&#13;
+            $aes-space-lg&#13;
+            $aes-space-md;&#13;
+    }&#13;
+&#13;
+    .aes-announcement-detail__topbar {&#13;
+        align-items: center;&#13;
+    }&#13;
+&#13;
+    .aes-announcement-detail__tool span {&#13;
+        display: none;&#13;
+    }&#13;
+&#13;
+    .aes-announcement-detail__header {&#13;
+        padding: $aes-space-xl $aes-space-lg;&#13;
+    }&#13;
+&#13;
+    .aes-announcement-detail__title {&#13;
+        font-size: $font-size-h2;&#13;
+    }&#13;
+&#13;
+    .aes-announcement-detail__description {&#13;
+        font-size: $font-size-base;&#13;
+    }&#13;
+&#13;
+        &#13;
+  .aes-announcement-detail__media {    &#13;
+    margin: $aes-space-lg $aes-space-lg 0;&#13;
+    }&#13;
+&#13;
+    .aes-announcement-detail__image {&#13;
+        height: auto;&#13;
+        max-height: 280px;&#13;
+    }&#13;
+  &#13;
+    .aes-announcement-detail__actions {&#13;
+        padding: $aes-space-xl $aes-space-lg;&#13;
+    }&#13;
+  &#13;
+     .aes-announcement-detail__content {&#13;
+        padding: $aes-space-xl $aes-space-lg;&#13;
+    }&#13;
+&#13;
+    .aes-announcement-detail__action--primary {&#13;
+        width: 100%;&#13;
+    }&#13;
+&#13;
+    .aes-announcement-detail__footer {&#13;
+        margin: $aes-space-md $aes-space-lg 0;&#13;
+    }&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>aes-announcement-detail</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>AES - Announcement Detail</name>
+        <option_schema>[{"hint":"Display types internal name handled by widget","name":"display_types","section":"Data","default_value":"feed,featured","label":"Display Types","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+    data.announcement = null;
+    data.error = '';
+
+    var announcementId = $sp.getParameter('announcement');
+
+    if (!announcementId) {
+        data.error = 'missing_announcement';
+        return;
+    }
+
+    var portal = $sp.getPortalRecord();
+
+    if (!portal) {
+        data.error = 'portal_not_found';
+        return;
+    }
+
+    var channelResolver = new AESPortalChannelResolver();
+    var channelId = channelResolver.getChannel(portal.getUniqueValue());
+
+    if (!channelId) {
+        data.error = 'channel_not_found';
+        return;
+    }
+
+    var displayTypes = getDisplayTypes();
+
+    if (!displayTypes.length) {
+        data.error = 'display_types_not_configured';
+        return;
+    }
+
+    if (input && input.action === 'toggle_saved') {
+        var tracking = new AESCommunicationTracking();
+        var result;
+
+        if (input.saved) {
+            result = tracking.save(input.communication_id);
+        } else {
+            result = tracking.unsave(input.communication_id);
+        }
+
+        data.success = result.success;
+        data.reason = result.reason || '';
+        data.saved = result.success ? !!input.saved : null;
+
+        return;
+    }
+
+    var service = new AESAnnouncementService();
+
+    data.announcement =
+        service.getById(
+            announcementId, {
+                channel: channelId,
+                displayTypes: displayTypes
+            }
+        );
+
+    if (!data.announcement) {
+        data.error = 'announcement_not_available';
+    }
+
+
+    function getDisplayTypes() {
+        var value = options.display_types;
+
+        var result = [];
+        var values = value.split(',');
+
+        for (var i = 0; i < values.length; i++) {
+            var displayType = values[i].trim();
+
+            if (displayType)
+                result.push(displayType);
+        }
+
+        return result;
+    }
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-27 01:34:11</sys_created_on>
+        <sys_id>75d6e5469367cf90ef30f2918bba1067</sys_id>
+        <sys_mod_count>30</sys_mod_count>
+        <sys_name>AES - Announcement Detail</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sp_widget_75d6e5469367cf90ef30f2918bba1067</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-27 03:51:39</sys_updated_on>
+        <template><![CDATA[<div class="aes-announcement-detail" ng-if="data.announcement">
+  
+  <!-- Top bar -->
+  <div class="aes-announcement-detail__topbar">
+    
+    <button type="button" class="aes-announcement-detail__back" ng-click="c.backToAnnouncements()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <span>${Back to announcements}</span>
+    </button>
+    
+    <div class="aes-announcement-detail__tools">
+      <button type="button" class="aes-announcement-detail__tool"
+        ng-if="data.announcement.tracking"
+        ng-click="c.toggleSaved()"
+        ng-disabled="data.announcement._saving"
+        ng-attr-aria-pressed="{{data.announcement.tracking.saved}}"
+        ng-attr-aria-label="{{data.announcement.tracking.saved? '${Remove from saved}': '${Save announcement}'}}">
+        
+        <i class="fa" ng-class="{'fa-bookmark': data.announcement.tracking.saved, 'fa-bookmark-o': !data.announcement.tracking.saved}" aria-hidden="true"></i>
+        <span>{{data.announcement.tracking.saved? '${Saved}' : '${Save}'}}</span>
+      </button>
+      
+      <button type="button" class="aes-announcement-detail__tool"
+        ng-click="c.copyLink()"
+        ng-attr-aria-label="{{c.linkCopied? '${Link copied}' : '${Copy link}'}}">
+        
+        <i class="fa" ng-class="c.linkCopied? 'fa-check' : 'fa-link'" aria-hidden="true"></i>
+        
+        <span>{{c.linkCopied? '${Copied}' : '${Copy Link}'}}</span>
+      </button>
+      
+      <!-- Tertiary actions -->
+      <button type="button" class="aes-announcement-detail__more" ng-if="c.tertiaryActions.length" ng-repeat="action in c.primaryActions" aria-label="${More actions}">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  
+  <article class="aes-announcement-detail__article">
+
+    <!-- Header -->
+    <header class="aes-announcement-detail__header">
+      <div class="aes-announcement-detail__badges">
+        <span class="aes-announcement-detail__badge aes-announcement-detail__badge--new" ng-if="data.announcement.is_new">
+          ${New}
+        </span>
+        
+        <span class="aes-announcement-detail__badge aes-announcement-detail__badge--urgent" ng-if="data.announcement.urgent">
+          ${Urgent}
+        </span>
+        
+        <span class="aes-announcement-detail__category" ng-repeat="category in data.announcement.categories" ng-attr-title="{{::category.name}}">
+          {{::category.name}}
+        </span>
+      </div>
+      
+      <h1 class="aes-announcement-detail__title">
+        {{::data.announcement.title}}
+      </h1>
+      
+      <p class="aes-announcement-detail__description" ng-if="data.announcement.short_description">
+        {{::data.announcement.short_description}}
+      </p>
+      
+      <!-- Dates -->
+      <div class="aes-announcement-detail__dates">
+        <span class="aes-announcement-detail__date" ng-if="data.announcement.publish_date" ng-attr-title="{{::data.announcement.publish_date_display}}">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <span>${Published} {{::data.announcement.publish_date_relative}}</span>
+        </span>
+        
+        <span class="aes-announcement-detail__date-separator" ng-if="data.announcement.expiration_date" aria-hidden="true">
+          &bull;
+        </span>
+        
+        <span class="aes-announcement-detail__date" ng-if="data.announcement.expiration_date" ng-attr-title="{{::data.announcement.expiration_date_display}}">
+          {{::data.announcement.expiration_date_relative}}
+        </span>
+      </div>
+    </header>
+    
+    <!-- Hero -->
+    <figure class="aes-announcement-detail__media" ng-if="data.announcement.image">
+      <img class="aes-announcement-detail__image" ng-src="{{::data.announcement.image.url}}" ng-attr-alt="{{::data.announcement.image.alt_text || ''}}">
+    </figure>
+    
+    <!-- Rich content -->
+    <div class="aes-announcement-detail__content" ng-bind-html="c.trustedContent"></div>
+    
+    <!-- Actions -->
+    <div class="aes-announcement-detail__actions" ng-if="data.announcement.actions.length">
+      
+      <!-- Primary -->
+      <div class="aes-announcement-detail__primary-actions">
+        <button type="button" class="aes-announcement-detail__action aes-announcement-detail__action--primary" 
+                ng-repeat="action in c.primaryActions">  
+          <span>{{::action.label}}</span>
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+      
+      <!-- Secondary -->
+      <div class="aes-announcement-detail__secondary-actions">
+        <button type="button" class="aes-announcement-detail__action aes-announcement-detail__action--secondary"
+                 ng-repeat="action in c.secondaryActions">
+          {{::action.label}}
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer metadata -->
+    <footer class="aes-announcement-detail__footer">
+      <span ng-if="data.announcement.number">{{::data.announcement.number}}</span>
+      <span class="aes-announcement-detail__footer-separator" ng-if="data.announcement.number && data.announcement.priority.label">
+        &bull;
+      </span>
+      
+      <span ng-if="data.announcement.priority.label">
+        {{::data.announcement.priority.label}}
+      </span>
+    </footer>
+  </article>
+</div>
+
+
+<!-- Unavailable state -->
+<div class="aes-announcement-detail__unavailable"
+     ng-if="!data.announcement">
+
+    <h2>${Announcement unavailable}</h2>
+
+    <p>
+        ${This announcement is no longer available or you do not have access to it.}
+    </p>
+
+</div>]]></template>
+    </sp_widget>
+</record_update>

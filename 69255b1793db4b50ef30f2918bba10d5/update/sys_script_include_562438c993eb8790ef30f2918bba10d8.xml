@@ -34,6 +34,43 @@ AESAnnouncementService.prototype = {
     },
 
     /**
+     * Returns a single Announcement when it is available
+     * for the given context.
+     *
+     * Options:
+     *
+     * displayTypes:
+     *   - array of Display Type sys_ids or internal_names
+     *   - required
+     *
+     * channel:
+     *   - sys_id or internal_name
+     *   - required
+     *
+     * user:
+     *   - sys_user sys_id
+     *   - optional; defaults to current user
+     */
+    getById: function(announcementId, options) {
+        options = options || {};
+        options = this.prepareQueryOptions(options);
+
+        var id = this._query.getById(announcementId, options);
+
+        if (!id)
+            return null;
+
+        var announcements = this._buildAnnouncements([id], options);
+
+        announcements = this.afterBuild(
+            announcements,
+            options
+        );
+
+        return announcements.length > 0 ? announcements[0] : null;
+    },
+
+    /**
      * Extension point.
      * Allows implementations to modify query options
      * before AESCommunicationQuery is executed.
@@ -83,7 +120,6 @@ AESAnnouncementService.prototype = {
                 continue;
 
             var announcement = this._buildAnnouncement(gr, options);
-
             announcement = this._applyExtensions(announcement, gr, options);
 
             if (announcement)
@@ -97,7 +133,10 @@ AESAnnouncementService.prototype = {
      * Builds the standard AES Announcement DTO.
      */
     _buildAnnouncement: function(gr, options) {
-        var publishDate = this._getDateTimeDisplay(gr.getValue('publish_date'));
+        var publishDateValue = gr.getValue('publish_date');
+        var expirationDateValue = gr.getValue('expiration_date');
+        var publishDate = this._getDateTimeDisplay(publishDateValue);
+        var expirationDate = this._getDateTimeDisplay(expirationDateValue);
         var tracking = this._tracking.getTracking(gr.getUniqueValue());
 
         return {
@@ -110,11 +149,16 @@ AESAnnouncementService.prototype = {
                 value: gr.getValue('priority'),
                 label: gr.getDisplayValue('priority')
             },
-            publish_date: gr.getValue('publish_date'),
+            publish_date: publishDateValue,
             publish_date_display: publishDate.display,
             publish_date_display_date: publishDate.date,
             publish_date_display_time: publishDate.time,
-            expiration_date: gr.getValue('expiration_date'),
+            publish_date_relative: this._getRelativeDate(publishDateValue, 'published'),
+            expiration_date: expirationDateValue,
+            expiration_date_display: expirationDate.display,
+            expiration_date_display_date: expirationDate.date,
+            expiration_date_display_time: expirationDate.time,
+            expiration_date_relative: this._getRelativeDate(expirationDateValue, 'expiration'),
             image: this._getImage(gr),
             image_alt_text: gr.getDisplayValue('image_alt_text'),
             glyph: gr.getValue('glyph'),
@@ -242,25 +286,6 @@ AESAnnouncementService.prototype = {
         return action;
     },
 
-    _getTracking: function(communicationId) {
-        var tracking = this._tracking.getTracking(communicationId);
-
-        if (!tracking)
-            return null;
-
-        return {
-            displayed: tracking.displayed,
-            first_displayed_on: tracking.first_displayed_on,
-            last_displayed_on: tracking.last_displayed_on,
-            read: tracking.read,
-            read_on: tracking.read_on,
-            saved: tracking.saved,
-            saved_on: tracking.saved_on,
-            dismissed: tracking.dismissed,
-            dismissed_on: tracking.dismissed_on
-        };
-    },
-
     _copyOptions: function(options) {
         var copy = {};
 
@@ -301,14 +326,166 @@ AESAnnouncementService.prototype = {
         }
 
         var gdt = new GlideDateTime(value);
-        var localDate = gdt.getLocalDate();
-        var localTime = gdt.getLocalTime();
+        var displayValue = gdt.getDisplayValue();
+
+        var separatorIndex = displayValue.indexOf(' ');
+
+        if (separatorIndex === -1) {
+            return {
+				display: displayValue,
+                date: displayValue,
+                time: ''
+            };
+        }
 
         return {
-            display: gdt.getDisplayValue(),
-            date: localDate.getDisplayValue(),
-            time: localTime.getDisplayValue()
+            display: displayValue,
+            date: displayValue.substring(0, separatorIndex),
+            time: displayValue.substring(separatorIndex + 1)
         };
+    },
+
+    _getRelativeDate: function(value, type) {
+        if (!value)
+            return '';
+
+        var date = new GlideDateTime(value);
+        var now = new GlideDateTime();
+
+        var difference = date.getNumericValue() - now.getNumericValue();
+        var future = difference > 0;
+        var milliseconds = Math.abs(difference);
+
+        var minute = 60 * 1000;
+        var hour = 60 * minute;
+        var day = 24 * hour;
+        var week = 7 * day;
+
+        var minutes = Math.floor(milliseconds / minute);
+        var hours = Math.floor(milliseconds / hour);
+        var days = Math.floor(milliseconds / day);
+        var weeks = Math.floor(days / 7);
+
+        if (type == 'expiration') {
+            return this._getExpirationRelativeDate(
+                future,
+                minutes,
+                hours,
+                days,
+                weeks
+            );
+        }
+
+        return this._getPublishedRelativeDate(
+            future,
+            minutes,
+            hours,
+            days,
+            weeks
+        );
+    },
+
+    _getPublishedRelativeDate: function(future, minutes, hours, days, weeks) {
+        // Publication normally represents a past event.
+        // Keep future values understandable in case scheduled
+        // content is exposed by a custom Display Type.
+        if (future) {
+            if (minutes < 1)
+                return 'In less than a minute';
+
+            if (minutes < 60)
+                return 'In ' + minutes +
+                    (minutes == 1 ? ' minute' : ' minutes');
+
+            if (hours < 24)
+                return 'In ' + hours +
+                    (hours == 1 ? ' hour' : ' hours');
+
+            if (days == 1)
+                return 'Tomorrow';
+
+            if (days < 7)
+                return 'In ' + days + ' days';
+
+            if (weeks < 5)
+                return 'In ' + weeks +
+                    (weeks == 1 ? ' week' : ' weeks');
+
+            return 'In over a month';
+        }
+
+        if (minutes < 1)
+            return 'Just now';
+
+        if (minutes < 60)
+            return minutes +
+                (minutes == 1 ? ' minute ago' : ' minutes ago');
+
+        if (hours < 24)
+            return hours +
+                (hours == 1 ? ' hour ago' : ' hours ago');
+
+        if (days == 1)
+            return 'Yesterday';
+
+        if (days < 7)
+            return days + ' days ago';
+
+        if (weeks < 5)
+            return weeks +
+                (weeks == 1 ? ' week ago' : ' weeks ago');
+
+        return 'Over a month ago';
+    },
+
+    _getExpirationRelativeDate: function(future, minutes, hours, days, weeks) {
+        if (future) {
+            if (minutes < 1)
+                return 'Expires in less than a minute';
+
+            if (minutes < 60)
+                return 'Expires in ' + minutes +
+                    (minutes == 1 ? ' minute' : ' minutes');
+
+            if (hours < 24)
+                return 'Expires in ' + hours +
+                    (hours == 1 ? ' hour' : ' hours');
+
+            if (days == 1)
+                return 'Expires tomorrow';
+
+            if (days < 7)
+                return 'Expires in ' + days + ' days';
+
+            if (weeks < 5)
+                return 'Expires in ' + weeks +
+                    (weeks == 1 ? ' week' : ' weeks');
+
+            return 'Expires in over a month';
+        }
+
+        if (minutes < 1)
+            return 'Expired just now';
+
+        if (minutes < 60)
+            return 'Expired ' + minutes +
+                (minutes == 1 ? ' minute ago' : ' minutes ago');
+
+        if (hours < 24)
+            return 'Expired ' + hours +
+                (hours == 1 ? ' hour ago' : ' hours ago');
+
+        if (days == 1)
+            return 'Expired yesterday';
+
+        if (days < 7)
+            return 'Expired ' + days + ' days ago';
+
+        if (weeks < 5)
+            return 'Expired ' + weeks +
+                (weeks == 1 ? ' week ago' : ' weeks ago');
+
+        return 'Expired over a month ago';
     },
 
     _getNewWindowHours: function() {
@@ -353,13 +530,13 @@ AESAnnouncementService.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-23 19:16:32</sys_created_on>
         <sys_id>562438c993eb8790ef30f2918bba10d8</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>AESAnnouncementService</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sys_script_include_562438c993eb8790ef30f2918bba10d8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-26 04:03:43</sys_updated_on>
+        <sys_updated_on>2026-09-27 02:33:26</sys_updated_on>
     </sys_script_include>
 </record_update>
