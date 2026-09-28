@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_design_topic">
+    <sys_cb_design_topic action="INSERT_OR_UPDATE">
+        <compiled_topic display_value="AES Agent Support">5c2ba1d293e743d0ef30f2918bba1063</compiled_topic>
+        <design_definition>{"type":"FlowTopic","triggers":[{"type":"Trigger","name":"09fb40f7d4c349f48ce4d04eb128e97b","triggerType":"request","applicability":{"type":"Applicability","mode":"script","value":"true"},"id":"09fb40f7d4c349f48ce4d04eb128e97b"}],"goals":[{"name":"primary","trigger_id":"09fb40f7d4c349f48ce4d04eb128e97b","nodes":[{"type":"StartGoal","goal_id":"primary","greeting_msg":{"type":"String","mode":"string","value":""},"id":"cd34a0c8360f459885a7ae7d48845942","name":"Start","expert_mode":false},{"type":"TerminateGoal","goal_id":"primary","confirmation_msg":{"type":"String","mode":"string","value":""},"id":"0482d1f5079b43929f543dd9d1bbafec","name":"End","expert_mode":false},{"type":"TextOutputPrompt","value":[{"type":"String","mode":"string","value":"gs.getMessageLang(\"AES Agent support\", vaContext.getRequesterLang())"}],"request_feedback":true,"isCollapsible":true,"id":"1f5c3673b56647619af9fec2ec96d7b0","name":"Debug","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"secure":false},{"type":"ScriptedAction","script":"(function execute() {\n\n    vaContext.LiveAgent_aes_route = vaContext.aes_route;\n\n})();","id":"7961ece117c44003a1ff7bfccdddd7a6","name":"Prepare AES Routing Context","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false},{"type":"ScriptedAction","script":"(function execute() {\n    vaSystem.connectToAgent();\n})()\n","id":"1fb9999659e24c2b9cba551a9196e31e","name":"Connect to agent","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false}],"edges":[{"type":"Edge","source_node_id":"cd34a0c8360f459885a7ae7d48845942","target_node_id":"1f5c3673b56647619af9fec2ec96d7b0","id":"87c4b84d257e447e9f547278b14a9d13"},{"type":"Edge","source_node_id":"1f5c3673b56647619af9fec2ec96d7b0","target_node_id":"7961ece117c44003a1ff7bfccdddd7a6","id":"6a078770d3944cd4a35c1212c1a93504"},{"type":"Edge","source_node_id":"7961ece117c44003a1ff7bfccdddd7a6","target_node_id":"1fb9999659e24c2b9cba551a9196e31e","id":"7f9fb76e99a248b28b011378beca071e"},{"type":"Edge","source_node_id":"1fb9999659e24c2b9cba551a9196e31e","target_node_id":"0482d1f5079b43929f543dd9d1bbafec","id":"14ee807fe3d640cda0010fbc1362f276"}],"id":"primary"}],"script_variables":[{"type":"String","name":"LiveAgent_aes_route","value":{"type":"String","mode":"string"},"list":false,"id":"5d816edc52004ca89572f52fc9bcface","formatType":"text","secure":false,"sensitive":false,"aiInput":false}],"glide_variables":[{"type":"Reference","table":"sys_user","auto_select":false,"id":"current-user","name":"user","formatType":"text","secure":false,"sensitive":false,"aiInput":false,"list":false}],"applicability":{"type":"Applicability","mode":"script","value":"true"},"roles":[],"scope":"69255b1793db4b50ef30f2918bba10d5","domain":"global","topic_type":"STANDARD","channels":[],"dialog_acts_enabled":false,"id":"d9aa69de93a743d0ef30f2918bba10a2","name":"AES Agent Support","key_phrases":["AES Agent Support"],"nlu_provider":"","nlu_model":"","nlu_model_label":"","nlu_intent":"","nlu_intent_label":"","flexible_conversation_switching":false,"autopilot_topic":false,"design_categories":[],"triggerable_by_notification":false,"description":"","model_type":"nlu_keyword","foundational":false,"modify_confirmation_enabled":false,"context_profiles":[],"title":"AES Agent Support","library":false,"readOnly":false,"nluMapping":"[]"}</design_definition>
+        <design_topic_id>d9aa69de93a743d0ef30f2918bba10a2</design_topic_id>
+        <graph>{
+  "graph_api_version": "1.0.82",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "cd34a0c8360f459885a7ae7d48845942": {
+          "id": "cd34a0c8360f459885a7ae7d48845942",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "0482d1f5079b43929f543dd9d1bbafec": {
+          "id": "0482d1f5079b43929f543dd9d1bbafec",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "1f5c3673b56647619af9fec2ec96d7b0": {
+          "id": "1f5c3673b56647619af9fec2ec96d7b0",
+          "stepType": "TextOutput",
+          "name": "Debug",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "AES Agent support "
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "3a36ce084a3849d08e66dd73a0403a9e"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "7961ece117c44003a1ff7bfccdddd7a6": {
+          "id": "7961ece117c44003a1ff7bfccdddd7a6",
+          "name": "Prepare AES Routing Context",
+          "script": "(function execute() {\n\n    vaContext.LiveAgent_aes_route = vaContext.aes_route;\n\n})();",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "1fb9999659e24c2b9cba551a9196e31e": {
+          "id": "1fb9999659e24c2b9cba551a9196e31e",
+          "name": "Connect to agent",
+          "script": "(function execute() {\n    vaSystem.connectToAgent();\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "87c4b84d257e447e9f547278b14a9d13",
+          "edgeType": "Edge",
+          "source": "cd34a0c8360f459885a7ae7d48845942",
+          "target": "1f5c3673b56647619af9fec2ec96d7b0",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "6a078770d3944cd4a35c1212c1a93504",
+          "edgeType": "Edge",
+          "source": "1f5c3673b56647619af9fec2ec96d7b0",
+          "target": "7961ece117c44003a1ff7bfccdddd7a6",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "7f9fb76e99a248b28b011378beca071e",
+          "edgeType": "Edge",
+          "source": "7961ece117c44003a1ff7bfccdddd7a6",
+          "target": "1fb9999659e24c2b9cba551a9196e31e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "14ee807fe3d640cda0010fbc1362f276",
+          "edgeType": "Edge",
+          "source": "1fb9999659e24c2b9cba551a9196e31e",
+          "target": "0482d1f5079b43929f543dd9d1bbafec",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "5d816edc52004ca89572f52fc9bcface": {
+      "id": "5d816edc52004ca89572f52fc9bcface",
+      "name": "LiveAgent_aes_route",
+      "value": {
+        "mode": "simple",
+        "value": null
+      },
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    }
+  }
+}</graph>
+        <name>AES Agent Support</name>
+        <sys_class_name>sys_cb_design_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-27 20:26:25</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>982ba1d293e743d0ef30f2918bba106c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>FlowTopic</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_cb_design_topic_982ba1d293e743d0ef30f2918bba106c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-27 20:26:25</sys_updated_on>
+        <type>FlowTopic</type>
+    </sys_cb_design_topic>
+</record_update>

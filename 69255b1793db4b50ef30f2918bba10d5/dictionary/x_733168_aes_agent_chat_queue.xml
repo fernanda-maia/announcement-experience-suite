@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="1f473ede932383d0ef30f2918bba104e" label="AES Agent Chat Queue" max_length="40" name="x_733168_aes_agent_chat_queue" type="collection">
+        <element label="Routing key" max_length="100" name="routing_key" read_only="true" read_only_option="strict_read_only" type="string"/>
+        <element display="true" label="Queue" mandatory="true" max_length="32" name="queue" reference="awa_queue" reference_qual="active=true^service_channel=27f675e3739713004a905ee515f6a7c3^EQ" reference_qual_condition="active=true^service_channel=27f675e3739713004a905ee515f6a7c3^EQ" type="reference"/>
+        <index name="index">
+            <element name="queue"/>
+        </index>
+    </element>
+</database>

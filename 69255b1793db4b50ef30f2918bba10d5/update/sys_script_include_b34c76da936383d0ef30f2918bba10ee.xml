@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_733168_aes.AESAgentChatRouting</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AESAgentChatRouting</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AESAgentChatRouting = Class.create();
+AESAgentChatRouting.prototype = {
+
+    matchesRoute: function(current, routingKey) {
+        if (!current || !routingKey)
+            return false;
+
+        var contextTable = current.getValue('context_table');
+        var contextDocument = current.getValue('context_document');
+
+        if (!contextTable || !contextDocument)
+            return false;
+
+        var contextGR = new GlideRecord(contextTable);
+
+        if (!contextGR.get(contextDocument))
+            return false;
+
+        try {
+            var context = JSON.parse(
+                contextGR.getValue('value') || '{}'
+            );
+
+            return context.liveagent_aes_route === routingKey;
+
+        } catch (e) {
+            return false;
+        }
+    },
+
+    type: 'AESAgentChatRouting'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-28 02:23:26</sys_created_on>
+        <sys_id>b34c76da936383d0ef30f2918bba10ee</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>AESAgentChatRouting</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_script_include_b34c76da936383d0ef30f2918bba10ee</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-28 02:42:35</sys_updated_on>
+    </sys_script_include>
+</record_update>

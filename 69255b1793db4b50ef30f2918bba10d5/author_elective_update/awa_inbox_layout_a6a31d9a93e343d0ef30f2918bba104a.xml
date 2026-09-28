@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="awa_inbox_layout">
+    <awa_inbox_layout action="DELETE">
+        <card_layout><![CDATA[<img src="awa_card_layout_guide.png" width="349" height="300" />]]></card_layout>
+        <condition/>
+        <field_1>number</field_1>
+        <field_2/>
+        <field_3/>
+        <field_4/>
+        <field_5/>
+        <is_default>true</is_default>
+        <name>Default Chat layout</name>
+        <order>1000000</order>
+        <service_channel display_value="Chat">4273959a93e343d0ef30f2918bba1003</service_channel>
+        <short_description>Default inbox layout for the Chat Service Channel</short_description>
+        <sys_class_name>awa_inbox_layout</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-27 18:43:54</sys_created_on>
+        <sys_id>a6a31d9a93e343d0ef30f2918bba104a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Default Chat layout</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>awa_inbox_layout_a6a31d9a93e343d0ef30f2918bba104a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-27 18:43:54</sys_updated_on>
+        <title_field/>
+    </awa_inbox_layout>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>awa_inbox_layout_a6a31d9a93e343d0ef30f2918bba104a</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="awa_inbox_layout"&gt;&lt;awa_inbox_layout action="INSERT_OR_UPDATE"&gt;&lt;card_layout&gt;&lt;![CDATA[&lt;img src="awa_card_layout_guide.png" width="349" height="300" /&gt;]]&gt;&lt;/card_layout&gt;&lt;condition/&gt;&lt;field_1&gt;number&lt;/field_1&gt;&lt;field_2/&gt;&lt;field_3/&gt;&lt;field_4/&gt;&lt;field_5/&gt;&lt;is_default&gt;true&lt;/is_default&gt;&lt;name&gt;Default Chat layout&lt;/name&gt;&lt;order&gt;1000000&lt;/order&gt;&lt;service_channel display_value="Chat"&gt;4273959a93e343d0ef30f2918bba1003&lt;/service_channel&gt;&lt;short_description&gt;Default inbox layout for the Chat Service Channel&lt;/short_description&gt;&lt;sys_class_name&gt;awa_inbox_layout&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2026-09-27 18:43:54&lt;/sys_created_on&gt;&lt;sys_id&gt;a6a31d9a93e343d0ef30f2918bba104a&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;Default Chat layout&lt;/sys_name&gt;&lt;sys_package display_value="Announcement Experience Suite" source="x_733168_aes"&gt;69255b1793db4b50ef30f2918bba10d5&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Announcement Experience Suite"&gt;69255b1793db4b50ef30f2918bba10d5&lt;/sys_scope&gt;&lt;sys_update_name&gt;awa_inbox_layout_a6a31d9a93e343d0ef30f2918bba104a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2026-09-27 18:43:54&lt;/sys_updated_on&gt;&lt;title_field/&gt;&lt;/awa_inbox_layout&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>536287824</payload_hash>
+        <record_name>Default Chat layout</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-27 18:43:54</sys_created_on>
+        <sys_id>a6a31d9a93e343d0ef30f2918bba104f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0e42e4d8a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-27 18:43:54</sys_updated_on>
+        <type>Inbox Layout</type>
+        <update_guid>66a31d9ac5e343d0985931551e231c4e</update_guid>
+        <update_guid_history>66a31d9ac5e343d0985931551e231c4e:536287824</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Default Chat layout">2c3dddde932743d0ef30f2918bba1079</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-27 19:25:33</sys_created_on>
+        <sys_db_object display_value="" name="awa_inbox_layout">awa_inbox_layout</sys_db_object>
+        <sys_id>135531074e1e4a8289be1ce86e855f44</sys_id>
+        <sys_metadata>a6a31d9a93e343d0ef30f2918bba104a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Default Chat layout</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>awa_inbox_layout_a6a31d9a93e343d0ef30f2918bba104a</sys_update_name>
+        <sys_update_version display_value="awa_inbox_layout_a6a31d9a93e343d0ef30f2918bba104a">a6a31d9a93e343d0ef30f2918bba104f</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-27 19:25:33</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

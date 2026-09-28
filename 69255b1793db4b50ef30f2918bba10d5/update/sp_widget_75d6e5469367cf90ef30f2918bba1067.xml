@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function($sce, $timeout) {
+        <client_script><![CDATA[api.controller = function($sce, $timeout, $window, $location, $scope) {
     var c = this;
     var copyFeedbackTimeout = null;
     c.linkCopied = false;
@@ -55,6 +55,46 @@
         });
     };
 
+    c.copyLink = function() {
+        var announcement = c.data.announcement;
+
+        if (!announcement)
+            return;
+
+        var url = $window.location.origin + $window.location.pathname + '?id=aes_details&announcement=' + encodeURIComponent(announcement.sys_id);
+
+        navigator.clipboard.writeText(url).then(function() {
+            showCopied();
+        });
+    };
+
+    c.backToAnnouncements = function() {
+        $window.location.href = $window.location.pathname + '?id=aes_announcements';
+    };
+
+    c.executeAction = function(action) {
+        if (!action || !action.type)
+            return;
+
+        switch (action.type) {
+            case 'url':
+                executeUrlAction(action);
+                break;
+
+            case 'knowledge_article':
+                executeKnowledgeAction(action);
+                break;
+
+            case 'catalog_item':
+                executeCatalogItemAction(action);
+                break;
+
+            case 'agent_chat':
+                executeAgentChatAction(action);
+                break;
+        }
+    };
+
     function showCopied() {
         if (copyFeedbackTimeout) {
             $timeout.cancel(copyFeedbackTimeout);
@@ -70,23 +110,164 @@
         });
     }
 
-    c.copyLink = function() {
-        var announcement = c.data.announcement;
-
-        if (!announcement)
+    function executeUrlAction(action) {
+        if (!action.url)
             return;
 
-        var url = window.location.origin + window.location.pathname + '?id=aes_details&announcement=' + encodeURIComponent(announcement.sys_id);
+        var url = normalizeUrl(action.url);
 
-        navigator.clipboard.writeText(url).then(function() {
-            showCopied();
+        executeNavigation(url, action.target);
+    }
 
-        })
-    };
+    function normalizeUrl(url) {
+        url = url.trim();
 
-    c.backToAnnouncements = function() {
-        window.location.href = window.location.pathname + '?id=aes_announcements';
-    };
+        if (!url)
+            return '';
+
+        if (/^https?:\/\//i.test(url)) {
+            return url;
+        }
+
+        return 'https://' + url;
+    }
+
+    function executeKnowledgeAction(action) {
+        if (!action.knowledge_article || !action.knowledge_article.number) {
+            return;
+        }
+
+        executePortalNavigation({
+            id: 'kb_article',
+            sysparm_article: action.knowledge_article.number
+        }, action.target);
+    }
+
+    function executeCatalogItemAction(action) {
+        if (!action.catalog_item || !action.catalog_item.sys_id) {
+            return;
+        }
+
+        executePortalNavigation({
+            id: 'sc_cat_item',
+            sys_id: action.catalog_item.sys_id
+        }, action.target);
+    }
+
+    function executeAgentChatAction(action) {
+        if (!action.queue || !action.queue.route || !$scope.data.agentChat || !$scope.data.agentChat.topic) {
+            return;
+        }
+
+        var params = {
+            sysparm_default_topic: $scope.data.agentChat.topic,
+            sysparm_skip_load_history: 'true',
+            sysparm_aes_route: action.queue.route,
+            sysparm_aes_communication: $scope.data.announcement.sys_id,
+            sysparm_aes_source: 'announcement'
+        };
+
+        var url = buildAgentChatUrl(params);
+
+        openAgentChatWindow(url);
+    }
+
+    function buildAgentChatUrl(params) {
+        var query = [];
+
+        angular.forEach(params, function(value, key) {
+            if (value === undefined || value === null || value === '') {
+                return;
+            }
+
+            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        });
+
+        return '/$sn-va-web-client-app.do?' +
+            query.join('&');
+    }
+
+    function openAgentChatWindow(url) {
+        var width = 480;
+        var height = Math.min(760, $window.screen.availHeight * 0.9);
+
+        var left = Math.max(0, $window.screen.availWidth - width - 40);
+        var top = Math.max(0, ($window.screen.availHeight - height) / 2);
+
+        $window.open(
+            url,
+            'aes_agent_chat',
+            'width=' + width +
+            ',height=' + Math.round(height) +
+            ',left=' + Math.round(left) +
+            ',top=' + Math.round(top) +
+            ',resizable=yes,scrollbars=yes'
+        );
+    }
+
+    function buildPortalUrl(params) {
+        var query = [];
+
+        angular.forEach(params, function(value, key) {
+            if (value === undefined || value === null || value === '') {
+                return;
+            }
+
+            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        });
+
+        return $window.location.pathname +
+            '?' +
+            query.join('&');
+    }
+
+    function executeNavigation(url, target) {
+        if (!url)
+            return;
+
+        switch (target) {
+            case 'new_tab':
+                $window.open(url, '_blank', 'noopener');
+                break;
+
+            case 'new_window':
+                openNewWindow(url);
+                break;
+
+            case 'current_page':
+            default:
+                $window.location.href = url;
+                break;
+        }
+    }
+
+    function executePortalNavigation(params, target) {
+        var url = buildPortalUrl(params);
+
+        if (target === 'current_page') {
+            $location.search(params);
+            return;
+        }
+
+        executeNavigation(url, target);
+    }
+
+    function openNewWindow(url) {
+        var width = Math.min(1200, $window.screen.availWidth * 0.9);
+        var height = Math.min(800, $window.screen.availHeight * 0.9);
+
+        var left = Math.max(0, ($window.screen.availWidth - width) / 2);
+        var top = Math.max(0, ($window.screen.availHeight - height) / 2);
+
+        $window.open(
+            url,
+            '_blank',
+            'noopener,width=' + Math.round(width) +
+            ',height=' + Math.round(height) +
+            ',left=' + Math.round(left) +
+            ',top=' + Math.round(top)
+        );
+    }
 
 };]]></client_script>
         <controller_as>c</controller_as>
@@ -540,6 +721,13 @@
     data.announcement = null;
     data.error = '';
 
+    var agentChatTopic = gs.getProperty('x_733168_aes.agent_chat.topic', '');
+
+    data.agentChat = {
+        enabled: !!agentChatTopic,
+        topic: agentChatTopic
+    };
+
     var announcementId = $sp.getParameter('announcement');
 
     if (!announcementId) {
@@ -623,14 +811,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-27 01:34:11</sys_created_on>
         <sys_id>75d6e5469367cf90ef30f2918bba1067</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>55</sys_mod_count>
         <sys_name>AES - Announcement Detail</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sp_widget_75d6e5469367cf90ef30f2918bba1067</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-27 03:51:39</sys_updated_on>
+        <sys_updated_on>2026-09-28 02:48:33</sys_updated_on>
         <template><![CDATA[<div class="aes-announcement-detail" ng-if="data.announcement">
   
   <!-- Top bar -->
@@ -721,12 +909,13 @@
     <div class="aes-announcement-detail__content" ng-bind-html="c.trustedContent"></div>
     
     <!-- Actions -->
-    <div class="aes-announcement-detail__actions" ng-if="data.announcement.actions.length">
+    <div class="aes-announcement-detail__actions" ng-if="c.primaryActions.length || c.secondaryActions.length">
       
       <!-- Primary -->
       <div class="aes-announcement-detail__primary-actions">
         <button type="button" class="aes-announcement-detail__action aes-announcement-detail__action--primary" 
-                ng-repeat="action in c.primaryActions">  
+                ng-repeat="action in c.primaryActions"
+                ng-click="c.executeAction(action)">  
           <span>{{::action.label}}</span>
           <i class="fa fa-arrow-right" aria-hidden="true"></i>
         </button>
@@ -735,7 +924,8 @@
       <!-- Secondary -->
       <div class="aes-announcement-detail__secondary-actions">
         <button type="button" class="aes-announcement-detail__action aes-announcement-detail__action--secondary"
-                 ng-repeat="action in c.secondaryActions">
+                ng-repeat="action in c.secondaryActions"
+                ng-click="c.executeAction(action)">
           {{::action.label}}
         </button>
       </div>

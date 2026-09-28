@@ -18,7 +18,7 @@
                 <element inactive_on_update="false" label="URL" sequence="1" value="url"/>
             </choice>
         </element>
-        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Queue" max_length="32" name="queue" reference="awa_queue" reference_qual="active=true^service_channel.type=chat^service_channel.workitem_table=interaction^service_channel.active=true^EQ" reference_qual_condition="active=true^service_channel.type=chat^service_channel.workitem_table=interaction^service_channel.active=true^EQ" type="reference"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Queue" max_length="32" name="queue" reference="x_733168_aes_agent_chat_queue" reference_qual="queue.active=true^EQ" reference_qual_condition="queue.active=true^EQ" type="reference"/>
         <element default="100" label="Order" max_length="40" name="order" type="integer"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" choice="3" default="new_tab" label="Link Target" max_length="40" name="link_target" type="choice">
             <choice>

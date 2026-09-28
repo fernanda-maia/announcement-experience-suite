@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="DELETE">
+        <category>custom</category>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <human_readable_url_structure/>
+        <id>aes_agent_chat</id>
+        <internal>false</internal>
+        <omit_watcher>false</omit_watcher>
+        <public>false</public>
+        <roles>x_733168_aes.user</roles>
+        <seo_script/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-27 18:33:48</sys_created_on>
+        <sys_id>a121d55693e343d0ef30f2918bba10a4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>aes_agent_chat</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sp_page_a121d55693e343d0ef30f2918bba10a4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-27 18:33:48</sys_updated_on>
+        <title>AES Agent Chat</title>
+        <use_seo_script>false</use_seo_script>
+    </sp_page>
+    <sys_translated_text action="DELETE" query="documentkey=a121d55693e343d0ef30f2918bba10a4"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</application>
+        <file_path/>
+        <instance_id>d1a60302fb944bd0363cf633beefdcda</instance_id>
+        <instance_name>dev385006</instance_name>
+        <name>sp_page_a121d55693e343d0ef30f2918bba10a4</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page"><sp_page action="INSERT_OR_UPDATE"><category>custom</category><css/><draft>false</draft><dynamic_title_structure/><human_readable_url_structure/><id>aes_agent_chat</id><internal>false</internal><omit_watcher>false</omit_watcher><public>false</public><roles>x_733168_aes.user</roles><seo_script/><short_description/><sys_class_name>sp_page</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-27 18:33:48</sys_created_on><sys_id>a121d55693e343d0ef30f2918bba10a4</sys_id><sys_mod_count>0</sys_mod_count><sys_name>aes_agent_chat</sys_name><sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package><sys_policy/><sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope><sys_update_name>sp_page_a121d55693e343d0ef30f2918bba10a4</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-27 18:33:48</sys_updated_on><title>AES Agent Chat</title><use_seo_script>false</use_seo_script></sp_page><sys_translated_text action="delete_multiple" query="documentkey=a121d55693e343d0ef30f2918bba10a4"/></record_update>]]></payload>
+        <payload_hash>690483078</payload_hash>
+        <record_name>aes_agent_chat</record_name>
+        <reverted_from/>
+        <source>f285d79f939b4b50ef30f2918bba108b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-27 18:33:48</sys_created_on>
+        <sys_id>9651d9d693a343d0ef30f2918bba1075</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0e4250bf20000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-27 18:33:48</sys_updated_on>
+        <type>Page</type>
+        <update_guid>5651d9d6bba343d094cb6b735e6db874</update_guid>
+        <update_guid_history>5651d9d6bba343d094cb6b735e6db874:690483078</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="aes_agent_chat">7b52111a93e343d0ef30f2918bba1054</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-27 18:38:19</sys_created_on>
+        <sys_db_object display_value="" name="sp_page">sp_page</sys_db_object>
+        <sys_id>a7e49cde34084fdc9d17ccfda1a134a4</sys_id>
+        <sys_metadata>a121d55693e343d0ef30f2918bba10a4</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>aes_agent_chat</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_scope_delete display_value="">07b4496e5bca47448b1160d8a1721b90</sys_scope_delete>
+        <sys_update_name>sp_page_a121d55693e343d0ef30f2918bba10a4</sys_update_name>
+        <sys_update_version display_value="sp_page_a121d55693e343d0ef30f2918bba10a4">9651d9d693a343d0ef30f2918bba1075</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-27 18:38:19</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
