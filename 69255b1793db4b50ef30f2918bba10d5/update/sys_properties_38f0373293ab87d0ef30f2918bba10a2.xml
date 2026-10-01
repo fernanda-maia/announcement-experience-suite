@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description/>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_733168_aes.agent_chat.branding_key</name>
+        <read_roles/>
+        <suffix>agent_chat.branding_key</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-29 19:28:11</sys_created_on>
+        <sys_id>38f0373293ab87d0ef30f2918bba10a2</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_733168_aes.agent_chat.branding_key</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_properties_38f0373293ab87d0ef30f2918bba10a2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-29 19:52:59</sys_updated_on>
+        <type>string</type>
+        <value>aes_communications_chat</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=38f0373293ab87d0ef30f2918bba10a2"/>
+</record_update>

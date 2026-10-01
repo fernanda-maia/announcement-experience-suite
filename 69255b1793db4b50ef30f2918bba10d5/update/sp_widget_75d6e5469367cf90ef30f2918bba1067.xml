@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function($sce, $timeout, $window, $location, $scope) {
+        <client_script><![CDATA[api.controller = function($sce, $timeout, $window, $location, $scope, $rootScope) {
     var c = this;
     var copyFeedbackTimeout = null;
     c.linkCopied = false;
@@ -69,7 +69,9 @@
     };
 
     c.backToAnnouncements = function() {
-        $window.location.href = $window.location.pathname + '?id=aes_announcements';
+        $location.search({
+            id: 'aes_announcements'
+        });
     };
 
     c.executeAction = function(action) {
@@ -155,54 +157,21 @@
     }
 
     function executeAgentChatAction(action) {
-        if (!action.queue || !action.queue.route || !$scope.data.agentChat || !$scope.data.agentChat.topic) {
+        var announcement = c.data.announcement;
+
+        if (!announcement || !announcement.sys_id) {
             return;
         }
 
-        var params = {
-            sysparm_default_topic: $scope.data.agentChat.topic,
-            sysparm_skip_load_history: 'true',
-            sysparm_aes_route: action.queue.route,
-            sysparm_aes_communication: $scope.data.announcement.sys_id,
-            sysparm_aes_source: 'announcement'
-        };
+        if (!action.queue || !action.queue.route) {
+            return;
+        }
 
-        var url = buildAgentChatUrl(params);
-
-        openAgentChatWindow(url);
-    }
-
-    function buildAgentChatUrl(params) {
-        var query = [];
-
-        angular.forEach(params, function(value, key) {
-            if (value === undefined || value === null || value === '') {
-                return;
-            }
-
-            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        $rootScope.$broadcast('aes.communication.chat.open', {
+            communication_id: announcement.sys_id,
+            title: announcement.title || '',
+            route: action.queue.route
         });
-
-        return '/$sn-va-web-client-app.do?' +
-            query.join('&');
-    }
-
-    function openAgentChatWindow(url) {
-        var width = 480;
-        var height = Math.min(760, $window.screen.availHeight * 0.9);
-
-        var left = Math.max(0, $window.screen.availWidth - width - 40);
-        var top = Math.max(0, ($window.screen.availHeight - height) / 2);
-
-        $window.open(
-            url,
-            'aes_agent_chat',
-            'width=' + width +
-            ',height=' + Math.round(height) +
-            ',left=' + Math.round(left) +
-            ',top=' + Math.round(top) +
-            ',resizable=yes,scrollbars=yes'
-        );
     }
 
     function buildPortalUrl(params) {
@@ -721,13 +690,6 @@
     data.announcement = null;
     data.error = '';
 
-    var agentChatTopic = gs.getProperty('x_733168_aes.agent_chat.topic', '');
-
-    data.agentChat = {
-        enabled: !!agentChatTopic,
-        topic: agentChatTopic
-    };
-
     var announcementId = $sp.getParameter('announcement');
 
     if (!announcementId) {
@@ -811,14 +773,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-27 01:34:11</sys_created_on>
         <sys_id>75d6e5469367cf90ef30f2918bba1067</sys_id>
-        <sys_mod_count>55</sys_mod_count>
+        <sys_mod_count>59</sys_mod_count>
         <sys_name>AES - Announcement Detail</sys_name>
         <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
         <sys_policy/>
         <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
         <sys_update_name>sp_widget_75d6e5469367cf90ef30f2918bba1067</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-28 02:48:33</sys_updated_on>
+        <sys_updated_on>2026-09-30 19:41:52</sys_updated_on>
         <template><![CDATA[<div class="aes-announcement-detail" ng-if="data.announcement">
   
   <!-- Top bar -->

@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, $rootScope, $sce, $window) {
+    var c = this;
+
+    if (!c.data.enabled) {
+        return;
+    }
+
+    c.visible = false;
+    c.minimized = false;
+    c.chatUrl = null;
+    c.communication = null;
+
+    var STORAGE_KEY = 'aes.communication.chat.state';
+
+    restoreState();
+
+
+    var unregisterOpen =
+        $rootScope.$on('aes.communication.chat.open',
+            function(event, data) {
+
+                if (!data || !data.communication_id) {
+                    return;
+                }
+
+                c.communication = data;
+
+                c.visible = true;
+                c.minimized = false;
+
+                c.chatUrl = buildChatUrl(data);
+
+                saveState();
+            }
+        );
+
+    c.minimize = function() {
+        c.minimized = true;
+
+        saveState();
+    };
+
+    c.restore = function() {
+        c.minimized = false;
+
+        saveState();
+    };
+
+    c.close = function() {
+        c.visible = false;
+        c.minimized = false;
+        c.chatUrl = null;
+        c.communication = null;
+
+        clearState();
+    };
+
+    function buildChatUrl(context) {
+        var params = {
+            sysparm_default_topic: c.data.agentChat.topic,
+            sysparm_load_active_only: 'true',
+            sysparm_page: 'aes_details',
+            sysparm_aes_route: context.route,
+            sysparm_aes_communication: context.communication_id,
+            sysparm_aes_source: 'announcement',
+            sysparm_branding_key: c.data.agentChat.brandingKey,
+            sysparm_portal: 'aes_chat',
+            sysparm_consumer_account_context: 'aes'
+        };
+
+        var query = [];
+
+        angular.forEach(params, function(value, key) {
+            if (value === undefined || value === null || value === '') {
+                return;
+            }
+
+            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        });
+
+        return $sce.trustAsResourceUrl('/sn_va_web_client_app_embed.do?' + query.join('&'));
+    }
+
+    $scope.$on('$destroy', function() {
+        unregisterOpen();
+    });
+
+    function saveState() {
+        try {
+            $window.sessionStorage.setItem(STORAGE_KEY,
+                JSON.stringify({
+                    visible: c.visible,
+                    minimized: c.minimized,
+                    communication: c.communication
+                })
+            );
+        } catch (e) {
+            // Não bloqueia o chat
+        }
+    }
+
+
+    function restoreState() {
+        try {
+            var stored = $window.sessionStorage.getItem(STORAGE_KEY);
+
+            if (!stored) {
+                return;
+            }
+
+            var state = JSON.parse(stored);
+
+            if (!state || !state.visible || !state.communication || !state.communication.communication_id) {
+                return;
+            }
+
+            c.communication = state.communication;
+            c.visible = true;
+            c.minimized = !!state.minimized;
+
+            c.chatUrl = buildChatUrl(c.communication);
+
+        } catch (e) {
+            clearState();
+        }
+    }
+
+
+    function clearState() {
+        try {
+            $window.sessionStorage.removeItem(STORAGE_KEY);
+        } catch (e) {
+            // Ignore
+        }
+    }
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.aes-chat {&#13;
+    position: fixed;&#13;
+    left: 50%;&#13;
+    bottom: 32px;&#13;
+    transform: translateX(-50%);&#13;
+&#13;
+    width: 420px;&#13;
+    height: 620px;&#13;
+&#13;
+    display: flex;&#13;
+    flex-direction: column;&#13;
+&#13;
+    background: #ffffff;&#13;
+    border: 1px solid rgba(32, 36, 40, 0.12);&#13;
+    border-radius: 16px;&#13;
+&#13;
+    overflow: hidden;&#13;
+&#13;
+    box-shadow:&#13;
+        0 18px 50px rgba(0, 0, 0, 0.20),&#13;
+        0 4px 14px rgba(0, 0, 0, 0.10);&#13;
+&#13;
+    z-index: 1050;&#13;
+}&#13;
+&#13;
+&#13;
+/* ================================&#13;
+   AES HEADER&#13;
+   ================================ */&#13;
+&#13;
+.aes-chat__header {&#13;
+    height: 52px;&#13;
+    min-height: 52px;&#13;
+&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+    justify-content: space-between;&#13;
+&#13;
+    padding: 0 10px 0 16px;&#13;
+&#13;
+    background: #252A2E;&#13;
+    color: #ffffff;&#13;
+    user-select: none;&#13;
+}&#13;
+&#13;
+.aes-chat__drag-handle {&#13;
+    cursor: grab;&#13;
+}&#13;
+&#13;
+.aes-chat__drag-handle.aes-dragging {&#13;
+    cursor: grabbing;&#13;
+}&#13;
+&#13;
+.aes-chat__drag-handle:hover,&#13;
+.aes-chat__drag-handle:focus {&#13;
+    color: #B7F000;&#13;
+}&#13;
+&#13;
+.aes-chat__header-content {&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+&#13;
+    min-width: 0;&#13;
+    flex: 1;&#13;
+}&#13;
+&#13;
+&#13;
+.aes-chat__title {&#13;
+    display: block;&#13;
+&#13;
+    color: #ffffff;&#13;
+&#13;
+    font-size: 14px;&#13;
+    font-weight: 600;&#13;
+    line-height: 1;&#13;
+&#13;
+    white-space: nowrap;&#13;
+    overflow: hidden;&#13;
+    text-overflow: ellipsis;&#13;
+}&#13;
+&#13;
+&#13;
+/* ================================&#13;
+   CONTROLS&#13;
+   ================================ */&#13;
+&#13;
+.aes-chat__drag-handle {&#13;
+    width: 28px;&#13;
+    height: 34px;&#13;
+&#13;
+    display: inline-flex;&#13;
+    align-items: center;&#13;
+    justify-content: center;&#13;
+&#13;
+    flex: 0 0 auto;&#13;
+&#13;
+    margin-right: 6px;&#13;
+    padding: 0;&#13;
+&#13;
+    border: 0;&#13;
+    background: transparent;&#13;
+&#13;
+    color: #9EA5AA;&#13;
+&#13;
+    font-size: 16px;&#13;
+&#13;
+    cursor: grab;&#13;
+}&#13;
+&#13;
+.aes-chat__drag-handle:hover,&#13;
+.aes-chat__drag-handle:focus {&#13;
+    color: #B7F000;&#13;
+    outline: none;&#13;
+}&#13;
+&#13;
+.aes-chat__drag-handle.aes-dragging {&#13;
+    cursor: grabbing;&#13;
+}&#13;
+&#13;
+.aes-chat__controls {&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+&#13;
+    gap: 2px;&#13;
+    margin-left: 12px;&#13;
+}&#13;
+&#13;
+&#13;
+.aes-chat__control {&#13;
+    width: 34px;&#13;
+    height: 34px;&#13;
+&#13;
+    display: inline-flex;&#13;
+    align-items: center;&#13;
+    justify-content: center;&#13;
+&#13;
+    padding: 0;&#13;
+&#13;
+    border: 0;&#13;
+    border-radius: 8px;&#13;
+&#13;
+    background: transparent;&#13;
+    color: #ffffff;&#13;
+&#13;
+    font-size: 14px;&#13;
+&#13;
+    cursor: pointer;&#13;
+&#13;
+    transition:&#13;
+        background-color 0.15s ease,&#13;
+        color 0.15s ease;&#13;
+}&#13;
+&#13;
+&#13;
+.aes-chat__control:hover,&#13;
+.aes-chat__control:focus {&#13;
+    background: rgba(255, 255, 255, 0.10);&#13;
+    color: #B7F000;&#13;
+&#13;
+    outline: none;&#13;
+}&#13;
+&#13;
+&#13;
+/* ================================&#13;
+   CHAT BODY&#13;
+   ================================ */&#13;
+&#13;
+.aes-chat__body {&#13;
+    position: relative;&#13;
+    flex: 1;&#13;
+    min-height: 0;&#13;
+    overflow: hidden;&#13;
+    background: #ffffff;&#13;
+}&#13;
+&#13;
+.aes-chat__frame {&#13;
+    position: absolute;&#13;
+&#13;
+    top: -58px;&#13;
+    left: 0;&#13;
+&#13;
+    display: block;&#13;
+&#13;
+    width: 100%;&#13;
+    height: calc(100% + 58px);&#13;
+&#13;
+    border: 0;&#13;
+}&#13;
+&#13;
+/* ================================&#13;
+   MINIMIZED&#13;
+   ================================ */&#13;
+&#13;
+.aes-chat--minimized {&#13;
+    width: 320px;&#13;
+    height: 52px;&#13;
+    transition:&#13;
+        height 0.22s ease,&#13;
+        width 0.22s ease;&#13;
+}&#13;
+&#13;
+.aes-chat__brand {&#13;
+    width: 30px;&#13;
+    height: 30px;&#13;
+&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+    justify-content: center;&#13;
+&#13;
+    margin-right: 9px;&#13;
+&#13;
+    border-radius: 8px;&#13;
+&#13;
+    background: rgba(183, 240, 0, 0.10);&#13;
+}&#13;
+&#13;
+.aes-chat__logo {&#13;
+    display: block;&#13;
+&#13;
+    width: 22px;&#13;
+    height: 22px;&#13;
+&#13;
+    object-fit: contain;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>aes-communication-chat</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>AES - Communication Chat</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_733168_aes.user</roles>
+        <script><![CDATA[(function() {
+
+    data.enabled = gs.getProperty('x_733168_aes.agent_chat.enabled', 'false') == 'true';
+
+    if (!data.enabled) {
+        return;
+    }
+
+    data.agentChat = {
+        topic: gs.getProperty('x_733168_aes.agent_chat.topic', ''),
+        brandingKey: gs.getProperty('x_733168_aes.agent_chat.branding_key', '')
+    };
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-29 20:12:00</sys_created_on>
+        <sys_id>be4abff293eb87d0ef30f2918bba108f</sys_id>
+        <sys_mod_count>36</sys_mod_count>
+        <sys_name>AES - Communication Chat</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sp_widget_be4abff293eb87d0ef30f2918bba108f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-30 20:29:19</sys_updated_on>
+        <template><![CDATA[<div class="aes-chat" ng-if="c.data.enabled && c.visible" ng-class="{'aes-chat--minimized': c.minimized}" aes-draggable aes-draggable-handle=".aes-chat__drag-handle">
+  
+<div class="aes-chat__header">
+    <div class="aes-chat__header-content">
+        <button type="button" class="aes-chat__drag-handle" aria-label="${Move chat}" title="${Move chat}">
+            <i class="fa-solid fa-grip-vertical"></i>
+        </button>
+        <div class="aes-chat__brand">
+            <img class="aes-chat__logo" src="x_733168_aes.announcement_bullhorn.png" alt="">
+        </div>
+        <span class="aes-chat__title">${Announcement Assistant}</span>
+    </div>
+
+    <div class="aes-chat__controls">
+        <button type="button" class="aes-chat__control" ng-if="!c.minimized" ng-click="c.minimize()" aria-label="${Minimize chat}">
+            <i class="fa fa-minus"></i>
+        </button>
+
+        <button type="button" class="aes-chat__control" ng-if="c.minimized" ng-click="c.restore()" aria-label="${Restore chat}">
+            <i class="fa fa-window-maximize"></i>
+        </button>
+
+        <button type="button" class="aes-chat__control" ng-click="c.close()" aria-label="${Close chat}">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
+</div>
+  
+  <div class="aes-chat__body" ng-show="!c.minimized">
+        <iframe class="aes-chat__frame" ng-src="{{c.chatUrl}}" title="${AES Communications Chat}"></iframe>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_733168_aes.AESPortalBootstrap</name>
+        <script><![CDATA[(function(window, document) {
+    'use strict';
+    console.log('[AES] Portal Bootstrap UI Script loaded');
+    var HOST_ID = 'aes-communication-chat-host';
+
+    /*
+     * Use aqui o ID do widget,
+     * não o título apresentado no Widget Editor.
+     */
+    var WIDGET_ID = 'aes-communication-chat';
+
+    var MAX_ATTEMPTS = 100;
+    var RETRY_DELAY = 100;
+
+    var attempts = 0;
+
+
+    function bootstrap() {
+
+        /*
+         * Impede carregar duas vezes.
+         */
+        if (document.getElementById(HOST_ID)) {
+            return;
+        }
+
+
+        /*
+         * Aguarda o Angular do Service Portal
+         * terminar o bootstrap.
+         */
+        var angularRoot =
+            document.querySelector('[ng-app]') ||
+            document.body;
+
+        if (
+            !window.angular ||
+            !angularRoot
+        ) {
+            retry();
+            return;
+        }
+
+
+        var injector;
+
+        try {
+            injector =
+                window.angular
+                .element(angularRoot)
+                .injector();
+        } catch (e) {
+            retry();
+            return;
+        }
+
+
+        if (!injector) {
+            retry();
+            return;
+        }
+
+
+        try {
+            loadWidget(injector);
+        } catch (e) {
+            console.error(
+                '[AES] Unable to initialize portal components.',
+                e
+            );
+        }
+    }
+
+
+    function loadWidget(injector) {
+
+        var spUtil =
+            injector.get('spUtil');
+
+        var $compile =
+            injector.get('$compile');
+
+        var $rootScope =
+            injector.get('$rootScope');
+
+
+        /*
+         * Recupera o model completo do widget.
+         */
+        spUtil
+            .get(WIDGET_ID)
+            .then(function(widgetModel) {
+
+                /*
+                 * Confere novamente caso outra execução
+                 * já tenha criado o host.
+                 */
+                if (document.getElementById(HOST_ID)) {
+                    return;
+                }
+
+
+                /*
+                 * Scope isolado para os componentes AES.
+                 */
+                var scope =
+                    $rootScope.$new();
+
+
+                scope.aesCommunicationChat =
+                    widgetModel;
+
+
+                /*
+                 * Cria nosso ponto global de montagem.
+                 */
+                var host =
+                    window.angular.element(
+                        '<div id="' +
+                        HOST_ID +
+                        '">' +
+                        '<sp-widget ' +
+                        'widget="aesCommunicationChat">' +
+                        '</sp-widget>' +
+                        '</div>'
+                    );
+
+
+                /*
+                 * Faz o Angular processar <sp-widget>.
+                 */
+                $compile(host)(scope);
+
+
+                /*
+                 * Não depende do footer.
+                 * O componente vai direto para o body.
+                 *
+                 * Como .aes-chat é position: fixed,
+                 * sua posição visual continua independente.
+                 */
+                window.angular
+                    .element(document.body)
+                    .append(host);
+
+
+                console.log(
+                    '[AES] Communication Chat loaded.'
+                );
+            })
+            .catch(function(error) {
+
+                console.error(
+                    '[AES] Unable to load Communication Chat.',
+                    error
+                );
+
+            });
+    }
+
+
+    function retry() {
+
+        attempts++;
+
+        if (attempts >= MAX_ATTEMPTS) {
+
+            console.error(
+                '[AES] Service Portal Angular context ' +
+                'was not available.'
+            );
+
+            return;
+        }
+
+        window.setTimeout(
+            bootstrap,
+            RETRY_DELAY
+        );
+    }
+
+
+    /*
+     * Aguarda o DOM.
+     */
+    if (document.readyState === 'loading') {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            bootstrap
+        );
+
+    } else {
+
+        bootstrap();
+
+    }
+
+})(window, document);]]></script>
+        <script_name>AESPortalBootstrap</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-30 19:27:29</sys_created_on>
+        <sys_id>650a381793274bd0ef30f2918bba1029</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_733168_aes.AESPortalBootstrap</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sys_ui_script_650a381793274bd0ef30f2918bba1029</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-01 18:48:09</sys_updated_on>
+        <ui_type>10</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

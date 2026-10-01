@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_angular_provider">
+    <sp_angular_provider action="INSERT_OR_UPDATE">
+        <name>aesDraggable</name>
+        <script><![CDATA[function($document, $window) {
+    var resizeTimer = null;
+
+    return {
+        restrict: 'A',
+
+        link: function(scope, element, attrs) {
+            var node = element[0];
+            var handle;
+
+            var startX;
+            var startY;
+            var startLeft;
+            var startTop;
+
+            var dragging = false;
+
+            /*
+             * Define qual elemento será usado
+             * como alça para arrastar.
+             */
+            if (attrs.aesDraggableHandle) {
+                handle = node.querySelector(
+                    attrs.aesDraggableHandle
+                );
+            }
+
+            if (!handle) {
+                handle = node;
+            }
+
+            var handleElement = angular.element(handle);
+            var windowElement = angular.element($window);
+            var resizeObserver = null;
+
+            if ($window.ResizeObserver) {
+                resizeObserver = new $window.ResizeObserver(
+                    function() {
+
+                        if (resizeTimer) {
+                            $window.clearTimeout(
+                                resizeTimer
+                            );
+                        }
+
+                        resizeTimer =
+                            $window.setTimeout(
+                                function() {
+                                    keepInsideViewport();
+                                },
+                                250
+                            );
+                    }
+                );
+
+                resizeObserver.observe(node);
+            }
+
+            /*
+             * Eventos
+             */
+            handleElement.on(
+                'mousedown',
+                startDrag
+            );
+
+            windowElement.on(
+                'resize',
+                keepInsideViewport
+            );
+
+
+            /*
+             * Inicia o drag
+             */
+            function startDrag(event) {
+
+                var interactiveElement =
+                    event.target.closest &&
+                    event.target.closest(
+                        'button, a, input, textarea, select'
+                    );
+
+                /*
+                 * Permite interação normal com controles,
+                 * exceto quando o próprio controle é
+                 * o handle configurado.
+                 */
+                if (
+                    interactiveElement &&
+                    !handle.contains(interactiveElement)
+                ) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                var rect =
+                    node.getBoundingClientRect();
+
+                startX = event.clientX;
+                startY = event.clientY;
+
+                startLeft = rect.left;
+                startTop = rect.top;
+
+                /*
+                 * A posição vertical passa a ser
+                 * controlada pelo bottom.
+                 *
+                 * Isso faz o componente crescer
+                 * para cima ao restaurar.
+                 */
+                var bottom =
+                    $window.innerHeight -
+                    rect.bottom;
+
+                node.style.left =
+                    rect.left + 'px';
+
+                node.style.bottom =
+                    bottom + 'px';
+
+                node.style.top = 'auto';
+                node.style.right = 'auto';
+                node.style.transform = 'none';
+
+                dragging = true;
+
+                $document.on(
+                    'mousemove',
+                    drag
+                );
+
+                $document.on(
+                    'mouseup',
+                    stopDrag
+                );
+
+                handleElement.addClass(
+                    'aes-dragging'
+                );
+            }
+
+
+            /*
+             * Move o componente
+             */
+            function drag(event) {
+                if (!dragging) {
+                    return;
+                }
+
+                var left =
+                    startLeft +
+                    (event.clientX - startX);
+
+                var top =
+                    startTop +
+                    (event.clientY - startY);
+
+                /*
+                 * Limites horizontais.
+                 */
+                var maxLeft =
+                    Math.max(
+                        0,
+                        $window.innerWidth -
+                        node.offsetWidth
+                    );
+
+                /*
+                 * Limites verticais.
+                 *
+                 * O componente inteiro permanece
+                 * dentro da viewport.
+                 */
+                var maxTop =
+                    Math.max(
+                        0,
+                        $window.innerHeight -
+                        node.offsetHeight
+                    );
+
+                left = Math.max(
+                    0,
+                    Math.min(left, maxLeft)
+                );
+
+                top = Math.max(
+                    0,
+                    Math.min(top, maxTop)
+                );
+
+                /*
+                 * Horizontal:
+                 * ancora pela esquerda.
+                 */
+                node.style.left =
+                    left + 'px';
+
+                /*
+                 * Vertical:
+                 * ancora pelo bottom.
+                 */
+                var bottom =
+                    $window.innerHeight -
+                    top -
+                    node.offsetHeight;
+
+                node.style.bottom =
+                    bottom + 'px';
+
+                node.style.top = 'auto';
+            }
+
+
+            /*
+             * Finaliza o drag
+             */
+            function stopDrag() {
+                if (!dragging) {
+                    return;
+                }
+
+                dragging = false;
+
+                $document.off(
+                    'mousemove',
+                    drag
+                );
+
+                $document.off(
+                    'mouseup',
+                    stopDrag
+                );
+
+                handleElement.removeClass(
+                    'aes-dragging'
+                );
+            }
+
+
+            /*
+             * Garante que o componente continue
+             * dentro da viewport após resize.
+             */
+            function keepInsideViewport() {
+                var rect =
+                    node.getBoundingClientRect();
+
+                var left = rect.left;
+                var top = rect.top;
+
+                var maxLeft =
+                    Math.max(
+                        0,
+                        $window.innerWidth -
+                        node.offsetWidth
+                    );
+
+                var maxTop =
+                    Math.max(
+                        0,
+                        $window.innerHeight -
+                        node.offsetHeight
+                    );
+
+                left = Math.max(
+                    0,
+                    Math.min(left, maxLeft)
+                );
+
+                top = Math.max(
+                    0,
+                    Math.min(top, maxTop)
+                );
+
+                var bottom =
+                    $window.innerHeight -
+                    top -
+                    node.offsetHeight;
+
+                node.style.left =
+                    left + 'px';
+
+                node.style.bottom =
+                    bottom + 'px';
+
+                node.style.top = 'auto';
+                node.style.right = 'auto';
+                node.style.transform = 'none';
+            }
+
+
+            /*
+             * Cleanup
+             */
+            scope.$on(
+                '$destroy',
+                function() {
+
+                    handleElement.off(
+                        'mousedown',
+                        startDrag
+                    );
+
+                    $document.off(
+                        'mousemove',
+                        drag
+                    );
+
+                    $document.off(
+                        'mouseup',
+                        stopDrag
+                    );
+
+                    windowElement.off(
+                        'resize',
+                        keepInsideViewport
+                    );
+
+                    if (resizeObserver) {
+                        resizeObserver.disconnect();
+                    }
+
+                    if (resizeTimer) {
+                        $window.clearTimeout(
+                            resizeTimer
+                        );
+                    }
+                }
+            );
+        }
+    };
+}]]></script>
+        <sys_class_name>sp_angular_provider</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-29 20:52:48</sys_created_on>
+        <sys_id>0b24c80b932f87d0ef30f2918bba1004</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>aesDraggable</sys_name>
+        <sys_package display_value="Announcement Experience Suite" source="x_733168_aes">69255b1793db4b50ef30f2918bba10d5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Announcement Experience Suite">69255b1793db4b50ef30f2918bba10d5</sys_scope>
+        <sys_update_name>sp_angular_provider_0b24c80b932f87d0ef30f2918bba1004</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-29 21:40:18</sys_updated_on>
+        <type>directive</type>
+    </sp_angular_provider>
+</record_update>
